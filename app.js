@@ -4,8 +4,6 @@ const hbs = require("hbs")
 const session = require("express-session")
 const cookieparser = require("cookie-parser")
 const mongoose = require("mongoose")
-const app = express()
-const Content = require('./models/content')//TOUCHED
 
 const app = express()
 
@@ -37,7 +35,7 @@ app.use(
 );
 app.use(cookieparser())
 
-app.use(require("./controllers"))
+//app.use(require("controllers"))
 
 app.listen(3000, function () {
     console.log("port is live at 3000");
