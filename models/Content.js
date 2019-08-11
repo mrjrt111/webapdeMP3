@@ -13,7 +13,7 @@ var contentSchema = mongoose.Schema({
     tags: [String]
 })
 
-var Content = mongoose.models("contents", contentSchema);
+var Content = mongoose.model("contents", contentSchema);
 
 exports.createContent = function (content){
     return new Promise(function(resolve, reject){

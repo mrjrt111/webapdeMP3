@@ -12,7 +12,7 @@ userSchema.pre("save", function(next){
 })
 
 
-var User = mongoose.models("users", userSchema);
+var User = mongoose.model("users", userSchema);
 
 exports.signup = function (user){
     return new Promise(function(resolve, reject){

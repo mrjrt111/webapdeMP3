@@ -7,6 +7,7 @@ const mongoose = require("mongoose")
 
 const app = express()
 
+
 mongoose.Promise = global.Promise
 mongoose.connect("mongodb://localhost:27017/checknotes", {
     useNewUrlParser:true
@@ -20,12 +21,11 @@ mongoose.connection.once('open', ()=>{
 const urlencoder = bodyparser.urlencoded({
     extended: false
 });
-
+app.set("view engine", "hbs")
 app.use(express.static(__dirname + "/public"))
 app.use(
     session({
         secret: "secretname",
-        name: "cookiename",
         resave: true,
         saveUninitialized: true,
         cookie: {
@@ -35,7 +35,7 @@ app.use(
 );
 app.use(cookieparser())
 
-//app.use(require("controllers"))
+app.use(require("./controllers"))
 
 app.listen(3000, function () {
     console.log("port is live at 3000");
