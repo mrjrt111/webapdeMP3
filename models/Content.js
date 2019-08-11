@@ -10,7 +10,8 @@ var contentSchema = mongoose.Schema({
     username: String,
     note: String,
     checklist: [checklistSchema],
-    tags: [String]
+    tags: [String],
+    images: Buffer
 })
 
 var Content = mongoose.model("contents", contentSchema);

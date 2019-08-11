@@ -1,0 +1,590 @@
+body{
+    background-color:white;
+    left:160px;
+    margin: 0;
+    max-width:100%;
+    overflow-x: hidden ;
+    height: 100%;
+}
+
+html, body {
+    /*width: 91%;*/
+    min-height: 100%
+}
+
+.header{
+    /*padding: 0px 16px;*/
+    background-color: white;
+    color: grey;
+    display: flex;
+    flex-direction: row;
+    height: 10%;
+
+    box-shadow: 0 3px 6px rgba(197, 197, 197, 0.25);
+    z-index: 2;
+}
+
+#content {
+    z-index:0;
+
+    position: relative;
+    top: 70px;
+    left: 200px;
+
+    height: 84%;
+    width: 90%;
+
+    /*border:tomato solid;*/
+    padding: 16px;
+    overflow: hidden;
+
+    font-family: Roboto;
+
+}
+
+#notescontainer{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.searchForm{
+    position: relative;
+    top:10%;
+    left: 10%;
+
+    height: 75%;
+    width: 50%;
+}
+
+.searchBar{
+    padding-left: 20px;
+    top:0;
+
+    height: 100%;
+    /*width: 100%*/
+    width:90%;
+
+    border: 0px;
+    border-radius: 10px;
+
+    background-color: rgb(233, 233, 233);
+}
+
+.name{
+    position: relative;
+    top:5px;
+    font-family: Roboto, sans-serif;
+    vertical-align: center;
+}
+
+.logoutIcon{
+    position: relative;
+    float: right;
+}
+
+#logoutform{
+    position: relative;
+    top: 30%;
+    left:90%;
+}
+
+#logout{
+    color: rgb(129,129,129,0.6);
+    text-decoration: none;
+    font-family: Roboto,sans-serif;
+    background-color: #ffffff;
+    border: rgb(129,129,129,0.6) solid;
+    border-radius: 5px;
+    height: 30px;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+}
+
+#logout:hover{
+    color: rgb(129,129,129,0.87);
+    border: rgb(129,129,129,0.87) solid;
+    box-shadow: 0 1px 3px rgb(50, 50, 50, 0.25);
+}
+
+.sidenav{
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    -webkit-position: sticky;
+
+    z-index: 0;
+    top: 55px;
+    left: 0;
+
+    background-color: white;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.selection  {
+    padding: 8px 8px 8px 30px;
+
+    width: 100%;
+    text-align:left;
+
+    text-decoration: none;
+    font-size: 12pt;
+    font-family: Roboto,sans-serif;
+    color: #818181;
+    background-color: #3d3d3d00;
+    border: 0px;
+    display: block;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+}
+
+.selection:hover {
+    background-color: #ffd0004d;
+    border: 0px;
+    border-radius: 0 25px 25px 0;
+}
+
+#notes_selection{
+    position: relative;
+    top: -15px;
+    background-color: #ffd0004d;
+    border: 0px;
+    border-radius: 0 25px 25px 0;
+    color: black;
+}
+
+#checklists_selection{
+    position: relative;
+    top: -15px;
+}
+
+.tagDiv{
+    position: relative;
+    top: -15px;
+}
+
+.tagheader{
+    position: relative;
+    top: -1px;
+    height: 5%;
+    padding: 20px 8px 1px 15px;
+    letter-spacing: .07272727em;
+    text-decoration: none;
+    font-size: .6875rem;
+    font-family: Roboto,sans-serif;
+    font-weight: 500;
+    color: #818181;
+    display: block;
+
+    border-top: .75px solid #818181;
+}
+
+.addtagButton{
+    position: relative;
+    left: 50%;
+    background: transparent;
+    border: rgb(255,202,0, .60) solid;
+    border-radius: 5px;
+    font-family: Roboto, sans-serif;
+    font-size: 10pt;
+    color:rgb(255,202,0);
+    font-weight:500;
+    height: 78%;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+}
+
+.addtagButton:hover{
+    box-shadow: 0 1px 6px rgba(32, 32, 32, 0.137);
+}
+
+
+ul{
+    font-family: Roboto,sans-serif;
+    list-style: none;
+    font-weight: 500;
+    color: #3d3d3d;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin-top: 0;
+}
+
+
+.createpostForm{
+    position: relative;
+    top: 2%;
+    left: 20%;
+
+    height: 50px;
+    width: 50%;
+
+    display: flex;
+    flex-direction: row;
+
+    border-radius: 10px;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+    box-shadow: 0 3px 6px rgba(32, 32, 32, 0.25);
+}
+
+.createpostForm:hover{
+    box-shadow: 0 3px 10px rgba(32, 32, 32, 0.25);
+}
+
+#postinput{
+    position: relative;
+    left: 0px;
+
+    height: 100%;
+    width: 100%;
+
+    padding-left: 20px;
+
+    border: 0px;
+    background-color: transparent;
+
+}
+
+.createpostButton{
+    position: relative;
+    top: 25%;
+    margin-right: 5px;
+    background: transparent;
+    border: rgb(255,202,0, .60) solid;
+    border-radius: 5px;
+    font-family: Roboto, sans-serif;
+    font-size: 10pt;
+    color:rgb(255,202,0);
+    font-weight:500;
+    height: 50%;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+}
+
+.createpostButton:focus{
+    border: rgba(61, 61, 61, 0.6) solid;
+}
+
+.createpostButton:hover{
+    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+    background-color: rgb(255,202,0) ;
+    border: rgb(255,202,0) solid;
+    color:white;
+}
+
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*background-color: rgba(248, 252, 230, 0.315);*/
+    z-index: 2;
+    cursor: pointer;
+}
+
+#background{
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(248, 252, 230, 0.315);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#newpost{
+    z-index: 3;
+    position: relative;
+    width: 500px;
+    height: 460px;
+
+    margin: auto;
+    top: 15%;
+    background-color: rgb(255, 245, 145);
+
+    border-radius: 15px;
+
+}
+
+input:focus{
+    outline:none;
+}
+
+textarea:focus{
+    outline:none;
+}
+
+.post_title_container{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.post_title{
+    margin: 5px;
+    background-color: rgba(255, 255, 255, 0);
+    border: 0px;
+    font-family: Roboto, sans-serif;
+    font-size: 14pt;
+    font-weight:500;
+    padding: 10px 0 20px 15px;
+    width: 87%;
+    position: relative;
+}
+
+#noteform{
+    height: 100%;
+}
+
+.post_content{
+    position: relative;
+    left: 5%;
+
+    width: 88%;
+    height: 70%;
+
+    background-color: rgba(255, 255, 255, 0);
+    border: 0;
+    font-family: Roboto, sans-serif;
+    font-size: 10pt;
+}
+
+.post_container{
+    height: 100%;
+}
+
+.tagContainerN{
+    position: relative;
+    top:-20px;
+    left: 20px;
+}
+
+.tagN{
+    color: grey;
+    font-size: 10pt;
+    font-family: Roboto;
+
+    padding: 2px 4px 2px 4px;
+
+    border: 1px rgba(148, 148, 148) solid;
+    border-radius: 10px;
+}
+
+.tagButtonN{
+    color: grey;
+    font-size: 10pt;
+    font-family: Roboto;
+
+    padding: 2px 4px 2px 4px;
+
+    border: 1px rgb(148, 148, 148) solid;
+    border-radius: 10px;
+    background-color: #3d3d3d00;
+}
+
+.tagButtonN:hover{
+    color: black;
+    border: 1px rgb(0, 0, 0) solid;
+}
+
+#dropdownItem{
+    background-color: #f1ffb1;
+    font-size: 10pt;
+    font-family: Roboto;
+}
+
+#savebutton{
+    float: right;
+    margin-right: 10px;
+    background: transparent;
+    border: rgba(0, 0, 0, 0.6) solid;
+    border-radius: 5px;
+    font-family: Roboto, sans-serif;
+    font-size: 10pt;
+    color: rgb(0, 0, 0);
+    font-weight:500;
+    height: 30px;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+}
+
+#savebutton:hover{
+    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+    background-color: rgb(189, 189, 189);
+}
+
+.filebutton{
+    position: relative;
+    display: block;
+    height: 30px;
+    background-color: transparent;
+    border: rgba(0, 0, 0, 0.6) solid;
+    border-radius: 5px;
+    font-family: Roboto, sans-serif;
+    font-size: 10pt;
+    color: rgb(0, 0, 0);
+    font-weight:500;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+    margin-right: 5px;
+}
+
+.footer{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.noteDiv{
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    height: 45%;
+    width: 280px;
+
+    margin: 5px;
+
+    background-color:rgb(255, 226, 61);
+    padding: 5px 20px 25px 20px;
+
+    border-radius: 15px;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+}
+
+.noteDiv:hover{
+    background-color: rgb(245, 218, 63);
+    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+}
+
+.noteTitle{
+    font-size: 12pt;
+    font-weight: 500;
+    width: 75%;
+}
+
+.noteContent{
+    height: 67%;
+    width: 100%;
+
+    font-size: 10pt;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 9;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#noteTag{
+    color: grey;
+    font-size: 10pt;
+
+    padding: 2px 4px 2px 4px;
+
+    border: 1px rgba(148, 148, 148) solid;
+    border-radius: 10px;
+}
+
+.noteButtons{
+    position:relative;
+    left: 25px;
+    width: 50px;
+}
+
+.editNote{
+    position: relative;
+    width: 100%;
+
+    background-color:rgba(240, 230, 140, 0);
+    border: 0px;
+    font-size:7pt;
+
+    text-align: right;
+}
+
+.editNote:hover{
+    color: rgb(255, 136, 0);
+}
+
+.deleteNote{
+    position: relative;
+    top: 0px;
+    background-color:rgba(240, 230, 140, 0);
+    border: 0px;
+    font-size:7pt;
+
+    text-align: right;
+}
+
+.deleteNote:hover{
+    color: rgb(255, 136, 0);
+}
+
+#overlay_editN{
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    cursor: pointer;
+    background-color: rgba(248, 252, 230, 0.315);
+}
+
+#background_editN{
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(248, 252, 230, 0.315);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#editpost{
+    z-index: 3;
+    position: relative;
+    /*width: 25%;*/
+    width: 500px;
+    height: 60%;
+
+    margin: auto;
+    top: 15%;
+    background-color: rgb(255, 245, 145);
+
+    border-radius: 15px;
+}

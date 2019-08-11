@@ -1,0 +1,892 @@
+body{
+    background-color:white;
+    left:160px;
+    margin: 0;
+    max-width:100%;
+    overflow-x: hidden ;
+    height: 100%;
+}
+
+html, body {
+    /*width: 91%;*/
+    min-height: 100%
+}
+
+.header{
+    /*padding: 0px 16px;*/
+    background-color: white;
+    color: grey;
+    display: flex;
+    flex-direction: row;
+    height: 10%;
+
+    box-shadow: 0 3px 6px rgba(197, 197, 197, 0.25);
+    z-index: 2;
+}
+
+#content {
+    z-index:0;
+
+    position: relative;
+    top: 70px;
+    left: 200px;
+
+    height: 84%;
+    width: 90%;
+
+    /*border:tomato solid;*/
+    padding: 16px;
+    overflow: hidden;
+
+    font-family: Roboto;
+
+}
+
+#notescontainer{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.searchForm{
+    position: relative;
+    top:10%;
+    left: 10%;
+
+    height: 75%;
+    width: 50%;
+}
+
+.searchBar{
+    padding-left: 20px;
+    top:0;
+
+    height: 100%;
+    /*width: 100%*/
+    width:90%;
+
+    border: 0px;
+    border-radius: 10px;
+
+    background-color: rgb(233, 233, 233);
+}
+
+.name{
+    position: relative;
+    top:5px;
+    font-family: Roboto, sans-serif;
+    vertical-align: center;
+}
+
+.logoutIcon{
+    position: relative;
+    float: right;
+}
+
+#logoutform{
+    position: relative;
+    top: 30%;
+    left:90%;
+}
+
+#logout{
+    color: rgb(129,129,129,0.6);
+    text-decoration: none;
+    font-family: Roboto,sans-serif;
+    background-color: #ffffff;
+    border: rgb(129,129,129,0.6) solid;
+    border-radius: 5px;
+    height: 30px;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+}
+
+#logout:hover{
+    color: rgb(129,129,129,0.87);
+    border: rgb(129,129,129,0.87) solid;
+    box-shadow: 0 1px 3px rgb(50, 50, 50, 0.25);
+}
+
+.sidenav{
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    -webkit-position: sticky;
+
+    z-index: 1;
+    top: 55px;
+    left: 0;
+
+    background-color: white;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.selection  {
+    padding: 8px 8px 8px 30px;
+
+    width: 100%;
+    text-align:left;
+
+    text-decoration: none;
+    font-size: 12pt;
+    font-family: Roboto,sans-serif;
+    color: #818181;
+    background-color: #3d3d3d00;
+    border: 0px;
+    display: block;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+}
+
+.selection:hover {
+    background-color: #ffd0004d;
+    border: 0px;
+    border-radius: 0 25px 25px 0;
+}
+
+.tagheader{
+    padding: 20px 8px 8px 15px;
+    letter-spacing: .07272727em;
+    text-decoration: none;
+    font-size: .6875rem;
+    font-family: Roboto,sans-serif;
+    font-weight: 500;
+    color: #818181;
+    display: block;
+
+    border-top: .75px solid #818181;
+}
+
+.addtagButton{
+    position: relative;
+    left: 50%;
+    background: transparent;
+    border: rgb(255,202,0, .60) solid;
+    border-radius: 5px;
+    font-family: Roboto, sans-serif;
+    font-size: 10pt;
+    color:rgb(255,202,0);
+    font-weight:500;
+    height: 50%;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+}
+
+.addtagButton:hover{
+    box-shadow: 0 1px 6px rgba(32, 32, 32, 0.137);
+}
+
+ul{
+    font-family: Roboto,sans-serif;
+    list-style: none;
+    font-weight: 500;
+    color: #3d3d3d;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin-top: 0;
+}
+
+
+
+.createpostForm{
+    position: relative;
+    top: 2%;
+    left: 20%;
+
+    height: 50px;
+    width: 50%;
+
+    display: flex;
+    flex-direction: row;
+
+    border-radius: 10px;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+    box-shadow: 0 3px 6px rgba(32, 32, 32, 0.25);
+}
+
+.createpostForm:hover{
+    box-shadow: 0 3px 10px rgba(32, 32, 32, 0.25);
+}
+
+#postinput{
+    position: relative;
+    left: 0px;
+
+    height: 100%;
+    width: 100%;
+
+    padding-left: 20px;
+
+    border: 0px;
+    background-color: transparent;
+
+}
+
+.createpostButton{
+    position: relative;
+    top: 25%;
+    margin-right: 5px;
+    background: transparent;
+    border: rgb(255,202,0, .60) solid;
+    border-radius: 5px;
+    font-family: Roboto, sans-serif;
+    font-size: 10pt;
+    color:rgb(255,202,0);
+    font-weight:500;
+    height: 50%;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+}
+
+.createpostButton:focus{
+    border: rgba(61, 61, 61, 0.6) solid;
+}
+
+.createpostButton:hover{
+    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+    background-color: rgb(255,202,0) ;
+    border: rgb(255,202,0) solid;
+    color:white;
+}
+
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*background-color: rgba(248, 252, 230, 0.315);*/
+    z-index: 2;
+    cursor: pointer;
+}
+
+#background{
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(248, 252, 230, 0.315);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#newpost{
+    z-index: 3;
+    position: relative;
+    width: 500px;
+    height: 460px;
+
+    margin: auto;
+    top: 15%;
+    background-color: rgb(255, 245, 145);
+
+    border-radius: 15px;
+
+}
+
+input:focus{
+    outline:none;
+}
+
+textarea:focus{
+    outline:none;
+}
+
+.post_title_container{
+    /*top: 3%;
+    left: 5%;*/
+
+    /*background-color: red;*/
+    background-color: rgba(255, 255, 255, 0);
+
+
+}
+
+.post_title{
+    margin: 5px;
+    background-color: rgba(255, 255, 255, 0);
+    border: 0px;
+    font-family: Roboto, sans-serif;
+    font-size: 14pt;
+    font-weight:500;
+    padding: 10px 0 20px 15px;
+    width: 87%;
+    position: relative;
+}
+
+#noteform{
+    height: 100%;
+}
+
+.post_content{
+    position: relative;
+    left: 5%;
+
+    width: 88%;
+    height: 70%;
+
+    background-color: rgba(255, 255, 255, 0);
+    border: 0;
+    font-family: Roboto, sans-serif;
+    font-size: 10pt;
+}
+
+.post_container{
+    height: 100%;
+}
+
+.tagContainerN{
+    position: relative;
+    top:-20px;
+    left: 20px;
+}
+
+.tagN{
+    color: grey;
+    font-size: 10pt;
+    font-family: Roboto;
+
+    padding: 2px 4px 2px 4px;
+
+    border: 1px rgba(148, 148, 148) solid;
+    border-radius: 10px;
+}
+
+.tagButtonN{
+    color: grey;
+    font-size: 10pt;
+    font-family: Roboto;
+
+    padding: 2px 4px 2px 4px;
+
+    border: 1px rgb(148, 148, 148) solid;
+    border-radius: 10px;
+    background-color: #3d3d3d00;
+}
+
+.tagButtonN:hover{
+    color: black;
+    border: 1px rgb(0, 0, 0) solid;
+}
+
+#dropdownItem{
+    background-color: #f1ffb1;
+    font-size: 10pt;
+    font-family: Roboto;
+}
+
+#savebutton{
+    margin-right: 10px;
+    background: transparent;
+    border: rgba(0, 0, 0, 0.6) solid;
+    border-radius: 5px;
+    font-family: Roboto, sans-serif;
+    font-size: 10pt;
+    color: rgb(0, 0, 0);
+    font-weight:500;
+    height: 30px;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+}
+
+#savebutton:hover{
+    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+    background-color: rgb(189, 189, 189);
+}
+
+.iteminput{
+    width: 75%;
+    height: 9%;
+    padding-left: 5%;
+
+    border:0;
+
+    background-color: transparent;
+}
+
+.item_container{
+    width: 100%;
+    margin: 3px;
+}
+
+.remove{
+    float: right;
+    margin-right: 10px;
+    background: transparent;
+    border-radius: 5px;
+    font-family: Roboto, sans-serif;
+    font-size: 8pt;
+    color: rgb(0, 0, 0, 0.6);
+    font-weight:500;
+    height: 6%;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+    padding: 1px;
+}
+
+.remove:hover{
+    color: rgb(0, 0, 0, 0.87);
+}
+
+.add{
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+    background: transparent;
+    border-radius: 5px;
+    font-family: Roboto, sans-serif;
+    font-size: 8pt;
+    color: rgb(0, 0, 0,0.6);
+    font-weight:500;
+    padding: 5px;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+}
+
+.add:hover{
+    color: rgb(0, 0, 0,0.87);
+}
+
+.filebutton{
+    position: relative;
+    display: block;
+    height: 30px;
+    background-color: transparent;
+    border: rgba(0, 0, 0, 0.6) solid;
+    border-radius: 5px;
+    font-family: Roboto, sans-serif;
+    font-size: 10pt;
+    color: rgb(0, 0, 0);
+    font-weight:500;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+    margin-right: 5px;
+}
+
+.footer{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.noteDiv{
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    height: 45%;
+    width: 280px;
+
+    margin: 5px;
+
+    background-color:rgb(255, 226, 61);
+    padding: 5px 20px 25px 20px;
+
+    border-radius: 15px;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+}
+
+.noteDiv:hover{
+    background-color: rgb(245, 218, 63);
+    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+}
+
+.noteTitle{
+    font-size: 12pt;
+    font-weight: 500;
+    width: 75%;
+}
+
+.noteContent{
+    height: 67%;
+    width: 100%;
+
+    font-size: 10pt;
+    /*overflow: hidden;
+    text-overflow: ellipsis;*/
+
+    display: -webkit-box;
+    -webkit-line-clamp: 9;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*.noteContent:after{
+    content: '...';
+    position: absolute;
+}*/
+
+/*.overflow {
+    --max-lines: 3;
+    position: relative;
+    max-height: calc(var(--lh) * var(--max-lines));
+    overflow: hidden;
+    padding-right: 1rem;
+}
+
+.overflow::before {
+    position: absolute;
+    content: "...";
+    bottom: 0;
+    right: 50px;
+}
+
+.overflow::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 1rem;
+    height: 1rem;
+    background: white;
+}*/
+
+#noteTag{
+    color: grey;
+    font-size: 10pt;
+
+    padding: 2px 4px 2px 4px;
+
+    border: 1px rgba(148, 148, 148) solid;
+    border-radius: 10px;
+}
+
+.checklistDiv{
+    position: relative;
+    height: 45%;
+    width: 280px;
+    margin: 5px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    background-color:rgb(255, 173, 230);
+    padding: 5px 20px 25px 20px;
+
+    border-radius: 15px;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+}
+
+.checklistDiv:hover{
+    background-color: rgb(245, 167, 220);
+    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+}
+
+
+.checklistTitle{
+    font-size: 12pt;
+    font-weight: 500;
+    width: 75%;
+}
+
+.checklistContent{
+    height: 66%;
+    width: 100%;
+
+    font-size: 10pt;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient:vertical;
+    /*white-space: nowrap;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.checklistItem{
+    display: inline-block;
+    padding-left: 1.7em;
+    text-indent: -1.7em;
+}
+
+#checklistTag{
+    color: grey;
+    font-size: 10pt;
+
+    padding: 2px 4px 2px 4px;
+
+    border: 1px rgba(148, 148, 148) solid;
+    border-radius: 10px;
+}
+
+.tagContainerCL{
+    position: relative;
+    top:-20px;
+    left: 20px;
+}
+
+.tagCL{
+    color: rgb(82, 82, 82);
+    font-size: 10pt;
+    font-family: Roboto;
+
+    padding: 2px 4px 2px 4px;
+
+    border: 1px rgb(82, 82, 82) solid;
+    border-radius: 10px;
+}
+
+.tagButtonCL{
+    color: rgb(82, 82, 82);
+    font-size: 10pt;
+    font-family: Roboto;
+
+    padding: 2px 4px 2px 4px;
+
+    border: 1px rgb(82, 82, 82) solid;
+    border-radius: 10px;
+    background-color: #3d3d3d00;
+}
+
+.tagButtonCL:hover{
+    color: black;
+    border: 1px rgb(0, 0, 0) solid;
+}
+
+
+.noteButtons{
+    position:relative;
+    left: 25px;
+    width: 50px;
+}
+
+.editNote{
+    position: relative;
+    width: 100%;
+
+    background-color:rgba(240, 230, 140, 0);
+    border: 0px;
+    font-size:7pt;
+
+    text-align: right;
+}
+
+.editNote:hover{
+    color: rgb(255, 136, 0);
+}
+
+.deleteNote{
+    position: relative;
+    top: -10px;
+    background-color:rgba(240, 230, 140, 0);
+    border: 0px;
+    font-size:7pt;
+
+    text-align: right;
+}
+
+.deleteNote:hover{
+    color: rgb(255, 136, 0);
+}
+
+.checklistButtons{
+    position:relative;
+
+    width: 50px;
+}
+
+.editCheckList{
+    position: relative;
+    left: 17px;
+
+    background-color:rgba(240, 230, 140, 0);
+    border: 0px;
+    font-size:7pt;
+
+    text-align: right;
+}
+
+.editCheckList:hover{
+    color: rgb(255, 0, 64);
+}
+
+.deleteCheckList{
+    position: relative;
+    top:-10px;
+    left: 2px;
+
+    background-color:rgba(240, 230, 140, 0);
+    border: 0px;
+    font-size:7pt;
+
+    text-align: right;
+}
+
+.deleteCheckList:hover{
+    color: rgb(255, 0, 64);
+}
+
+#overlay_editN{
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    cursor: pointer;
+    background-color: rgba(248, 252, 230, 0.315);
+}
+
+#background_editN{
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(248, 252, 230, 0.315);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#editpost{
+    z-index: 3;
+    position: relative;
+    /*width: 25%;*/
+    width: 500px;
+    height: 60%;
+
+    margin: auto;
+    top: 15%;
+    background-color: rgb(255, 245, 145);
+
+    border-radius: 15px;
+}
+
+#overlay_editCL{
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    cursor: pointer;
+    background-color: rgba(248, 252, 230, 0.315);
+}
+
+#background_editCL{
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(248, 252, 230, 0.315);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#editCL{
+    z-index: 3;
+    position: relative;
+    /*width: 25%;*/
+    width: 500px;
+    height: 60%;
+
+    margin: auto;
+    top: 15%;
+    background-color:rgb(255, 173, 230);
+
+    border-radius: 15px;
+}
+
+.check_item{
+    position: relative;
+    left: 10px ;
+}
+
+.task{
+    position: relative;
+    left: 5%;
+
+    width: 75%;
+    height: 5%;
+
+
+    background-color: rgba(255, 255, 255, 0);
+    border: 0;
+    font-family: Roboto, sans-serif;
+    font-size: 10pt;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 1px solid rgba(0,0,0,.6);
+    top:3px;
+    padding: 5px;
+    border-radius: 3px;
+    display: inline-flex;
+    position: relative;
+}
+
+input[type="checkbox"] :active, input[type="checkbox"] :checked:active {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+input[type="checkbox"] :checked {
+    background-color: #e9ecee;
+    border: 1px solid #adb8c0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+    color: #99a1a7;
+}
+
+input[type="checkbox"]:checked:after {
+    content: '\2714';
+    font-size: 14px;
+    position: absolute;
+    top: -6px;
+    left:0;
+    height: 0;
+    width: 0;
+}
+
+#checklists_selection{
+    background-color: #ffd0004d;
+    border: 0px;
+    border-radius: 0 25px 25px 0;
+    color: black;
+}
