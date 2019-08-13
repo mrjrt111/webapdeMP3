@@ -3,7 +3,7 @@ const crypto = require('crypto');
 
 const checklistSchema = new Schema({
     task: String,
-    status: Boolean
+    status: false
 })
 var contentSchema = mongoose.Schema({
     title: String,
