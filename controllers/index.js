@@ -5,7 +5,7 @@ const path = require('path')
 const session = require("express-session")
 
 
-router.use("/UserController", require("./UserController.js"))
+router.use("/user", require("./UserController.js"))
 
     router.get("/", function (req,  res) {
         var directory = path.join(__dirname,  '../public/login.html')
