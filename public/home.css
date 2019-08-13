@@ -20,7 +20,7 @@ html, body {
     flex-direction: row;
     height: 10%;
 
-    box-shadow: 0 3px 6px rgba(197, 197, 197, 0.25);
+    box-shadow: 0 3px 6px rgba(150, 150, 150, 0.25);
     z-index: 2;
 }
 
@@ -29,7 +29,7 @@ html, body {
 
     position: relative;
     top: 70px;
-    left: 200px;
+    left: 210px;
 
     height: 84%;
     width: 90%;
@@ -129,6 +129,7 @@ html, body {
     background-color: white;
     overflow-x: hidden;
     padding-top: 20px;
+    box-shadow: 0 3px 6px rgb(150,150,150,0.25);
 }
 
 .selection  {
@@ -495,6 +496,37 @@ textarea:focus{
     flex-direction: row-reverse;
 }
 
+#createPost{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 5px;
+    height: 430px;
+    width: 320px;
+
+    border-radius: 4px;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+
+    vertical-align: center;
+    align-content: center;
+
+    font-size: 120pt;
+    color: rgb(0, 0, 0, 0.6);
+}
+
+#createPost:hover{
+    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+    color: rgb(0, 0, 0, 0.87);
+    cursor: pointer;
+}
+
+#addbutton{
+    margin: 0 auto;
+}
+
+
 .noteDiv{
     position: relative;
 
@@ -502,7 +534,7 @@ textarea:focus{
     flex-direction: row;
     flex-wrap: wrap;
 
-    height: 45%;
+    height: 400px;
     width: 280px;
 
     margin: 5px;
@@ -510,7 +542,7 @@ textarea:focus{
     background-color:rgb(255, 226, 61);
     padding: 5px 20px 25px 20px;
 
-    border-radius: 15px;
+    border-radius: 4px;
     transition-property: all;
     transition-duration: 0.5s;
     transition-timing-function:ease;
@@ -524,7 +556,7 @@ textarea:focus{
 .noteTitle{
     font-size: 12pt;
     font-weight: 500;
-    width: 75%;
+    width: 100%;
 }
 
 .noteContent{

@@ -48,44 +48,53 @@
 
     <div id="content">
 
-        <form class="createpostForm" method="post" action="create_post">
+        <!--<form class="createpostForm" method="post" action="create_post">
             <input id="postinput" type="text" placeholder="Create a note or checklist...">
             <input class="createpostButton" id="notebutton"type="button" value="NOTE" >
             <input class="createpostButton" id="listbutton" type="button" value="CHECKLIST">
             <input class="createpostButton" id="picbutton" type="button" value="IMAGE">
             <input id='fileid' type='file' accept=".jpg" style="display: none">
-        </form>
-
-
-        <!--Welcome {{username}}!
-        <br>
-        <br>
-
-        <div>
-            <p>Preferences </p>
-
-            <form action="preferences" method="POST">
-                font size: <input type="number" name="fontsize">
-                <input type="submit" value="Submit Query">
-            </form>
-        </div>-->
-
+        </form>-->
 
         <div id="notescontainer">
+
             <div class="noteDiv">
-                <p class="noteTitle">Restaurants to Try</p>
-                <form class="noteButtons">
-                    <input class="editNote" type="button" value="EDIT"><br>
-                    <input class="deleteNote" type="button" value="DELETE">
-                </form>
-                <p class="noteContent">Oficina do Duque<br>Calcada do Duque 43 A 1200-155, Lisbon 1200-155, Portugal<br>PP-PPP Mediterranean, European, Portuguese<br>4.5<br>3 min Walk<br><br>Boa-Bao<br>Largo Raphael Bordalo Pinheiro Chiado, Lisbon 1200-369, Portugal<br>PP-PPP Asian Thai, Vietnames<br>4.5<br>3 min Walk</p>
-                
+                <p class="noteTitle">Title</p>
                 <div class="noteTagDiv">
-                    <span id="noteTag">Travel</span>
+                    <span id="noteTag">TEST</span>
                 </div>
+                <p class="noteContent">Note Content goes here</p>
             </div>
 
-            <div class="checklistDiv">
+
+            {{#each notes}}
+                <div class="noteDiv" data-id="{{_id}}">
+                    <p class="noteTitle">{{title}}</p>
+                    <div class = "noteTagDiv">
+                        {{#each tags}}
+                            <span id="noteTag">{{tags}}</span>
+                        {{/each}}
+                    </div>
+                    {{#if images}}
+                        <div></div>
+                    {{/if}}
+                    {{#if note}}
+                        <p class="noteContent">{{note}}</p>
+                    {{/if}}
+                    {{#if checklist}}
+                        {{#each checklist}}
+                            <label class="checklistItem" name="p_id[]"><input type="checkbox" checked="{{status}}">{{task}}</label><br>
+                        {{/each}}
+                    {{/if}}
+                </div>
+            {{/each}}
+
+            <div id = "createPost">
+                <div id="addbutton">
+                    +
+                </div>
+            </div>
+            <!--<div class="checklistDiv">
                 <p class="checklistTitle">Upcoming Schoolwork</p>
                 <form class="checklistButtons">
                     <input class="editCheckList" type="button" value="EDIT"><br>
@@ -105,11 +114,11 @@
                 <div class="checklistTagDiv">
                     <span id="checklistTag">School</span>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 
-    <!--Overlay-->
+    <!--Overlay
     <div id="overlay">
         <div id="background"></div>
         <div id="newpost">
@@ -126,18 +135,11 @@
         <div id="background_editCL"></div>
         <div id="editCL">
         </div>
-    </div>
+    </div>-->
     
-    <script type = "text/x-handlebars-template" id = "noteTemplate">
-        <div class="noteDiv">
-            <p id="noteTitle">{{title}}</p>
-            <p id="noteContent">{{content}}</p>
+    <script>
 
-            <input id="editNote" type="button" value="EDIT">
-        </div>
-    
     </script>
-    <script src="home.js"></script>
 </body>
 
 </html>
