@@ -31,16 +31,19 @@ exports.createContent = function (content){
     })
 }
 
-exports.loadUserNotes  = function (username){
+exports.loadUserContent  = function (username){
     return new Promise(function(resolve, reject){
         console.log("in promise : " + username)
         Content.find({
             username : username
-        }).then((userNotes)=>{
-            console.log("List of notes : " + userNotes)
-            resolve(userNotes)
+        }).then((userContents)=>{
+            console.log("List of content : " + userContents)
+            resolve(userContents)
         },(err)=>{
             reject(err)
         })
     })
 }
+
+
+
