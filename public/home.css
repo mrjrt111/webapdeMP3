@@ -30,12 +30,11 @@ html, body {
     position: relative;
     top: 70px;
     left: 210px;
-
+    padding: 30px;
     height: 84%;
     width: 90%;
 
     /*border:tomato solid;*/
-    padding: 16px;
     overflow: hidden;
 
     font-family: Roboto;
@@ -123,13 +122,13 @@ html, body {
     -webkit-position: sticky;
 
     z-index: 1;
-    top: 55px;
+    top: 60px;
     left: 0;
 
     background-color: white;
     overflow-x: hidden;
     padding-top: 20px;
-    box-shadow: 0 3px 6px rgb(150,150,150,0.25);
+    box-shadow: 3px 0 6px rgb(150,150,150,0.25);
 }
 
 .selection  {
@@ -165,8 +164,6 @@ html, body {
     font-weight: 500;
     color: #818181;
     display: block;
-
-    border-top: .75px solid #818181;
 }
 
 .addtagButton{
@@ -501,10 +498,10 @@ textarea:focus{
     flex-direction: row;
     flex-wrap: wrap;
     margin: 5px;
-    height: 430px;
-    width: 320px;
+    height: 380px;
+    width: 280px;
 
-    border-radius: 4px;
+    border-radius: 8px;
     transition-property: all;
     transition-duration: 0.5s;
     transition-timing-function:ease;
@@ -514,11 +511,13 @@ textarea:focus{
 
     font-size: 120pt;
     color: rgb(0, 0, 0, 0.6);
+    border: rgb(0, 0, 0, 0.3) solid;
 }
 
 #createPost:hover{
     box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
     color: rgb(0, 0, 0, 0.87);
+    border: rgb(0, 0, 0, 0.6) solid;
     cursor: pointer;
 }
 
@@ -534,15 +533,15 @@ textarea:focus{
     flex-direction: row;
     flex-wrap: wrap;
 
-    height: 400px;
-    width: 280px;
+    height: 350px;
+    width: 240px;
 
     margin: 5px;
 
     background-color:rgb(255, 226, 61);
     padding: 5px 20px 25px 20px;
 
-    border-radius: 4px;
+    border-radius: 8px;
     transition-property: all;
     transition-duration: 0.5s;
     transition-timing-function:ease;
@@ -551,6 +550,7 @@ textarea:focus{
 .noteDiv:hover{
     background-color: rgb(245, 218, 63);
     box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+    cursor: pointer;
 }
 
 .noteTitle{

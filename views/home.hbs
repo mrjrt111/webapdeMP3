@@ -10,6 +10,9 @@
     <!--Side Navigation-->
     <div class="sidenav">
         <ul>
+            <form action="home" method="GET">
+                <input class="selection" type="submit" value="View All">
+            </form>
             <form action="notes" method="GET">
                 <input class="selection" type="submit" value="Notes">
             </form>
@@ -23,8 +26,9 @@
         
         <ul id="tags_container">
             <form id="tags_list">
-                <input id="tag" class="selection" type="text" value="School">
-                <input id="tag" class="selection" type="text" value="Travel">
+                {{#each tags}}
+                    <input id="tag" class="selection" type="text" value="{{tags}}">
+                {{/each}}
             </form>
         </ul>
     </div>
@@ -57,16 +61,6 @@
         </form>-->
 
         <div id="notescontainer">
-
-            <div class="noteDiv">
-                <p class="noteTitle">Title</p>
-                <div class="noteTagDiv">
-                    <span id="noteTag">TEST</span>
-                </div>
-                <p class="noteContent">Note Content goes here</p>
-            </div>
-
-
             {{#each notes}}
                 <div class="noteDiv" data-id="{{_id}}">
                     <p class="noteTitle">{{title}}</p>
