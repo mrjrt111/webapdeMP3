@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
+const Schema = mongoose.Schema;
 
 const checklistSchema = new Schema({
     task: String,
-    status: Boolean
+    status: false
 })
 var contentSchema = mongoose.Schema({
     title: String,
@@ -25,6 +26,20 @@ exports.createContent = function (content){
             console.log(newContent);
             resolve(newContent);
         }, (err)=>{
+            reject(err)
+        })
+    })
+}
+
+exports.loadUserNotes  = function (username){
+    return new Promise(function(resolve, reject){
+        console.log("in promise : " + username)
+        Content.find({
+            username : username
+        }).then((userNotes)=>{
+            console.log("List of notes : " + userNotes)
+            resolve(userNotes)
+        },(err)=>{
             reject(err)
         })
     })

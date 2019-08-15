@@ -14,7 +14,7 @@ userSchema.pre("save", function(next){
 
 var User = mongoose.model("users", userSchema);
 
-exports.signup = function (user){
+exports.addUser = function (user){
     return new Promise(function(resolve, reject){
         console.log(user);
         var u = new User(user);
@@ -28,7 +28,7 @@ exports.signup = function (user){
     })
 }
 
-exports.login = function(user){
+exports.loginUser = function(user){
     return new Promise(function(resolve, reject){
         console.log("in promise : " + user.username)
         User.findOne({
