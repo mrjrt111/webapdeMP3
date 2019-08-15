@@ -1,9 +1,10 @@
 const express = require("express")
 const router = express.Router()
-const User = require("../models/User")
 const bodyparser = require("body-parser")
 const auth = require("../middlewares/auth")
 
+const User = require("../models/User")
+const Content = require("../models/Content")
 
 const urlencoder = bodyparser.urlencoded({
     extended : true
@@ -24,6 +25,12 @@ router.post("/signup", urlencoder, (req, res)=>{
         User.addUser(user).then((user)=>{
             console.log("successful added " + user);
             req.session.username = user.username;
+            Content.loadUserNotes(user.username).then((notes)=>{
+                if (notes.size===0)
+                    console.log("No notes  yet")
+                else
+                    console.log("notes:  ", notes)
+            })
             res.render("home.hbs", {
                 username: doc.username
             })
@@ -47,6 +54,12 @@ router.post("/login", urlencoder, (req, res)=>{
    User.loginUser(user).then((foundUser)=>{
        if (foundUser){
            req.session.username = user.username;
+           Content.loadUserNotes(user.username).then((notes)=>{
+               if (notes.size===0)
+                   console.log("No notes  yet")
+               else
+                   console.log("notes:  ", notes)
+           })
            console.log(user.username, " has been found");
            res.render("home")
        }

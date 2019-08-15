@@ -59,6 +59,24 @@ input{
     font-size: small;
 }
 
+#backloginform{
+    margin: 0 auto 0px;
+    display: flex;
+    flex-direction: column;
+    font-family: Roboto,sans-serif;
+    font-size: small;
+}
+
+#backlogin{
+    margin: 0px auto 0;
+    font-size: medium;
+}
+
+a{
+    color: #d6a800;
+    text-decoration: none;
+    font-family: Roboto,sans-serif;
+}
 
 #Instruction{
     position:relative;
