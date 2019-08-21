@@ -783,14 +783,15 @@ textarea:focus{
 }
 
 .deleteCheckList{
-    position: relative;
-    top:-10px;
-    left: 2px;
-
+    position: absolute;
+    bottom: 0;
+    right:0;
     background-color:rgba(240, 230, 140, 0);
     border: 0px;
     font-size:7pt;
-
+    width: 10px;
+    font-family: Roboto,SansSerif;
+    color: rgb(0,0,0,0.87);
     text-align: right;
 }
 

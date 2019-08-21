@@ -194,7 +194,9 @@
             <div class="modal-footer">
                 <button id="savebutton">SAVE</button>
                 <button id="noteTag">+</button>
+
             </div>
+            <span class="deleteCheckList">DELETE</span>
             <form action="/content/editnote" method="post" id="editNote">
                 <input type="hidden" id="editnoteid"  name="note_id">
                 <input type="hidden" id="editformtitle" name="note_title">
@@ -303,6 +305,7 @@
 
             $(".noteDiv").click(function () {
                 let noteid = $(this).attr("data-id");
+                //editNote(this)
                 $.ajax({
                     id: noteid,
                     url:"/content/"+noteid,
@@ -311,6 +314,7 @@
 
                     ],
                     success: function(res){
+                        console.log(res);
                         $(editModal).css("display","block");
                         console.log(res.title);
                         $(editModal).find(".post_title").val(res.title);
@@ -348,7 +352,6 @@
             })
 
             function editNote(note){
-
                 $(editModal).css("display","block");
                 let title = $(editModal).find(".post_title");
                 let content = $(editModal).find(".noteInput");

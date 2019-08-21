@@ -51,4 +51,16 @@ router.post("/createnotes",upload.single("note_image"), (req, res)=>{
 
 
 })
+
+router.get("/:id", urlencoder, (req, res)=>{
+    let id = req.body.id;
+    Content.findOneContent("5d5d369dc54cc23c802348e8").then((content)=>{
+        console.log(content);
+        res.send(content);
+    }),(err)=>{
+        console.log(err);
+    }
+
+});
+
 module.exports = router;
