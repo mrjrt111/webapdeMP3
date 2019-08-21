@@ -3,6 +3,8 @@ const router = express.Router()
 const app = express()
 const path = require('path')
 const session = require("express-session")
+const User = require("../models/User")
+const Content = require("../models/Content")
 
 
 router.use("/user", require("./UserController.js"))
@@ -14,9 +16,11 @@ router.use("/content", require("./ContentController.js"))
         if (!req.session.username) {
             res.sendFile(directory);
         } else {
-            res.render("home.hbs", {
-            username: req.session.username
-        });
-    }
+            Content.loadUserContent(req.session.username).then((content)=>{
+                res.render("home.hbs", {
+                    notes: content
+                })
+            })
+        }
 })
 module.exports = router

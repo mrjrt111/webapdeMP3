@@ -65,13 +65,8 @@ router.post("/login", urlencoder, (req, res)=>{
    User.loginUser(user).then((foundUser)=>{
        if (foundUser){
            req.session.username = user.username;
-           Content.loadUserContent(user.username).then((content)=>{
-               res.render("home.hbs", {
-                   notes: content
-               })
-           })
            console.log(user.username, " has been found");
-           res.render("home")
+           res.redirect("/");
        }
    }), (error)=>{
        console.log(error)
