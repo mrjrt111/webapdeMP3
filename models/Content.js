@@ -61,7 +61,7 @@ exports.loadUserContent  = function (username){
 
 exports.findOneContent = function (id){
     return new Promise(function(resolve, reject){
-        console.log("in promise : " + username)
+        //console.log("in promise : " + username)
         Content.findOne({
             _id : id
         }).then((userContents)=>{

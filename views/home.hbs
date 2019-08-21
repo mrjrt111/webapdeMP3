@@ -265,7 +265,7 @@
             $("#createbutton").click(function () {
                 $("#formtitle").val($(".post_title").val())
                 $("#formcontent").val($(".noteInput").val())
-                $("#formimage").val($("#fileid").val());
+                $("#formimage").val($("#fileid").files[0].name);
                 $(".list_task").each(function () {
                     let task = document.createElement("input");
                     task.type = "hidden";
@@ -281,47 +281,51 @@
                     $("#addNote").append(checkbox);
                 });
                 $("#addNote").submit();
-                $("")
             })
         })
 
             $(".noteDiv").click(function () {
                 let noteid = $(this).attr("data-id");
                 $.ajax({
+                    id: noteid,
                     url:"/content/"+noteid,
                     method:"get",
+                    data:[
+
+                    ],
                     success: function(res){
                         $(editModal).css("display","block");
-                        $(editModal).find(".post_title").val({{title}});
-                        {{#if note}}
-                            $("#editNote").css("display","block");
-                            $(editModal).find(".noteContent").val({{note}});
-                        {{/if}}
-                        {{#if checklist}}
-                            $("#editChecklist").css("display","block");
-                            {{#each checklist}}
+                        console.log(res.title);
+                        $(editModal).find(".post_title").val(res.title);
+                        if(res.note!== "") {
+                            $("#editNote").css("display", "block");
+                            $(editModal).find(".noteContent").val(res.note);
+                        }
+                        /*if(res.checklist!==null) {
+                            $("#editChecklist").css("display", "block");
+                            for (checklists in checklist) {
                                 let item_input = document.createElement("input");
-                                item_input.type ="text";
+                                item_input.type = "text";
                                 item_input.className = "list_task";
-                                $(item_input).attr("placeholder","Enter task...");
+                                $(item_input).attr("placeholder", "Enter task...");
 
                                 let checkbox = document.createElement("input");
                                 checkbox.type = "checkbox";
                                 checkbox.className = "list_check";
 
                                 let remove = document.createElement("span");
-                                remove.innerHTML ="REMOVE";
+                                remove.innerHTML = "REMOVE";
                                 remove.className = "remove";
 
                                 let divCtnr = document.createElement("div");
-                                divCtnr.className ="item_container";
+                                divCtnr.className = "item_container";
                                 divCtnr.append(checkbox);
                                 divCtnr.append(item_input);
                                 divCtnr.append(remove);
 
                                 $("#editChecklist").append(item_input);
-                            {{/each}}
-                        {{/if}}
+                            }
+                        }*/
                     }
                 })
             })
