@@ -4,8 +4,17 @@ const hbs = require("hbs")
 const session = require("express-session")
 const cookieparser = require("cookie-parser")
 const mongoose = require("mongoose")
-
+const multer = require("multer")
 const app = express()
+const fs = require('fs');
+
+const upload = multer({
+    dest: 'uploads/',
+    limits: {
+        fileSize : 10000000,
+        files : 1
+    }
+})
 
 
 mongoose.Promise = global.Promise
@@ -40,3 +49,4 @@ app.use(require("./controllers"))
 app.listen(3000, function () {
     console.log("port is live at 3000");
 });
+

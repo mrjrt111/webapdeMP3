@@ -194,7 +194,9 @@
             <div class="modal-footer">
                 <button id="savebutton">SAVE</button>
                 <button id="noteTag">+</button>
+
             </div>
+            <span class="deleteCheckList">DELETE</span>
             <form action="/content/editnote" method="post" id="editNote">
                 <input type="hidden" id="editnoteid"  name="note_id">
                 <input type="hidden" id="editformtitle" name="note_title">
@@ -288,7 +290,6 @@
                 })
                 $("#addNote").submit();
                 $(".modal-footer").submit();
-                $("")
             })
 
             $("#noteTag").click(function() {
@@ -312,47 +313,53 @@
 
             $(".noteDiv").click(function () {
                 let noteid = $(this).attr("data-id");
+                //editNote(this)
                 $.ajax({
+                    id: noteid,
                     url:"/content/"+noteid,
                     method:"get",
+                    data:[
+
+                    ],
                     success: function(res){
+                        console.log(res);
                         $(editModal).css("display","block");
-                        $(editModal).find(".post_title").val({{title}});
-                        {{#if note}}
-                            $("#editNote").css("display","block");
-                            $(editModal).find(".noteContent").val({{note}});
-                        {{/if}}
-                        {{#if checklist}}
-                            $("#editChecklist").css("display","block");
-                            {{#each checklist}}
+                        console.log(res.title);
+                        $(editModal).find(".post_title").val(res.title);
+                        if(res.note!== "") {
+                            $("#editNote").css("display", "block");
+                            $(editModal).find(".noteContent").val(res.note);
+                        }
+                        /*if(res.checklist!==null) {
+                            $("#editChecklist").css("display", "block");
+                            for (checklists in checklist) {
                                 let item_input = document.createElement("input");
-                                item_input.type ="text";
+                                item_input.type = "text";
                                 item_input.className = "list_task";
-                                $(item_input).attr("placeholder","Enter task...");
+                                $(item_input).attr("placeholder", "Enter task...");
 
                                 let checkbox = document.createElement("input");
                                 checkbox.type = "checkbox";
                                 checkbox.className = "list_check";
 
                                 let remove = document.createElement("span");
-                                remove.innerHTML ="REMOVE";
+                                remove.innerHTML = "REMOVE";
                                 remove.className = "remove";
 
                                 let divCtnr = document.createElement("div");
-                                divCtnr.className ="item_container";
+                                divCtnr.className = "item_container";
                                 divCtnr.append(checkbox);
                                 divCtnr.append(item_input);
                                 divCtnr.append(remove);
 
                                 $("#editChecklist").append(item_input);
-                            {{/each}}
-                        {{/if}}
+                            }
+                        }*/
                     }
                 })
             })
 
             function editNote(note){
-
                 $(editModal).css("display","block");
                 let title = $(editModal).find(".post_title");
                 let content = $(editModal).find(".noteInput");
