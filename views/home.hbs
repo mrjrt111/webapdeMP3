@@ -197,7 +197,7 @@
 
             </div>
             <span class="deleteCheckList">DELETE</span>
-            <form action="/content/editnote" method="post" id="editNote">
+            <form action="/content/editnote" method="post" id="editform">
                 <input type="hidden" id="editnoteid"  name="note_id">
                 <input type="hidden" id="editformtitle" name="note_title">
                 <input type="hidden" id="editformcontent" name ="note_content">
@@ -211,25 +211,35 @@
             var addModal = document.getElementById("addModal");
             let editModal = document.getElementById("editModal");
             var fileName = "";
-            $("#createPost").click(function(){
-                $("#addModal").css("display","block");
+            $("#createPost").click(function () {
+                $("#addModal").css("display", "block");
                 $("#defaultOpen").click();
             });
             // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
+            window.onclick = function (event) {
                 if (event.target == addModal) {
                     addModal.style.display = "none";
                     $(".list_task").val("");
                     $(".noteInput").val("");
                     $(".post_title").val("");
-                }
-                else if(event.target == editModal){
+                } else if (event.target == editModal) {
                     editModal.style.display = "none"
                 }
             }
 
+            $(".addtagButton").click(addTag);
 
-            $(".tablinks").click(function(){
+            function addTag(){
+                tag = document.createElement("input");
+                tag.type="text"
+                $(tag).attr("placeholder", "Enter tag...");
+                tag.className = "selection";
+
+                $("#tags_list").append(tag);
+            }
+
+
+            $(".tablinks").click(function () {
                 $(this).parent().find(".active").removeClass("active");
                 $(this).addClass("active");
             });
@@ -238,22 +248,22 @@
                 document.getElementById("fileid").click();
             })
 
-            $(".add").click(function() {
+            $(".add").click(function () {
                 let item_input = document.createElement("input");
-                item_input.type ="text";
+                item_input.type = "text";
                 item_input.className = "list_task";
-                $(item_input).attr("placeholder","Enter task...");
+                $(item_input).attr("placeholder", "Enter task...");
 
                 let checkbox = document.createElement("input");
                 checkbox.type = "checkbox";
                 checkbox.className = "list_check";
 
                 let remove = document.createElement("span");
-                remove.innerHTML ="REMOVE";
+                remove.innerHTML = "REMOVE";
                 remove.className = "remove";
 
                 let divCtnr = document.createElement("div");
-                divCtnr.className ="item_container";
+                divCtnr.className = "item_container";
                 divCtnr.append(checkbox);
                 divCtnr.append(item_input);
                 divCtnr.append(remove);
@@ -268,11 +278,14 @@
                 $("#formcontent").val($(".noteInput").val())
                 $("#formimage").val($("#fileid").val());
                 $(".list_task").each(function () {
-                    let task = document.createElement("input");
-                    task.type = "hidden";
-                    task.name = "listitem[]";
-                    $(task).val($(this).val());
-                    $("#addNote").append(task);
+                    if($(this).val()!=="") {
+                        console.log($(this).val())
+                        let task = document.createElement("input");
+                        task.type = "hidden";
+                        task.name = "listitem[]";
+                        $(task).val($(this).val());
+                        $("#addNote").append(task);
+                    }
                 });
                 $(".list_check").each(function () {
                     let checkbox = document.createElement("input");
@@ -281,17 +294,19 @@
                     $(checkbox).val($(this).val());
                     $("#addNote").append(checkbox);
                 });
-                $(".newTag").each(function(){
-                    let tag = document.createElement("input");
-                    tag.type = "hidden";
-                    tag.name = "tag[]";
-                    $(tag).val($(this).val());
-                    $("#addNote").append(tag);
+                $(".newTag").each(function () {
+                    if($(this).val()!==null) {
+                        let tag = document.createElement("input");
+                        tag.type = "hidden";
+                        tag.name = "tag[]";
+                        $(tag).val($(this).val());
+                        $("#addNote").append(tag);
+                    }
                 })
                 $("#addNote").submit();
             })
 
-            $("#noteTag").click(function() {
+            $("#noteTag").click(function () {
                 let newTag = document.createElement("input");
                 newTag.type = "text";
                 $(newTag).val($(this).val());
@@ -308,12 +323,9 @@
             });
 
 
-        })
-
             $(".noteDiv").click(function () {
-                let noteid = $(this).attr("data-id");
-                //editNote(this)
-                $.ajax({
+                editNote(this)
+                /*$.ajax({
                     id: noteid,
                     url:"/content/"+noteid,
                     method:"get",
@@ -353,18 +365,50 @@
 
                                 $("#editChecklist").append(item_input);
                             }
-                        }*/
+                        }
                     }
-                })
+                })*/
             })
 
-            function editNote(note){
-                $(editModal).css("display","block");
+            function editNote(note) {
+                $("#editnoteid").val($(note).attr("data-id"));
+                $(editModal).css("display", "block");
                 let title = $(editModal).find(".post_title");
                 let content = $(editModal).find(".noteInput");
                 title.val($(note).find(".noteTitle").text());
                 content.val($(note).find(".noteContent").text());
+                $("#editNote").css("display", "block")
             }
+            
+            $("#savebutton").click(function () {
+                $("#editformtitle").val($(".post_title").val())
+                $("#editformcontent").val($(".noteInput").val())
+                $("#editformimage").val($("#fileid").val());
+                $(".list_task").each(function () {
+                    let task = document.createElement("input");
+                    task.type = "hidden";
+                    task.name = "listitem[]";
+                    $(task).val($(this).val());
+                    $("#editform").append(task);
+                });
+                $(".list_check").each(function () {
+                    let checkbox = document.createElement("input");
+                    checkbox.type = "hidden";
+                    checkbox.name = "listcheckboxes[]";
+                    $(checkbox).val($(this).val());
+                    $("#editform").append(checkbox);
+                });
+                $(".newTag").each(function () {
+                    let tag = document.createElement("input");
+                    tag.type = "hidden";
+                    tag.name = "tag[]";
+                    $(tag).val($(this).val());
+                    $("#editform").append(tag);
+                })
+                $("#editform").submit();
+            })
+        })
+        
 
         function readURL(input) {
             if (input.files && input.files[0]) {
@@ -400,9 +444,9 @@
             }
 
             if(tabName==="createNote")
-                $(".list_task").val("");
+                $(".list_task").val(null);
             else if(tabName==="createChecklist")
-                $(".noteInput").val("");
+                $(".noteInput").val(null);
 
             // Show the current tab, and add an "active" class to the button that opened the tab
             document.getElementById(tabName).style.display = "block";
