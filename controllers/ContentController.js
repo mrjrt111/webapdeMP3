@@ -55,6 +55,7 @@ router.post("/createnotes",upload.single("note_image"), (req, res)=>{
     else if (title&&checklistJSON)
         var noteContent = {title: title, username: username, note: note, checklist: checklistJSON, tags: tagString};
 
+
         Content.createContent(noteContent).then(()=>{
                 res.redirect("/");
         });
@@ -74,18 +75,61 @@ router.get("/:id", urlencoder, (req, res)=>{
 });
 
 router.post("/editnote", urlencoder, (req, res)=>{
-    let id = "something";
+    let id = req.body.note_id;
     let title = req.body.note_title;
     let note = req.body.note_content;
     let username = req.session.username;
     let checklistStrings = req.body.listitem;
     let tagString = req.body.newTag;
+
+    console.log(req.body);
+    var checklistJSON = [];
+    for(var i in checklistStrings) {
+
+        var item = checklistStrings[i];
+
+        checklistJSON.push({
+            "task" : item,
+            "status"  : false
+        });
+    }
+    console.log(title, " ", note);
     Content.editContent({_id: id},  {title: title, username: username, note: note,
-        checklist: checklistJSON, tags: tagJSON}).then((content)=>{
+        checklist: checklistJSON, tags: tagString}).then((content)=>{
                  res.redirect("/");
     })
 
 
 })
+
+router.post("/deletenote",  urlencoder, (req, res)=>{
+    let id = req.body.note_id;
+    Content.deleteContent(id);
+})
+
+router.post("/searchTitle", urlencoder, (req, res)=>{
+    let title = req.body.searchBar;
+    let username = req.session.username;
+    console.log("Title: ");
+    Content.loadContentByTitle(title, username).then((content)=>{
+        console.log(content);
+        res.render("home.hbs", {
+            notes: content
+
+        })
+    })
+})
+
+router.post("/home", function (req, res) {
+    res.redirect("/");
+})
+
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
 
 module.exports = router;

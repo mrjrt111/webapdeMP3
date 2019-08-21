@@ -19,9 +19,12 @@ router.use("/content", require("./ContentController.js"))
             Content.loadUserContent(req.session.username).then((content)=>{
                 res.render("home.hbs", {
                     notes: content
+
                 })
                // console.log("This is Content:", content);
             })
         }
 })
+
+
 module.exports = router

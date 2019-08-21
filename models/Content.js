@@ -36,12 +36,12 @@ exports.createContent = function (content){
 exports.editContent = function(oldContent, newContent){
     return new Promise(function(resolve, reject){
         console.log("Edit Content ",oldContent, " to ", newContent);
-        var u = new Content(content);
-        u.findOneAndUpdate(oldContent,  newContent).then(()=>{
+
+        Content.findOneAndUpdate(oldContent,  newContent).then(()=>{
 
         })
 
-        console.log(content);
+
     })
 }
 
@@ -75,12 +75,12 @@ exports.findOneContent = function (id){
 
 exports.loadContentByTitle = function (title, username){
     return new Promise(function(resolve, reject){
-        console.log("in promise : " + title + " "+ username)
+        console.log("in promise Title : " + title + " "+ username)
         Content.find({
             title : title,
             username: username
         }).then((userContents)=>{
-            console.log("List of content : " + userContents)
+            console.log("List of contento : " + userContents)
             resolve(userContents)
         },(err)=>{
             reject(err)
