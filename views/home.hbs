@@ -267,11 +267,14 @@
                 $("#formcontent").val($(".noteInput").val())
                 $("#formimage").val($("#fileid").val());
                 $(".list_task").each(function () {
-                    let task = document.createElement("input");
-                    task.type = "hidden";
-                    task.name = "listitem[]";
-                    $(task).val($(this).val());
-                    $("#addNote").append(task);
+                    if($(this).val()!=="") {
+                        console.log($(this).val())
+                        let task = document.createElement("input");
+                        task.type = "hidden";
+                        task.name = "listitem[]";
+                        $(task).val($(this).val());
+                        $("#addNote").append(task);
+                    }
                 });
                 $(".list_check").each(function () {
                     let checkbox = document.createElement("input");
@@ -281,11 +284,13 @@
                     $("#addNote").append(checkbox);
                 });
                 $(".newTag").each(function () {
-                    let tag = document.createElement("input");
-                    tag.type = "hidden";
-                    tag.name = "tag[]";
-                    $(tag).val($(this).val());
-                    $("#addNote").append(tag);
+                    if($(this).val()!==null) {
+                        let tag = document.createElement("input");
+                        tag.type = "hidden";
+                        tag.name = "tag[]";
+                        $(tag).val($(this).val());
+                        $("#addNote").append(tag);
+                    }
                 })
                 $("#addNote").submit();
             })
@@ -428,9 +433,9 @@
             }
 
             if(tabName==="createNote")
-                $(".list_task").val("");
+                $(".list_task").val(null);
             else if(tabName==="createChecklist")
-                $(".noteInput").val("");
+                $(".noteInput").val(null);
 
             // Show the current tab, and add an "active" class to the button that opened the tab
             document.getElementById(tabName).style.display = "block";
