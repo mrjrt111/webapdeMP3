@@ -261,7 +261,7 @@
 
             $("#savebutton").click(function () {
                 $("#formtitle").val($(".post_title").val())
-                $("#formcontent").val($(".noteInput").val())
+                $("#formcontent").val($(".noteInput").text())
                 $("#formimage").val($("#fileid").val());
                 $(".list_task").each(function () {
                     let task = document.createElement("input");
