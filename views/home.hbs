@@ -172,12 +172,12 @@
     </div>
 
     <div id="editModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content edit">
             <div class="modal-body">
-                <input class="post_title" type="text" placeholder="{{title}}">
-                <div class="tabcontent" id="createNote">
+                <input class="post_title" type="text">
+                <div class="editcontent" id="editNote">
                     <label>
-                        <textarea class="noteInput" placeholder="{{note}}" id="note_content"></textarea>
+                        <textarea class="noteInput" id="note_content"></textarea>
                     </label>
                     <button id="picbutton">UPLOAD IMAGE</button>
                     <input id='fileid' type='file' accept=".jpg" style="display: none">
@@ -198,25 +198,17 @@
     <script>
         $(document).ready(()=> {
             // Get the modal
-            var modal = document.getElementById("addModal");
+            var addModal = document.getElementById("addModal");
 
             $("#createPost").click(function(){
                 $("#addModal").css("display","block");
                 $("#defaultOpen").click();
             });
 
-            $(".noteDiv").click(function () {
-                editNote(this)
-            })
-
-            function editNote(note){
-
-            }
-
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
+                if (event.target == addModal) {
+                    addModal.style.display = "none";
                     $(".list_task").val("");
                     $(".noteInput").val("");
                     $(".post_title").val("");
@@ -276,6 +268,20 @@
                 });
                 $("#addNote").submit();
             })
+
+            let editModal = document.getElementById("editModal");
+
+            $(".noteDiv").click(function () {
+                editNote(this)
+            })
+
+            function editNote(note){
+                $(editModal).css("display","block");
+                let title = $(editModal).find(".post_title");
+                let content = $(editModal).find(".noteInput");
+                title.val($(note).find(".noteTitle").text())
+                content.val($(note).find(".noteContent").text());
+            }
 
         })
 

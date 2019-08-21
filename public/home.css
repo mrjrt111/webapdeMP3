@@ -719,40 +719,10 @@ textarea:focus{
 }
 
 
-.noteButtons{
-    position:relative;
-    left: 25px;
-    width: 50px;
-}
 
-.editNote{
-    position: relative;
-    width: 100%;
 
-    background-color:rgba(240, 230, 140, 0);
-    border: 0px;
-    font-size:7pt;
 
-    text-align: right;
-}
 
-.editNote:hover{
-    color: rgb(255, 136, 0);
-}
-
-.deleteNote{
-    position: relative;
-    top: -10px;
-    background-color:rgba(240, 230, 140, 0);
-    border: 0px;
-    font-size:7pt;
-
-    text-align: right;
-}
-
-.deleteNote:hover{
-    color: rgb(255, 136, 0);
-}
 
 .checklistButtons{
     position:relative;
@@ -985,7 +955,8 @@ input[type="checkbox"]:checked:after {
     height: 600px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     animation-name: animatetop;
-    animation-duration: 0.4s
+    animation-duration: 0.4s;
+    border-radius:4px;
 }
 
 /* Add Animation */
@@ -1057,4 +1028,12 @@ input[type="checkbox"]:checked:after {
 #picbutton:hover{
     box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
     background-color: rgb(189, 189, 189);
+}
+
+.editcontent{
+    height: 100%;
+}
+
+.edit{
+    background-color: rgb(255, 226, 61);
 }
