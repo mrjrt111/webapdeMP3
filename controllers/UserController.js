@@ -17,32 +17,43 @@ router.post("/signup", urlencoder, (req, res)=>{
     var username = req.body.user;
     var password = req.body.pass;
     var confirm_pw = req.body.confirm_pw;
+    var isDuplicate = false;
 
     if (password ===confirm_pw){
-        console.log("POST /user/register");
-        var user = {username : req.body.user, password : req.body.pass}
+        User.getByUsername(username).then((user)=>{
+            console.log(user);
+            isDuplicate = !isEmpty(user)
+            console.log("isDuplicate = ", isDuplicate)
 
-        User.addUser(user).then((user)=>{
-            console.log("successful added " + user);
-            req.session.username = user.username;
-            Content.loadUserNotes(user.username).then((notes)=>{
-                if (notes.size===0)
-                    console.log("No notes  yet")
-                else
-                    console.log("notes:  ", notes)
-            })
-            res.render("home.hbs", {
-                username: doc.username
-            })
-        },(error)=>{
-            res.render("home", {
-                error : "some error in registering: " + error
-            })
+            if (!isDuplicate){
+                console.log("isDuplicate under condition = ", isDuplicate)
+                console.log("POST /user/register");
+                var user = {username : username, password : password}
+
+                User.addUser(user).then((user)=>{
+                    console.log("successful added " + user);
+                    req.session.username = user.username;
+                    res.render("home.hbs", {
+                        // username: doc.username
+                    })
+                },(error)=>{
+                    res.render("home", {
+                        error : "some error in registering: " + error
+                    })
+                })
+            }
+            else{
+                console.log("This is a duplicate username")
+                res.redirect("/signup.html");
+            }
+
         })
+
+
     }
-    else
-    {
-        res.redirect("/signup")
+    else {
+        console.log("Non matching passwords")
+        res.redirect("/signup.html");
     }
 })
 
@@ -54,8 +65,8 @@ router.post("/login", urlencoder, (req, res)=>{
    User.loginUser(user).then((foundUser)=>{
        if (foundUser){
            req.session.username = user.username;
-           Content.loadUserNotes(user.username).then((notes)=>{
-               if (notes.size===0)
+           Content.loadUserContent(user.username).then((notes)=>{
+               if (isEmpty(notes))
                    console.log("No notes  yet")
                else
                    console.log("notes:  ", notes)
@@ -69,4 +80,12 @@ router.post("/login", urlencoder, (req, res)=>{
 
 
 })
+
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
 module.exports = router;
