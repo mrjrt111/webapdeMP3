@@ -144,10 +144,17 @@
                 <input class="post_title" type="text" placeholder="Enter Title...">
                 <div class="tabcontent" id="createNote">
                     <label>
-                        <textarea class="noteInput" placeholder="Enter Content..." id="note_content"></textarea>
+                        <!--<textarea class="noteInput" placeholder="Enter Content..." id="note_content"></textarea>-->
+                        <div class="noteInput" data-text="Enter Content..." id="note_content" contentEditable="true">
+                            <img id="post_image" src="#" style="display:none"/>
+                        </div>
                     </label>
                     <button id="picbutton">UPLOAD IMAGE</button>
-                    <input id='fileid' type='file' accept=".jpg" style="display: none">
+                    <form>
+                        <input id='fileid' type='file' accept=".jpg" style="display: none" onchange="readURL(this);">
+
+                    </form>
+
                     <form action="createnotes" method="post" id="addNote">
                         <input type="hidden" id="formtitle" name="note_title">
                         <input type="hidden" id="formcontent" name ="note_content">
@@ -168,12 +175,15 @@
 
     </div>
     <script>
+        var file = "";
         $(document).ready(()=> {
             // Get the modal
             var modal = document.getElementById("myModal");
 
             // Get the button that opens the modal
             var btn = document.getElementById("createPost");
+
+            var fileName = "";
 
 
             // When the user clicks on the button, open the modal
@@ -193,16 +203,53 @@
                 $(this).addClass("active");
             });
 
-            $("#picbutton").click(function () {
+            /*$("#picbutton").click(function () {
                 document.getElementById("fileid").click();
-            })
+            })*/
             
             $("#savebutton").click(function () {
                 $("#formtitle").val($(".post_title").attr("value"))
                 $("#formcontent").val($("note_content").attr("value"))
                 $("#addNote").submit();
             })
+
+            /*$('input[type="file"]').change(function(e){
+                fileName = e.target.files[0].name;
+                file = e.target.files[0];
+                var img = new Image();
+                img.src = URL.createObjectURL(e.target.files[0]);
+                console.log('The file "' + fileName +  '" has been selected.');
+
+                let image = document.createElement('img');
+
+                console.log(img.src);
+                $(".modal-body").append(file);
+
+            })*/
+
         })
+
+        document.getElementById('picbutton').addEventListener('click', openDialog);
+        function openDialog() {
+            document.getElementById('fileid').click();
+        }
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    document.getElementById('post_image').style.display = "block";
+                    $('#post_image').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#fileid").change(function(){
+            readURL(this);
+        });
 
         function tabClick(event, tabName) {
             // Declare all variables
