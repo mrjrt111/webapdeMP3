@@ -453,7 +453,7 @@ textarea:focus{
     color: rgb(0, 0, 0, 0.87);
 }
 
-.add{
+.addTask{
     float: left;
     margin-left: 10px;
     margin-top: 10px;
@@ -469,7 +469,7 @@ textarea:focus{
     transition-timing-function:ease;
 }
 
-.add:hover{
+.addTask:hover{
     color: rgb(0, 0, 0,0.87);
 }
 
@@ -833,12 +833,12 @@ textarea:focus{
     border-radius: 15px;
 }
 
-.check_item{
+.list_checkbox{
     position: relative;
     left: 10px ;
 }
 
-.task{
+.list_task{
     position: relative;
     left: 5%;
 
