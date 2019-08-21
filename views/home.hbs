@@ -132,7 +132,7 @@
     </div>-->
 
     <!-- The Modal -->
-    <div id="myModal" class="modal">
+    <div id="addModal" class="modal">
 
         <!-- Modal content -->
         <div class="modal-content">
@@ -148,39 +148,41 @@
                     </label>
                     <button id="picbutton">UPLOAD IMAGE</button>
                     <input id='fileid' type='file' accept=".jpg" style="display: none">
-                    <form action="/content/createnotes" method="post" id="addNote">
-                        <input type="hidden" id="formtitle" name="note_title">
-                        <input type="hidden" id="formcontent" name ="note_content">
-                        <input type="hidden" id="formimage" name="image">
-                    </form>
                 </div>
                 <div class="tabcontent" id="createChecklist">
-                    <form>
-                        <input type="hidden" id="formtitle" name="title">
-                    </form>
                 </div>
             </div>
             <div class="modal-footer">
                 <button id="savebutton">SAVE</button>
                 <button id="noteTag">+</button>
             </div>
+            <form action="/content/createnotes" method="post" id="addNote">
+                <input type="hidden" id="formtitle" name="note_title">
+                <input type="hidden" id="formcontent" name ="note_content">
+                <input type="hidden" id="formimage" name="note_image">
+            </form>
         </div>
 
     </div>
     <script>
         $(document).ready(()=> {
             // Get the modal
-            var modal = document.getElementById("myModal");
+            var modal = document.getElementById("addModal");
 
             // Get the button that opens the modal
             var btn = document.getElementById("createPost");
 
 
             // When the user clicks on the button, open the modal
-            btn.onclick = function() {
+            /*btn.onclick = function() {
                 modal.style.display = "block";
                 $("#defaultOpen").click();
-            }
+            }*/
+
+            $("#createPost").click(function(){
+                $("#addModal").css("display","block");
+                $("#defaultOpen").click();
+            });
 
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function(event) {
@@ -198,8 +200,8 @@
             })
             
             $("#savebutton").click(function () {
-                $("#formtitle").val($(".post_title").attr("value"))
-                $("#formcontent").val($("note_content").attr("value"))
+                $("#formtitle").val($(".post_title").val())
+                $("#formcontent").val($(".noteInput").val())
                 $("#addNote").submit();
             })
         })
@@ -224,8 +226,6 @@
             document.getElementById(tabName).style.display = "block";
             event.currentTarget.className += " active";
         }
-
-
 
 
     </script>
