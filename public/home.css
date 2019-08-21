@@ -426,6 +426,11 @@ textarea:focus{
     background-color: rgb(189, 189, 189);
 }
 
+#post_image{
+    max-height: 100px;
+    max-width: 100px;
+}
+
 .iteminput{
     width: 75%;
     height: 9%;
@@ -971,6 +976,12 @@ input[type="checkbox"]:checked:after {
     padding: 0;
     margin:  5px;
     height: 70%;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text);
 }
 
 /* Style the tab */

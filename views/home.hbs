@@ -144,7 +144,10 @@
                 <input class="post_title" type="text" placeholder="Enter Title...">
                 <div class="tabcontent" id="createNote">
                     <label>
-                        <textarea class="noteInput" placeholder="Enter Content..." id="note_content"></textarea>
+                        <!--<textarea class="noteInput" placeholder="Enter Content..." id="note_content"></textarea>-->
+                        <div class="noteInput" data-text="Enter Content..." id="note_content" contentEditable="true">
+                            <img id="post_image" src="#" style="display:none"/>
+                        </div>
                     </label>
                     <button id="picbutton">UPLOAD IMAGE</button>
                     <input id='fileid' type='file' accept=".jpg" style="display: none">
@@ -196,10 +199,11 @@
         </div>
     </div>
     <script>
+        var file = "";
         $(document).ready(()=> {
             // Get the modal
             var addModal = document.getElementById("addModal");
-
+            var fileName = "";
             $("#createPost").click(function(){
                 $("#addModal").css("display","block");
                 $("#defaultOpen").click();
@@ -250,7 +254,7 @@
 
             $("#savebutton").click(function () {
                 $("#formtitle").val($(".post_title").val())
-                $("#formcontent").val($(".noteInput").val())
+                $("#formcontent").val($(".noteInput").text())
                 $("#formimage").val($("#fileid").val());
                 $(".list_task").each(function () {
                     let task = document.createElement("input");
@@ -268,6 +272,7 @@
                 });
                 $("#addNote").submit();
             })
+        })
 
             let editModal = document.getElementById("editModal");
 
@@ -283,7 +288,22 @@
                 content.val($(note).find(".noteContent").text());
             }
 
-        })
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    document.getElementById('post_image').style.display = "block";
+                    $('#post_image').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#fileid").change(function(){
+            readURL(this);
+        });
 
         function tabClick(event, tabName) {
             // Declare all variables
