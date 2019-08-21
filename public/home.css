@@ -135,7 +135,7 @@ button:focus{
     box-shadow: 3px 0 6px rgb(150,150,150,0.25);
 }
 
-.selection  {
+/*.selection  {
     padding: 8px 8px 8px 30px;
 
     width: 100%;
@@ -157,7 +157,7 @@ button:focus{
     background-color: #ffd0004d;
     border: 0px;
     border-radius: 0 25px 25px 0;
-}
+}*/
 
 .tagheader{
     padding: 20px 8px 8px 15px;
@@ -170,7 +170,7 @@ button:focus{
     display: block;
 }
 
-.addtagButton{
+/*.addtagButton{
     position: relative;
     left: 50%;
     background: transparent;
@@ -184,7 +184,7 @@ button:focus{
     transition-property: all;
     transition-duration: 0.5s;
     transition-timing-function:ease;
-}
+}*/
 
 .addtagButton:hover{
     box-shadow: 0 1px 6px rgba(32, 32, 32, 0.137);
@@ -974,6 +974,7 @@ input[type="checkbox"]:checked:after {
     padding: 2px 16px;
     margin-bottom: 10px;
     height: 70%;
+    overflow-y: auto;
 }
 
 /* Modal Footer */
