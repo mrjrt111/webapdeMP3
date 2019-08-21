@@ -12,7 +12,7 @@ var contentSchema = mongoose.Schema({
     note: String,
     checklist: [checklistSchema],
     tags: [String],
-    image: Buffer
+    image: String
 })
 
 var Content = mongoose.model("contents", contentSchema);
@@ -50,6 +50,20 @@ exports.loadUserContent  = function (username){
         console.log("in promise : " + username)
         Content.find({
             username : username
+        }).then((userContents)=>{
+            //console.log("List of content : " + userContents)
+            resolve(userContents)
+        },(err)=>{
+            reject(err)
+        })
+    })
+}
+
+exports.findOneContent = function (id){
+    return new Promise(function(resolve, reject){
+        console.log("in promise : " + username)
+        Content.findOne({
+            _id : id
         }).then((userContents)=>{
             //console.log("List of content : " + userContents)
             resolve(userContents)
