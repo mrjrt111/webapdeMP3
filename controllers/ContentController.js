@@ -24,14 +24,13 @@ router.use(urlencoder)
 
 router.post("/createnotes",upload.single("note_image"), (req, res)=>{
    // console.log("REQ:", req);
-
     let title = req.body.note_title;
     let note = req.body.note_content;
     let username = req.session.username;
     let checklistStrings = req.body.listitem;
+    let tagString = req.body.newTag;
 
-    console.log("BODY: ", req.body);
-    console.log("Title: ", title, " Note: ", note);
+    console.log("Body: ", req.body)
     var checklistJSON = [];
     for(var i in checklistStrings) {
 
@@ -44,7 +43,11 @@ router.post("/createnotes",upload.single("note_image"), (req, res)=>{
     }
     console.log("ChecklistSchema Array: ", checklistJSON);
 
+    if (note&&title)
+        var noteContent = {title: title, username: username, note: note};
+    else if (title&&checklistJSON)
         var noteContent = {title: title, username: username, note: note, checklist: checklistJSON};
+
         Content.createContent(noteContent).then(()=>{
                 res.redirect("/");
         });
@@ -62,5 +65,12 @@ router.get("/:id", urlencoder, (req, res)=>{
     }
 
 });
+
+router.post("/editnote", urlencoder, (req, res)=>{
+    let id = "something";
+    let title = req.body.title;
+
+
+})
 
 module.exports = router;
