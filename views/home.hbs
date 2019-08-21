@@ -204,7 +204,6 @@
         </div>
     </div>
     <script>
-        var file = "";
         $(document).ready(()=> {
             // Get the modal
             var addModal = document.getElementById("addModal");
@@ -282,6 +281,24 @@
                 });
                 $("#addNote").submit();
             })
+
+            $("#noteTag").click(function() {
+                let newTag = document.createElement("input");
+                newTag.type = "text";
+                $(newTag).val($(this).val());
+                newTag.className = "newTag";
+
+                /*$(".newTag").change(function() {
+                    $(this).css("border-radius", "25px");
+                    console.log("changed");
+                })*/
+
+                $(".modal-footer").append(newTag);
+
+                $(".modal-footer").submit();
+            });
+
+
         })
 
             $(".noteDiv").click(function () {

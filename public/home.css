@@ -649,6 +649,17 @@ textarea:focus{
     border-radius: 10px;
 }
 
+#noteTag:hover{
+    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+}
+
+.newTag{
+    width: 50px;
+    border-radius: 10px;
+    border: 1px rgba(148, 148, 148) solid;
+    padding: 2px 4px 2px 4px;
+}
+
 .checklistDiv{
     position: relative;
     height: 45%;
@@ -962,13 +973,14 @@ input[type="checkbox"]:checked:after {
     padding: 2px 16px;
     margin-bottom: 10px;
     height: 70%;
-    overflow-y: scroll;
 }
 
 /* Modal Footer */
 .modal-footer {
     padding: 2px 16px;
     color: white;
+    max-height: 90px;
+    overflow-y: auto;
 }
 
 /* Modal Content */
