@@ -135,7 +135,7 @@ button:focus{
     box-shadow: 3px 0 6px rgb(150,150,150,0.25);
 }
 
-/*.selection  {
+.selection  {
     padding: 8px 8px 8px 30px;
 
     width: 100%;
@@ -157,7 +157,7 @@ button:focus{
     background-color: #ffd0004d;
     border: 0px;
     border-radius: 0 25px 25px 0;
-}*/
+}
 
 .tagheader{
     padding: 20px 8px 8px 15px;
