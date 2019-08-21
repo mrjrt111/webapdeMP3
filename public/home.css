@@ -426,9 +426,9 @@ textarea:focus{
     background-color: rgb(189, 189, 189);
 }
 
-#post_image{
-    max-height: 100px;
-    max-width: 100px;
+.post_image{
+    max-width: 50%;
+    margin: 0 auto;
 }
 
 .iteminput{
@@ -941,6 +941,7 @@ input[type="checkbox"]:checked:after {
     padding: 2px 16px;
     margin-bottom: 10px;
     height: 70%;
+    overflow-y: scroll;
 }
 
 /* Modal Footer */
@@ -977,7 +978,7 @@ input[type="checkbox"]:checked:after {
     margin:  5px;
     height: 70%;
     max-height: 300px;
-    overflow-y: scroll;
+    background-color: transparent;
 }
 
 [contentEditable=true]:empty:not(:focus):before{

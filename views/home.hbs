@@ -63,21 +63,21 @@
         <div id="notescontainer">
             {{#each notes}}
                 <div class="noteDiv" data-id="{{_id}}">
+                    {{#if images}}
+                        <div></div>
+                    {{/if}}
                     <p class="noteTitle">{{title}}</p>
                     <div class = "noteTagDiv">
                         {{#each tags}}
                             <span id="noteTag">{{tags}}</span>
                         {{/each}}
                     </div>
-                    {{#if images}}
-                        <div></div>
-                    {{/if}}
                     {{#if note}}
                         <p class="noteContent">{{note}}</p>
                     {{/if}}
                     {{#if checklist}}
                         {{#each checklist}}
-                            <label class="checklistItem" name="p_id[]"><input type="checkbox" checked="{{status}}">{{task}}</label><br>
+                            <input type="checkbox" checked="{{status}}"><span class="task">{{task}}</span><br>
                         {{/each}}
                     {{/if}}
                 </div>
@@ -141,13 +141,11 @@
                 <button class="tablinks" onclick="tabClick(event, 'createChecklist')">CHECKLIST</button>
             </div>
             <div class="modal-body">
+                <img class="post_image" src="#" style="display:none"/>
                 <input class="post_title" type="text" placeholder="Enter Title...">
                 <div class="tabcontent" id="createNote">
                     <label>
-                        <!--<textarea class="noteInput" placeholder="Enter Content..." id="note_content"></textarea>-->
-                        <div class="noteInput" data-text="Enter Content..." id="note_content" contentEditable="true">
-                            <img id="post_image" src="#" style="display:none"/>
-                        </div>
+                        <textarea class="noteInput" placeholder="Enter Content..." id="note_content"></textarea>
                     </label>
                     <button id="picbutton">UPLOAD IMAGE</button>
                     <input id='fileid' type='file' accept=".jpg" style="display: none">
@@ -203,12 +201,12 @@
         $(document).ready(()=> {
             // Get the modal
             var addModal = document.getElementById("addModal");
+            let editModal = document.getElementById("editModal");
             var fileName = "";
             $("#createPost").click(function(){
                 $("#addModal").css("display","block");
                 $("#defaultOpen").click();
             });
-
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function(event) {
                 if (event.target == addModal) {
@@ -217,7 +215,12 @@
                     $(".noteInput").val("");
                     $(".post_title").val("");
                 }
+                else if(event.target == editModal){
+                    editModal.style.display = "none"
+                }
             }
+
+
             $(".tablinks").click(function(){
                 $(this).parent().find(".active").removeClass("active");
                 $(this).addClass("active");
@@ -254,7 +257,7 @@
 
             $("#savebutton").click(function () {
                 $("#formtitle").val($(".post_title").val())
-                $("#formcontent").val($(".noteInput").text())
+                $("#formcontent").val($(".noteInput").val())
                 $("#formimage").val($("#fileid").val());
                 $(".list_task").each(function () {
                     let task = document.createElement("input");
@@ -274,8 +277,6 @@
             })
         })
 
-            let editModal = document.getElementById("editModal");
-
             $(".noteDiv").click(function () {
                 editNote(this)
             })
@@ -293,8 +294,8 @@
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    document.getElementById('post_image').style.display = "block";
-                    $('#post_image').attr('src', e.target.result);
+                    $('.post_image').css("display","block");
+                    $('.post_image').attr('src', e.target.result);
                 }
 
                 reader.readAsDataURL(input.files[0]);
@@ -330,6 +331,8 @@
             document.getElementById(tabName).style.display = "block";
             event.currentTarget.className += " active";
         }
+
+
 
 
     </script>
