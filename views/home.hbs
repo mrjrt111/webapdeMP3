@@ -279,7 +279,15 @@
                     $(checkbox).val($(this).val());
                     $("#addNote").append(checkbox);
                 });
+                $(".newTag").each(function(){
+                    let tag = document.createElement("input");
+                    tag.type = "hidden";
+                    tag.name = "tag[]";
+                    $(tag).val($(this).val());
+                    $(".modal-footer").append(tag);
+                })
                 $("#addNote").submit();
+                $(".modal-footer").submit();
                 $("")
             })
 
