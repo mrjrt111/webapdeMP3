@@ -65,11 +65,10 @@ router.post("/login", urlencoder, (req, res)=>{
    User.loginUser(user).then((foundUser)=>{
        if (foundUser){
            req.session.username = user.username;
-           Content.loadUserContent(user.username).then((notes)=>{
-               if (isEmpty(notes))
-                   console.log("No notes  yet")
-               else
-                   console.log("notes:  ", notes)
+           Content.loadUserContent(user.username).then((content)=>{
+               res.render("home.hbs", {
+                   notes: content
+               })
            })
            console.log(user.username, " has been found");
            res.render("home")

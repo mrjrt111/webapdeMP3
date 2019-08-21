@@ -23,12 +23,23 @@ router.post("/createnotes", urlencoder, (req, res)=>{
         readImage = fs.readFileSync(req.file.path);
         let encImg = readImage.toString('base64');
         var noteContent = {title: title, username: username, note: note, image: Buffer(encImg, 'base64')};
-        Content.createContent(noteContent).then((post)=>{res.render("home.hbs")});
-
+        Content.createContent(noteContent);
+        Content.loadUserContent(username).then((content)=>{
+            res.render("home.hbs", {
+                notes: content
+            })
+        })
     }
     else {
         var noteContent = {title: title, username: username, note: note};
-        Content.createContent(noteContent).then((post)=>{res.render("home.hbs")});
+        Content.createContent(noteContent);
+        Content.loadUserContent(username).then((content)=>{
+            res.render("home.hbs", {
+                notes: content
+            })
+        })
+
+
     }
 
 
