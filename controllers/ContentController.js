@@ -16,35 +16,28 @@ router.post("/createnotes", urlencoder, (req, res)=>{
     let title = req.body.note_title;
     let note = req.body.note_content;
     let username = req.session.username;
-    console.log("Body ", req.body);
+    let checklistStrings = req.body.listitem;
+
+    console.log("BODY: ", req.body);
     console.log("Title: ", title, " Note: ", note);
-    let readImage;
-    if (req.file!=null){
-        readImage = fs.readFileSync(req.file.path);
-        let encImg = readImage.toString('base64');
-        var noteContent = {title: title, username: username, note: note, image: Buffer(encImg, 'base64')};
-        Content.createContent(noteContent).then(()=>{
-            Content.loadUserContent(username).then((content)=>{
-                res.redirect("/");
-            })
+    var checklistJSON = [];
+    for(var i in checklistStrings) {
+
+        var item = checklistStrings[i];
+
+        checklistJSON.push({
+            "task" : item,
+            "status"  : false
         });
-
-    }
-    else {
-        var noteContent = {title: title, username: username, note: note};
-        Content.createContent(noteContent);
-        Content.createContent(noteContent).then(()=>{
-            Content.loadUserContent(username).then((content)=>{
-                res.redirect("/");
-            })
-        });
-
-
     }
 
 
+    console.log("ChecklistSchema Array: ", checklistJSON);
 
-
+        var noteContent = {title: title, username: username, note: note, checklist: checklistJSON};
+        Content.createContent(noteContent).then(()=>{
+                res.redirect("/");
+        });
 
 
 })

@@ -29,7 +29,7 @@ exports.createContent = function (content){
             reject(err)
         })
 
-        console.log(content);
+        //console.log(content);
     })
 }
 
@@ -51,7 +51,7 @@ exports.loadUserContent  = function (username){
         Content.find({
             username : username
         }).then((userContents)=>{
-            console.log("List of content : " + userContents)
+            //console.log("List of content : " + userContents)
             resolve(userContents)
         },(err)=>{
             reject(err)

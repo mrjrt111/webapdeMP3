@@ -75,6 +75,11 @@ router.post("/login", urlencoder, (req, res)=>{
 
 })
 
+router.post("/logout", urlencoder, (req, res)=>{
+    req.session.username  ="";
+    res.redirect("/");
+})
+
 function isEmpty(obj) {
     for(var key in obj) {
         if(obj.hasOwnProperty(key))
