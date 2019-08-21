@@ -227,6 +227,17 @@
                 }
             }
 
+            $(".addtagButton").click(addTag);
+
+            function addTag(){
+                tag = document.createElement("input");
+                tag.type="text"
+                $(tag).attr("placeholder", "Enter tag...");
+                tag.className = "selection";
+
+                $("#tags_list").append(tag);
+            }
+
 
             $(".tablinks").click(function () {
                 $(this).parent().find(".active").removeClass("active");
