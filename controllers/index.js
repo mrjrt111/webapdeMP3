@@ -20,6 +20,7 @@ router.use("/content", require("./ContentController.js"))
                 res.render("home.hbs", {
                     notes: content
                 })
+                console.log("This is Content:", content);
             })
         }
 })
