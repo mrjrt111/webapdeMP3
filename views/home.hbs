@@ -288,7 +288,7 @@
             $(".noteDiv").click(function () {
                 let noteid = $(this).attr("data-id");
                 $.ajax({
-                    url:noteid,
+                    url:"/content/"+noteid,
                     method:"get",
                     success: function(res){
                         $(editModal).css("display","block");

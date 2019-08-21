@@ -43,8 +43,12 @@ router.post("/createnotes", urlencoder, (req, res)=>{
 })
 
 router.get("/:id", urlencoder, (req, res)=>{
-    Content.findOneContent(id).then((content)=>{
-    })
+    
+    Content.findOneContent({id:req.params.id}).then((content)=>{
+        res.send(content);
+    }),(err)=>{
+        console.log(err);
+    }
 });
 
 module.exports = router;
