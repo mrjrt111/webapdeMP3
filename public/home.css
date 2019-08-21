@@ -1019,13 +1019,14 @@ input[type="checkbox"]:checked:after {
     cursor: pointer;
     padding: 14px 16px;
     transition: 0.3s;
-    width: 33.33%;
+    width: 50%;
     border-bottom: solid white;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
     background-color: #ddd;
+    border-bottom: #ddd solid;
 }
 
 /* Create an active/current tablink class */
