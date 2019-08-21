@@ -266,7 +266,7 @@
             $("#createbutton").click(function () {
                 $("#formtitle").val($(".post_title").val())
                 $("#formcontent").val($(".noteInput").val())
-                $("#formimage").val($("#fileid").files[0].name);
+                $("#formimage").val($("#fileid").val());
                 $(".list_task").each(function () {
                     let task = document.createElement("input");
                     task.type = "hidden";
