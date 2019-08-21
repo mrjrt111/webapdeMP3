@@ -286,10 +286,9 @@
                     tag.type = "hidden";
                     tag.name = "tag[]";
                     $(tag).val($(this).val());
-                    $(".modal-footer").append(tag);
+                    $("#addNote").append(tag);
                 })
                 $("#addNote").submit();
-                $(".modal-footer").submit();
             })
 
             $("#noteTag").click(function() {
