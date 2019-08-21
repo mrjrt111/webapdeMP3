@@ -41,4 +41,10 @@ router.post("/createnotes", urlencoder, (req, res)=>{
 
 
 })
+
+router.get("/:id", urlencoder, (req, res)=>{
+    Content.findOneContent(id).then((content)=>{
+    })
+});
+
 module.exports = router;

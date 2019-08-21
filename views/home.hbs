@@ -77,7 +77,9 @@
                     {{/if}}
                     {{#if checklist}}
                         {{#each checklist}}
-                            <input type="checkbox" checked="{{status}}"><span class="task">{{task}}</span><br>
+                            <div class="item_container">
+                            <input type="checkbox" checked="{{status}}"><span class="task">{{task}}</span>
+                            </div>
                         {{/each}}
                     {{/if}}
                 </div>
@@ -160,7 +162,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="savebutton">SAVE</button>
+                <button id="createbutton">SAVE</button>
                 <button id="noteTag">+</button>
             </div>
             <form action="/content/createnotes" method="post" id="addNote">
@@ -174,7 +176,8 @@
 
     <div id="editModal" class="modal">
         <div class="modal-content edit">
-            <div class="modal-body">
+            <div class="modal-body note">
+                <img class="post_image" src="#" style="display:none"/>
                 <input class="post_title" type="text">
                 <div class="editcontent" id="editNote">
                     <label>
@@ -183,16 +186,20 @@
                     <button id="picbutton">UPLOAD IMAGE</button>
                     <input id='fileid' type='file' accept=".jpg" style="display: none">
                 </div>
+                <div class="editcontent" id="editChecklist">
+
+                </div>
             </div>
+
             <div class="modal-footer">
                 <button id="savebutton">SAVE</button>
                 <button id="noteTag">+</button>
             </div>
-            <form action="/content/editnote" method="post" id="addNote">
-                <input type="hidden" id="noteid"  name="note_id">
-                <input type="hidden" id="formtitle" name="note_title">
-                <input type="hidden" id="formcontent" name ="note_content">
-                <input type="hidden" id="formimage" name="note_image">
+            <form action="/content/editnote" method="post" id="editNote">
+                <input type="hidden" id="editnoteid"  name="note_id">
+                <input type="hidden" id="editformtitle" name="note_title">
+                <input type="hidden" id="editformcontent" name ="note_content">
+                <input type="hidden" id="editformimage" name="note_image">
             </form>
         </div>
     </div>
@@ -255,7 +262,7 @@
             });
 
 
-            $("#savebutton").click(function () {
+            $("#createbutton").click(function () {
                 $("#formtitle").val($(".post_title").val())
                 $("#formcontent").val($(".noteInput").val())
                 $("#formimage").val($("#fileid").val());
@@ -274,18 +281,57 @@
                     $("#addNote").append(checkbox);
                 });
                 $("#addNote").submit();
+                $("")
             })
         })
 
             $(".noteDiv").click(function () {
-                editNote(this)
+                let noteid = $(this).attr("data-id");
+                $.ajax({
+                    url:noteid,
+                    method:"get",
+                    success: function(res){
+                        $(editModal).css("display","block");
+                        $(editModal).find(".post_title").val({{title}});
+                        {{#if note}}
+                            $("#editNote").css("display","block");
+                            $(editModal).find(".noteContent").val({{note}});
+                        {{/if}}
+                        {{#if checklist}}
+                            $("#editChecklist").css("display","block");
+                            {{#each checklist}}
+                                let item_input = document.createElement("input");
+                                item_input.type ="text";
+                                item_input.className = "list_task";
+                                $(item_input).attr("placeholder","Enter task...");
+
+                                let checkbox = document.createElement("input");
+                                checkbox.type = "checkbox";
+                                checkbox.className = "list_check";
+
+                                let remove = document.createElement("span");
+                                remove.innerHTML ="REMOVE";
+                                remove.className = "remove";
+
+                                let divCtnr = document.createElement("div");
+                                divCtnr.className ="item_container";
+                                divCtnr.append(checkbox);
+                                divCtnr.append(item_input);
+                                divCtnr.append(remove);
+
+                                $("#editChecklist").append(item_input);
+                            {{/each}}
+                        {{/if}}
+                    }
+                })
             })
 
             function editNote(note){
+
                 $(editModal).css("display","block");
                 let title = $(editModal).find(".post_title");
                 let content = $(editModal).find(".noteInput");
-                title.val($(note).find(".noteTitle").text())
+                title.val($(note).find(".noteTitle").text());
                 content.val($(note).find(".noteContent").text());
             }
 
@@ -294,8 +340,8 @@
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $('.post_image').css("display","block");
-                    $('.post_image').attr('src', e.target.result);
+                    $(input).parent().parent().find('.post_image').css("display","block");
+                    $(input).parent().parent().find('.post_image').attr('src', e.target.result);
                 }
 
                 reader.readAsDataURL(input.files[0]);
@@ -331,8 +377,6 @@
             document.getElementById(tabName).style.display = "block";
             event.currentTarget.className += " active";
         }
-
-
 
 
     </script>

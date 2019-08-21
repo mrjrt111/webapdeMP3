@@ -398,7 +398,7 @@ textarea:focus{
     font-family: Roboto;
 }
 
-#savebutton{
+#createbutton{
     margin-right: 10px;
     background: transparent;
     border: rgba(0, 0, 0, 0.6) solid;
@@ -413,7 +413,7 @@ textarea:focus{
     transition-timing-function:ease;
 }
 
-#savebutton:hover{
+#createbutton:hover{
     box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
     background-color: rgb(189, 189, 189);
 }

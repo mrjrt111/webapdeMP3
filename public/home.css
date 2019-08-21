@@ -406,6 +406,26 @@ textarea:focus{
     font-family: Roboto;
 }
 
+#createbutton{
+    margin-right: 10px;
+    background: transparent;
+    border: rgba(0, 0, 0, 0.6) solid;
+    border-radius: 5px;
+    font-family: Roboto, sans-serif;
+    font-size: 10pt;
+    color: rgb(0, 0, 0);
+    font-weight:500;
+    height: 30px;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+}
+
+#createbutton:hover{
+    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+    background-color: rgb(189, 189, 189);
+}
+
 #savebutton{
     margin-right: 10px;
     background: transparent;
@@ -445,6 +465,7 @@ textarea:focus{
     width: 100%;
     margin: 3px;
     vertical-align: center;
+    height: 25px;
 }
 
 .remove{
@@ -1044,6 +1065,7 @@ input[type="checkbox"]:checked:after {
 
 .editcontent{
     height: 100%;
+    display: none;
 }
 
 .edit{
