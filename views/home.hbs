@@ -151,8 +151,8 @@
                 </div>
                 <div class="tabcontent" id="createChecklist">
                     <div class="item_container">
-                        <input type="checkbox" class="check_item">
-                        <input type="text" class="task" placeholder="Enter task...">
+                        <input type="checkbox" class="list_check">
+                        <input type="text" class="list_task" placeholder="Enter task...">
                         <span class="remove">REMOVE</span>
                     </div>
                     <button class="add">+</button>
@@ -216,7 +216,7 @@
             window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
-                    $(".task").val("");
+                    $(".list_task").val("");
                     $(".noteInput").val("");
                     $(".post_title").val("");
                 }
@@ -233,12 +233,12 @@
             $(".add").click(function() {
                 let item_input = document.createElement("input");
                 item_input.type ="text";
-                item_input.className = "task";
+                item_input.className = "list_task";
                 $(item_input).attr("placeholder","Enter task...");
-
 
                 let checkbox = document.createElement("input");
                 checkbox.type = "checkbox";
+                checkbox.className = "list_check";
 
                 let remove = document.createElement("span");
                 remove.innerHTML ="REMOVE";
@@ -259,14 +259,20 @@
                 $("#formtitle").val($(".post_title").val())
                 $("#formcontent").val($(".noteInput").val())
                 $("#formimage").val($("#fileid").val());
-                $(".task").each(function () {
+                $(".list_task").each(function () {
                     let task = document.createElement("input");
                     task.type = "hidden";
                     task.name = "listitem[]";
                     $(task).val($(this).val());
                     $("#addNote").append(task);
                 });
-
+                $(".list_check").each(function () {
+                    let checkbox = document.createElement("input");
+                    checkbox.type = "hidden";
+                    checkbox.name = "listcheckboxes[]";
+                    $(checkbox).val($(this).val());
+                    $("#addNote").append(checkbox);
+                });
                 $("#addNote").submit();
             })
 
@@ -289,7 +295,7 @@
             }
 
             if(tabName==="createNote")
-                $(".task").val("");
+                $(".list_task").val("");
             else if(tabName==="createChecklist")
                 $(".noteInput").val("");
 
