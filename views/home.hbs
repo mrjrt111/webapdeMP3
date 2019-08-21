@@ -132,7 +132,7 @@
     </div>-->
 
     <!-- The Modal -->
-    <div id="myModal" class="modal">
+    <div id="addModal" class="modal">
 
         <!-- Modal content -->
         <div class="modal-content">
@@ -150,52 +150,79 @@
                         </div>
                     </label>
                     <button id="picbutton">UPLOAD IMAGE</button>
-                    <form>
-                        <input id='fileid' type='file' accept=".jpg" style="display: none" onchange="readURL(this);">
-
-                    </form>
-
-                    <form action="createnotes" method="post" id="addNote">
-                        <input type="hidden" id="formtitle" name="note_title">
-                        <input type="hidden" id="formcontent" name ="note_content">
-                        <input type="hidden" id="formimage" name="image">
-                    </form>
+                    <input id='fileid' type='file' accept=".jpg" style="display: none">
                 </div>
                 <div class="tabcontent" id="createChecklist">
-                    <form>
-                        <input type="hidden" id="formtitle" name="title">
-                    </form>
+                    <div class="item_container">
+                        <input type="checkbox" class="list_check">
+                        <input type="text" class="list_task" placeholder="Enter task...">
+                        <span class="remove">REMOVE</span>
+                    </div>
+                    <button class="add">+</button>
                 </div>
             </div>
             <div class="modal-footer">
                 <button id="savebutton">SAVE</button>
                 <button id="noteTag">+</button>
             </div>
+            <form action="/content/createnotes" method="post" id="addNote">
+                <input type="hidden" id="formtitle" name="note_title">
+                <input type="hidden" id="formcontent" name ="note_content">
+                <input type="hidden" id="formimage" name="note_image">
+            </form>
         </div>
 
+    </div>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-body">
+                <input class="post_title" type="text" placeholder="Enter Title...">
+                <div class="tabcontent" id="createNote">
+                    <label>
+                        <textarea class="noteInput" placeholder="Enter Content..." id="note_content"></textarea>
+                    </label>
+                    <button id="picbutton">UPLOAD IMAGE</button>
+                    <input id='fileid' type='file' accept=".jpg" style="display: none">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="savebutton">SAVE</button>
+                <button id="noteTag">+</button>
+            </div>
+            <form action="/content/createnotes" method="post" id="addNote">
+                <input type="hidden" id="formtitle" name="note_title">
+                <input type="hidden" id="formcontent" name ="note_content">
+                <input type="hidden" id="formimage" name="note_image">
+            </form>
+        </div>
     </div>
     <script>
         var file = "";
         $(document).ready(()=> {
             // Get the modal
-            var modal = document.getElementById("myModal");
-
-            // Get the button that opens the modal
-            var btn = document.getElementById("createPost");
-
+            var modal = document.getElementById("addModal");
             var fileName = "";
-
-
-            // When the user clicks on the button, open the modal
-            btn.onclick = function() {
-                modal.style.display = "block";
+            $("#createPost").click(function(){
+                $("#addModal").css("display","block");
                 $("#defaultOpen").click();
+            });
+
+            $(".noteDiv").click(function () {
+                editNote(this)
+            })
+
+            function editNote(note){
+
             }
 
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
+                    $(".list_task").val("");
+                    $(".noteInput").val("");
+                    $(".post_title").val("");
                 }
             }
             $(".tablinks").click(function(){
@@ -203,36 +230,56 @@
                 $(this).addClass("active");
             });
 
-            /*$("#picbutton").click(function () {
+            $("#picbutton").click(function () {
                 document.getElementById("fileid").click();
-            })*/
-            
-            $("#savebutton").click(function () {
-                $("#formtitle").val($(".post_title").attr("value"))
-                $("#formcontent").val($("note_content").attr("value"))
-                $("#addNote").submit();
             })
 
-            /*$('input[type="file"]').change(function(e){
-                fileName = e.target.files[0].name;
-                file = e.target.files[0];
-                var img = new Image();
-                img.src = URL.createObjectURL(e.target.files[0]);
-                console.log('The file "' + fileName +  '" has been selected.');
+            $(".add").click(function() {
+                let item_input = document.createElement("input");
+                item_input.type ="text";
+                item_input.className = "list_task";
+                $(item_input).attr("placeholder","Enter task...");
 
-                let image = document.createElement('img');
+                let checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.className = "list_check";
 
-                console.log(img.src);
-                $(".modal-body").append(file);
+                let remove = document.createElement("span");
+                remove.innerHTML ="REMOVE";
+                remove.className = "remove";
 
-            })*/
+                let divCtnr = document.createElement("div");
+                divCtnr.className ="item_container";
+                divCtnr.append(checkbox);
+                divCtnr.append(item_input);
+                divCtnr.append(remove);
 
+                $(divCtnr).insertBefore(this);
+                return false;
+            });
+
+
+            $("#savebutton").click(function () {
+                $("#formtitle").val($(".post_title").val())
+                $("#formcontent").val($(".noteInput").val())
+                $("#formimage").val($("#fileid").val());
+                $(".list_task").each(function () {
+                    let task = document.createElement("input");
+                    task.type = "hidden";
+                    task.name = "listitem[]";
+                    $(task).val($(this).val());
+                    $("#addNote").append(task);
+                });
+                $(".list_check").each(function () {
+                    let checkbox = document.createElement("input");
+                    checkbox.type = "hidden";
+                    checkbox.name = "listcheckboxes[]";
+                    $(checkbox).val($(this).val());
+                    $("#addNote").append(checkbox);
+                });
+                $("#addNote").submit();
+            })
         })
-
-        document.getElementById('picbutton').addEventListener('click', openDialog);
-        function openDialog() {
-            document.getElementById('fileid').click();
-        }
 
         function readURL(input) {
             if (input.files && input.files[0]) {
@@ -267,12 +314,15 @@
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
 
+            if(tabName==="createNote")
+                $(".list_task").val("");
+            else if(tabName==="createChecklist")
+                $(".noteInput").val("");
+
             // Show the current tab, and add an "active" class to the button that opened the tab
             document.getElementById(tabName).style.display = "block";
             event.currentTarget.className += " active";
         }
-
-
 
 
     </script>

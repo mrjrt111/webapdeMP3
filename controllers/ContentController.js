@@ -16,20 +16,36 @@ router.post("/createnotes", urlencoder, (req, res)=>{
     let title = req.body.note_title;
     let note = req.body.note_content;
     let username = req.session.username;
-    let readImage = fs.readFileSync(req.file.path);
-    let encImg = readImage.toString('base64');
+    console.log("Body ", req.body);
+    console.log("Title: ", title, " Note: ", note);
+    let readImage;
+    if (req.file!=null){
+        readImage = fs.readFileSync(req.file.path);
+        let encImg = readImage.toString('base64');
+        var noteContent = {title: title, username: username, note: note, image: Buffer(encImg, 'base64')};
+        Content.createContent(noteContent).then(()=>{
+            Content.loadUserContent(username).then((content)=>{
+                res.redirect("/");
+            })
+        });
 
-    if (title===null && note===null);
-
-    else {
-        if (image===null)
-            var noteContent = {title: title, username: username, note: note};
-
-        else
-            var noteContent = {title: title, username: username, note: note, image: Buffer(encImg, 'base64')};
-
-        Content.createContent(noteContent);
     }
+    else {
+        var noteContent = {title: title, username: username, note: note};
+        Content.createContent(noteContent);
+        Content.createContent(noteContent).then(()=>{
+            Content.loadUserContent(username).then((content)=>{
+                res.redirect("/");
+            })
+        });
+
+
+    }
+
+
+
+
+
 
 })
 module.exports = router;
