@@ -69,7 +69,10 @@ router.get("/:id", urlencoder, (req, res)=>{
 router.post("/editnote", urlencoder, (req, res)=>{
     let id = "something";
     let title = req.body.title;
-
+    let note = req.body.note_content;
+    let username = req.session.username;
+    let checklistStrings = req.body.listitem;
+    let tagString = req.body.newTag;
 
 })
 
