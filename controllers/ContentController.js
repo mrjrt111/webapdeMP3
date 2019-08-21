@@ -32,3 +32,4 @@ router.post("/createnotes", urlencoder, (req, res)=>{
     }
 
 })
+module.exports = router;
