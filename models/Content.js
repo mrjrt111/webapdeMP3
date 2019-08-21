@@ -12,7 +12,7 @@ var contentSchema = mongoose.Schema({
     note: String,
     checklist: [checklistSchema],
     tags: [String],
-    images: Buffer
+    image: Buffer
 })
 
 var Content = mongoose.model("contents", contentSchema);
