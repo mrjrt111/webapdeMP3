@@ -71,11 +71,6 @@
                         <img src="/photo/{{id}}">
                     {{/if}}
                     <p class="noteTitle">{{title}}</p>
-                    <div class = "noteTagDiv">
-                        {{#each tags}}
-                            <span class="noteTag">{{this}}</span>
-                        {{/each}}
-                    </div>
                     {{#if note}}
                         <p class="noteContent">{{{note}}}</p>
                     {{/if}}
@@ -92,6 +87,11 @@
                         {{/each}}
                         </div>
                     {{/if}}
+                    <div class = "noteTagDiv">
+                        {{#each tags}}
+                            <span class="noteTag">{{this}}</span>
+                        {{/each}}
+                    </div>
                 </div>
             {{/each}}
 
