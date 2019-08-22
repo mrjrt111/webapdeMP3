@@ -207,6 +207,10 @@
                 cb.val(cb.prop('checked'));
             });
 
+            $(".remove").click(function () {
+                $(this).parent().remove();
+            })
+
             /*$(".addtagButton").click(addTag);
 
             function addTag(){
@@ -451,6 +455,7 @@
                 })
                 $("#editform").submit();
             }
+
         })
         
 
