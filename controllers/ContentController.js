@@ -28,6 +28,7 @@ router.post("/createnotes",upload.single("img"), (req, res)=>{
     let note = req.body.note_content;
     let username = req.session.username;
     let checklistStrings = req.body.listitem;
+    let  checkboxes = req.body.listcheckboxes;
     let tagString = req.body.tag;
     let image = null;
     if (req.file!= null)
@@ -41,7 +42,7 @@ router.post("/createnotes",upload.single("img"), (req, res)=>{
 
         checklistJSON.push({
             "task" : item,
-            "status"  : false
+            "status"  : checkboxes[i]
         });
     }
     var tagJSON = [];
