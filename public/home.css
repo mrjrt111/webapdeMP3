@@ -520,10 +520,12 @@ textarea:focus{
     transition-property: all;
     transition-duration: 0.5s;
     transition-timing-function:ease;
+    border: 1px rgb(0, 0, 0,0.6) solid;
 }
 
 .add:hover{
     color: rgb(0, 0, 0,0.87);
+    order: 1px rgb(0, 0, 0,0.87) solid;
 }
 
 .filebutton{
@@ -669,10 +671,11 @@ textarea:focus{
 }
 
 .noteTag:hover{
-    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+    border: 1px rgb(131, 131, 131) solid;
+    color: #6c6c6c;
 }
 
-#addTag{
+.addTag{
     color: grey;
     font-size: 10pt;
 
@@ -680,9 +683,12 @@ textarea:focus{
 
     border: 1px rgba(148, 148, 148) solid;
     border-radius: 10px;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
 }
 
-#addTag:hover{
+.addTag:hover{
     box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
 }
 
@@ -1008,7 +1014,7 @@ input[type="checkbox"]:checked:after {
     padding: 2px 16px;
     margin-bottom: 10px;
     height: 70%;
-    overflow-y: auto;
+    overflow-y: hidden;
 }
 
 /* Modal Footer */
@@ -1091,7 +1097,7 @@ input[type="checkbox"]:checked:after {
     height: 100%;
 }
 
-#picbutton{
+.picbutton{
     margin-right: 10px;
     background: transparent;
     border: rgba(0, 0, 0, 0.6) solid;
@@ -1106,7 +1112,7 @@ input[type="checkbox"]:checked:after {
     transition-timing-function:ease;
 }
 
-#picbutton:hover{
+.picbutton:hover{
     box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
     background-color: rgb(189, 189, 189);
 }

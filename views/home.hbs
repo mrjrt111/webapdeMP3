@@ -65,7 +65,7 @@
             {{#each notes}}
                 <div class="noteDiv" data-id="{{_id}}">
                     {{#if images}}
-                        <div></div>
+                        <img src="/photo/{{id}}">
                     {{/if}}
                     <p class="noteTitle">{{title}}</p>
                     <div class = "noteTagDiv">
@@ -116,7 +116,7 @@
                     <label>
                         <textarea class="noteInput" placeholder="Enter Content..." id="note_content"></textarea>
                     </label>
-                    <button id="picbutton">UPLOAD IMAGE</button>
+                    <button class="picbutton">UPLOAD IMAGE</button>
                 </div>
                 <div class="tabcontent" id="createChecklist">
                     <div class="item_container">
@@ -129,10 +129,10 @@
             </div>
             <div class="modal-footer">
                 <button id="createbutton">SAVE</button>
-                <button id="addTag">+</button>
+                <button class="addTag">+</button>
             </div>
             <form action="/createnotes" method="post" id="addNote">
-                <input id='fileid' type='file' accept=".jpg" style="display: none" name="note_image">
+                <input class='fileid' type='file' accept=".jpg" style="display: none" name="note_image">
                 <input type="hidden" id="formtitle" name="note_title">
                 <input type="hidden" id="formcontent" name ="note_content">
             </form>
@@ -149,7 +149,7 @@
                     <label>
                         <textarea class="noteInput" id="editcontent" ></textarea>
                     </label>
-                    <button id="picbutton">UPLOAD IMAGE</button>
+                    <button class="picbutton">UPLOAD IMAGE</button>
 
                 </div>
                 <div class="editcontent" id="editChecklist">
@@ -159,7 +159,7 @@
 
             <div class="modal-footer">
                 <button id="savebutton">SAVE</button>
-                <button id="addTag">+</button>
+                <button class="addTag">+</button>
 
             </div>
             <span class="deleteCheckList" id="deletebutton">DELETE</span>
@@ -170,7 +170,7 @@
                 <input type="hidden" id="editnoteid"  name="note_id">
                 <input type="hidden" id="editformtitle" name="note_title">
                 <input type="hidden" id="editformcontent" name ="note_content">
-                <input id='fileid' type='file' accept=".jpg" style="display: none" name="note_image">
+                <input class='fileid' type='file' accept=".jpg" style="display: none" name="note_image">
             </form>
         </div>
     </div>
@@ -192,7 +192,8 @@
                     $(".noteInput").val("");
                     $(".post_title").val("");
                 } else if (event.target == editModal) {
-                    editModal.style.display = "none"
+                    editModal.style.display = "none";
+                    savenote();
                 }
             }
 
@@ -213,8 +214,8 @@
                 $(this).addClass("active");
             });
 
-            $("#picbutton").click(function () {
-                document.getElementById("fileid").click();
+            $(".picbutton").click(function () {
+                $(this).parent().parent().parent().find(".fileid").click();
             })
 
             $(".add").click(function () {
@@ -274,7 +275,7 @@
                 $("#addNote").submit();
             })
 
-            $("#addTag").click(function () {
+            $(".addTag").click(function () {
                 let newTag = document.createElement("input");
                 newTag.type = "text";
                 $(newTag).val($(this).val());
@@ -285,9 +286,8 @@
                     console.log("changed");
                 })*/
 
-                $(".modal-footer").append(newTag);
+                $(this).parent().append(newTag);
 
-                $(".modal-footer").submit();
             });
 
 
@@ -342,9 +342,17 @@
                 $("#deletenoteid").val($(note).attr("data-id"))
                 $("#editnoteid").val($(note).attr("data-id"));
                 $(editModal).css("display", "block");
+                $(editModal).find(".newTag").remove();
                 let title = $(editModal).find(".post_title");
                 let content = $(editModal).find(".noteInput");
                 title.val($(note).find(".noteTitle").text());
+                $(note).find(".noteTag").each(function () {
+                    let newTag = document.createElement("input");
+                    newTag.type = "text";
+                    $(newTag).val($(this).html());
+                    newTag.className = "newTag";
+                    $(editModal).find(".modal-footer").append(newTag);
+                })
                 if($(note).find(".noteContent").text()!=="") {
                     $("#editChecklist").css("display","none");
                     content.val($(note).find(".noteContent").text());
@@ -387,7 +395,12 @@
                 $("#deleteform").submit();
             })
 
+
             $("#savebutton").click(function () {
+               savenote()
+            })
+
+            function savenote() {
                 $("#editformtitle").val($("#edittitle").val())
                 $("#editformcontent").val($("#editcontent").val())
                 $("#editform").find(".formitem").remove();
@@ -418,9 +431,7 @@
                     $("#editform").append(tag);
                 })
                 $("#editform").submit();
-            })
-
-
+            }
         })
         
 
@@ -437,7 +448,7 @@
             }
         }
 
-        $("#fileid").change(function(){
+        $(".fileid").change(function(){
             readURL(this);
         });
 
