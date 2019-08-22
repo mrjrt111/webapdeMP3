@@ -395,7 +395,7 @@
                         let item_input = document.createElement("input");
                         item_input.type = "text";
                         item_input.className = "list_task";
-                        $(item_input).val($(this).find(".task").val());
+                        $(item_input).val($(this).find(".task").html());
 
                         let checkbox = document.createElement("input");
                         checkbox.type = "checkbox";
@@ -411,7 +411,7 @@
                         divCtnr.append(checkbox);
                         divCtnr.append(item_input);
                         divCtnr.append(remove);
-                        $("#editChecklist").prepend(divCtnr)
+                        $(divCtnr).insertBefore(".add")
                     })
                     $("#editChecklist").css("display", "block")
                 }
@@ -425,18 +425,22 @@
                 $("#editformtitle").val($("#edittitle").val())
                 $("#editformcontent").val($("#editcontent").val())
                 $("#editformimage").val($("#fileid").val());
+                $("#editform").find(".formitem").remove();
+                $("#editform").find(".formcheck").remove();
                 if($("#editcontent").val()==="") {
-                    $(".list_task").each(function () {
+                    $("#editModal").find(".list_task").each(function () {
                         let task = document.createElement("input");
                         task.type = "hidden";
                         task.name = "listitem[]";
+                        task.className = "formitem";
                         $(task).val($(this).val());
                         $("#editform").append(task);
                     });
-                    $(".list_check").each(function () {
+                    $("#editModal").find(".list_check").each(function () {
                         let checkbox = document.createElement("input");
                         checkbox.type = "hidden";
                         checkbox.name = "listcheckboxes[]";
+                        checkbox.className ="formcheck"
                         $(checkbox).val($(this).val());
                         $("#editform").append(checkbox);
                     });
