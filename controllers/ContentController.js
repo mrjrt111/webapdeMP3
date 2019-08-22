@@ -98,7 +98,7 @@ router.post("/editnote", urlencoder, (req, res)=>{
         checklist: checklistJSON, tags: tagString}).then((content)=>{
                  res.redirect("/");
     })
-
+    res.redirect("/");
 })
 
 router.post("/deletenote",  urlencoder, (req, res)=>{
