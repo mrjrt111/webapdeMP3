@@ -4,6 +4,9 @@
 <head>
     <script src="jquery.min.js"> </script>
     <link rel="stylesheet" type="text/css" href="/home.css">
+    <title>
+        CheckNotes
+    </title>
 </head>
 <!--<script>const handleBar = require('handlebars')</script>-->
 <body>
@@ -77,6 +80,7 @@
                         <p class="noteContent">{{{note}}}</p>
                     {{/if}}
                     {{#if checklist}}
+                        <div class="checklistcontainer">
                         {{#each checklist}}
                             <div class="item_container">
                             {{#if status}}
@@ -86,6 +90,7 @@
                             {{/if}}
                             </div>
                         {{/each}}
+                        </div>
                     {{/if}}
                 </div>
             {{/each}}
@@ -196,6 +201,15 @@
                     savenote();
                 }
             }
+
+            $('.list_check').change(function(){
+                cb = $(this);
+                cb.val(cb.prop('checked'));
+            });
+
+            $(".remove").click(function () {
+                $(this).parent().remove();
+            })
 
             /*$(".addtagButton").click(addTag);
 
@@ -441,6 +455,7 @@
                 })
                 $("#editform").submit();
             }
+
         })
         
 
