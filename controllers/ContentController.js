@@ -28,7 +28,7 @@ router.post("/createnotes",upload.single("note_image"), (req, res)=>{
     let note = req.body.note_content;
     let username = req.session.username;
     let checklistStrings = req.body.listitem;
-    let tagString = req.body.newTag;
+    let tagString = req.body.tag;
 
     console.log("Body: ", req.body)
     var checklistJSON = [];
@@ -41,12 +41,20 @@ router.post("/createnotes",upload.single("note_image"), (req, res)=>{
             "status"  : false
         });
     }
-    console.log("ChecklistSchema Array: ", checklistJSON);
+    var tagJSON = [];
+    for (var j in tagString){
+        var item = tagString[j];
+        tagJSON.push({
+            tags: item
+        })
+    }
+    console.log("Tag String: ", tagString);
 
     if (note&&title)
-        var noteContent = {title: title, username: username, note: note};
+        var noteContent = {title: title, username: username, note: note, tags: tagString};
     else if (title&&checklistJSON)
-        var noteContent = {title: title, username: username, note: note, checklist: checklistJSON};
+        var noteContent = {title: title, username: username, note: note, checklist: checklistJSON, tags: tagString};
+
 
         Content.createContent(noteContent).then(()=>{
                 res.redirect("/");
@@ -67,10 +75,61 @@ router.get("/:id", urlencoder, (req, res)=>{
 });
 
 router.post("/editnote", urlencoder, (req, res)=>{
-    let id = "something";
-    let title = req.body.title;
+    let id = req.body.note_id;
+    let title = req.body.note_title;
+    let note = req.body.note_content;
+    let username = req.session.username;
+    let checklistStrings = req.body.listitem;
+    let tagString = req.body.newTag;
 
+    console.log(req.body);
+    var checklistJSON = [];
+    for(var i in checklistStrings) {
 
+        var item = checklistStrings[i];
+
+        checklistJSON.push({
+            "task" : item,
+            "status"  : false
+        });
+    }
+    console.log(title, " ", note);
+    Content.editContent({_id: id},  {title: title, username: username, note: note,
+        checklist: checklistJSON, tags: tagString}).then((content)=>{
+                 res.redirect("/");
+    })
+    res.redirect("/");
 })
+
+router.post("/deletenote",  urlencoder, (req, res)=>{
+    let id = req.body.note_id;
+    Content.deleteContent(id);
+    res.redirect("/");
+})
+
+router.post("/searchTitle", urlencoder, (req, res)=>{
+    let title = req.body.searchBar;
+    let username = req.session.username;
+    console.log("Title: ");
+    Content.loadContentByTitle(title, username).then((content)=>{
+        console.log(content);
+        res.render("home.hbs", {
+            notes: content
+
+        })
+    })
+})
+
+router.post("/home", function (req, res) {
+    res.redirect("/");
+})
+
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
 
 module.exports = router;

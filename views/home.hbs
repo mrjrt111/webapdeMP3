@@ -10,7 +10,7 @@
     <!--Side Navigation-->
     <div class="sidenav">
         <ul>
-            <form action="home" method="GET">
+            <form action="home" method="POST">
                 <input class="selection" type="submit" value="View All">
             </form>
             <form action="notes" method="GET">
@@ -35,13 +35,14 @@
 
     <!--Header-->
     <div class="header sticky" id="HeaderDiv">
-        <form action="logout" method="POST" id="logoutform">
+        <form action="/user/logout" method="POST" id="logoutform">
             <input type="submit" value="Sign out" id="logout">
         </form>
         <h2 class="name">CheckNotes</h2>
         
-        <form class="searchForm" method="GET">
-            <input id="search_input" class="searchBar" type="text" placeholder="Search">
+        <form class="searchForm" method="POST" action = "/content/searchTitle">
+            <input id="text" class="searchBar" type="text" placeholder="Search" name = "searchBar">
+            <span> <input type="submit" value="Search" id="searchButton"></span>
         </form>
         
         <!--<img class="logoutIcon" src="Checkbox Icon.svg">-->
@@ -178,16 +179,16 @@
         <div class="modal-content edit">
             <div class="modal-body note">
                 <img class="post_image" src="#" style="display:none"/>
-                <input class="post_title" type="text">
+                <input class="post_title" type="text" id="edittitle">
                 <div class="editcontent" id="editNote">
                     <label>
-                        <textarea class="noteInput" id="note_content"></textarea>
+                        <textarea class="noteInput" id="editcontent" ></textarea>
                     </label>
                     <button id="picbutton">UPLOAD IMAGE</button>
                     <input id='fileid' type='file' accept=".jpg" style="display: none">
                 </div>
                 <div class="editcontent" id="editChecklist">
-
+                    <button class="add">+</button>
                 </div>
             </div>
 
@@ -196,7 +197,10 @@
                 <button id="noteTag">+</button>
 
             </div>
-            <span class="deleteCheckList">DELETE</span>
+            <span class="deleteCheckList" id="deletebutton">DELETE</span>
+            <form action="/content/deletenote" method="post" id="deleteform">
+                <input type="hidden" id="deletenoteid" name="note_id">
+            </form>
             <form action="/content/editnote" method="post" id="editform">
                 <input type="hidden" id="editnoteid"  name="note_id">
                 <input type="hidden" id="editformtitle" name="note_title">
@@ -371,33 +375,72 @@
             })
 
             function editNote(note) {
+                $("#deletenoteid").val($(note).attr("data-id"))
                 $("#editnoteid").val($(note).attr("data-id"));
                 $(editModal).css("display", "block");
                 let title = $(editModal).find(".post_title");
                 let content = $(editModal).find(".noteInput");
                 title.val($(note).find(".noteTitle").text());
-                content.val($(note).find(".noteContent").text());
-                $("#editNote").css("display", "block")
+                if($(note).find(".noteContent").text()!=="") {
+                    $("#editChecklist").css("display","none");
+                    content.val($(note).find(".noteContent").text());
+                    $("#editNote").css("display", "block")
+                }
+                else{
+                    $("#editNote").css("display","none");
+                    $("#editChecklist").find(".item_container").remove();
+                    let checklist = $(note).find(".item_container");
+                    console.log(checklist)
+                    $(note).find(".item_container").each(function(){
+                        let item_input = document.createElement("input");
+                        item_input.type = "text";
+                        item_input.className = "list_task";
+                        $(item_input).val($(this).find(".task").val());
+
+                        let checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.className = "list_check";
+                        checkbox.checked = $(this).find(".list_check").checked;
+
+                        let remove = document.createElement("span");
+                        remove.innerHTML = "REMOVE";
+                        remove.className = "remove";
+
+                        let divCtnr = document.createElement("div");
+                        divCtnr.className = "item_container";
+                        divCtnr.append(checkbox);
+                        divCtnr.append(item_input);
+                        divCtnr.append(remove);
+                        $("#editChecklist").prepend(divCtnr)
+                    })
+                    $("#editChecklist").css("display", "block")
+                }
             }
-            
+
+            $("#deletebutton").click(function () {
+                $("#deleteform").submit();
+            })
+
             $("#savebutton").click(function () {
-                $("#editformtitle").val($(".post_title").val())
-                $("#editformcontent").val($(".noteInput").val())
+                $("#editformtitle").val($("#edittitle").val())
+                $("#editformcontent").val($("#editcontent").val())
                 $("#editformimage").val($("#fileid").val());
-                $(".list_task").each(function () {
-                    let task = document.createElement("input");
-                    task.type = "hidden";
-                    task.name = "listitem[]";
-                    $(task).val($(this).val());
-                    $("#editform").append(task);
-                });
-                $(".list_check").each(function () {
-                    let checkbox = document.createElement("input");
-                    checkbox.type = "hidden";
-                    checkbox.name = "listcheckboxes[]";
-                    $(checkbox).val($(this).val());
-                    $("#editform").append(checkbox);
-                });
+                if($("#editcontent").val()==="") {
+                    $(".list_task").each(function () {
+                        let task = document.createElement("input");
+                        task.type = "hidden";
+                        task.name = "listitem[]";
+                        $(task).val($(this).val());
+                        $("#editform").append(task);
+                    });
+                    $(".list_check").each(function () {
+                        let checkbox = document.createElement("input");
+                        checkbox.type = "hidden";
+                        checkbox.name = "listcheckboxes[]";
+                        $(checkbox).val($(this).val());
+                        $("#editform").append(checkbox);
+                    });
+                }
                 $(".newTag").each(function () {
                     let tag = document.createElement("input");
                     tag.type = "hidden";
@@ -407,6 +450,8 @@
                 })
                 $("#editform").submit();
             })
+
+
         })
         
 
