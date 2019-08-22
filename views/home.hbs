@@ -70,7 +70,7 @@
                     <p class="noteTitle">{{title}}</p>
                     <div class = "noteTagDiv">
                         {{#each tags}}
-                            <span id="noteTag">{{tags}}</span>
+                            <span class="noteTag">{{this}}</span>
                         {{/each}}
                     </div>
                     {{#if note}}
@@ -79,7 +79,11 @@
                     {{#if checklist}}
                         {{#each checklist}}
                             <div class="item_container">
-                            <input type="checkbox" checked="{{status}}"><span class="task">{{task}}</span>
+                            {{#if status}}
+                                <input type="checkbox" checked><span class="task">{{task}}</span>
+                            {{else}}
+                                <input type="checkbox"><span class="task">{{task}}</span>
+                            {{/if}}
                             </div>
                         {{/each}}
                     {{/if}}
@@ -91,48 +95,10 @@
                     +
                 </div>
             </div>
-            <!--<div class="checklistDiv">
-                <p class="checklistTitle">Upcoming Schoolwork</p>
-                <form class="checklistButtons">
-                    <input class="editCheckList" type="button" value="EDIT"><br>
-                    <input class="deleteCheckList" type="button" value="DELETE">
-                </form>
-                <form class="checklistContent">
-                    <label class="checklistItem" name="p_id[]"><input type="checkbox">HCIFACE DJ4 - August 5</label><br>
-                    <label class="checklistItem" name="p_id[]"><input type="checkbox">WEBAPDE Phase 2 - August 6</label><br>
-                    <label class="checklistItem" name="p_id[]"><input type="checkbox">INTR-OS miniP2 - August 7</label><br>
-                    <label class="checklistItem" name="p_id[]"><input type="checkbox">AUTOMAT Problem Set 4 - August 8</label><br>
-                    <label class="checklistItem" name="p_id[]"><input type="checkbox">WEBPAPDE Mini Challenge 5 - August 8</label><br>
-                    <label class="checklistItem" name="p_id[]"><input type="checkbox">INTR-OS Exam - August 9</label><br>
-                    <label class="checklistItem" name="p_id[]"><input type="checkbox">HCIFACE Exam - August 9</label><br>
-                    <label class="checklistItem" name="p_id[]"><input type="checkbox">SOCTEC2 Presentation - August 9</label><br>
-                </form>
 
-                <div class="checklistTagDiv">
-                    <span id="checklistTag">School</span>
-                </div>
-            </div>-->
         </div>
     </div>
 
-    <!--Overlay
-    <div id="overlay">
-        <div id="background"></div>
-        <div id="newpost">
-        </div>
-    </div>
-
-    <div id="overlay_editN">
-        <div id="background_editN"></div>
-        <div id="editpost">
-        </div>
-    </div>
-
-    <div id="overlay_editCL">
-        <div id="background_editCL"></div>
-        <div id="editCL">
-        </div>
-    </div>-->
 
     <!-- The Modal -->
     <div id="addModal" class="modal">
@@ -151,7 +117,6 @@
                         <textarea class="noteInput" placeholder="Enter Content..." id="note_content"></textarea>
                     </label>
                     <button id="picbutton">UPLOAD IMAGE</button>
-                    <input id='fileid' type='file' accept=".jpg" style="display: none">
                 </div>
                 <div class="tabcontent" id="createChecklist">
                     <div class="item_container">
@@ -167,9 +132,9 @@
                 <button id="addTag">+</button>
             </div>
             <form action="/createnotes" method="post" id="addNote">
+                <input id='fileid' type='file' accept=".jpg" style="display: none" name="note_image">
                 <input type="hidden" id="formtitle" name="note_title">
                 <input type="hidden" id="formcontent" name ="note_content">
-                <input type="hidden" id="formimage" name="note_image">
             </form>
         </div>
 
@@ -185,7 +150,7 @@
                         <textarea class="noteInput" id="editcontent" ></textarea>
                     </label>
                     <button id="picbutton">UPLOAD IMAGE</button>
-                    <input id='fileid' type='file' accept=".jpg" style="display: none">
+
                 </div>
                 <div class="editcontent" id="editChecklist">
                     <button class="add">+</button>
@@ -205,7 +170,7 @@
                 <input type="hidden" id="editnoteid"  name="note_id">
                 <input type="hidden" id="editformtitle" name="note_title">
                 <input type="hidden" id="editformcontent" name ="note_content">
-                <input type="hidden" id="editformimage" name="note_image">
+                <input id='fileid' type='file' accept=".jpg" style="display: none" name="note_image">
             </form>
         </div>
     </div>
@@ -280,8 +245,7 @@
             $("#createbutton").click(function () {
                 $("#formtitle").val($(".post_title").val())
                 $("#formcontent").val($(".noteInput").val())
-                $("#formimage").val($("#fileid").val());
-                $(".list_task").each(function () {
+                $("#addModal").find(".list_task").each(function () {
                     if($(this).val()!=="") {
                         console.log($(this).val())
                         let task = document.createElement("input");
@@ -291,14 +255,14 @@
                         $("#addNote").append(task);
                     }
                 });
-                $(".list_check").each(function () {
+                $("#addModal").find(".list_check").each(function () {
                     let checkbox = document.createElement("input");
                     checkbox.type = "hidden";
                     checkbox.name = "listcheckboxes[]";
                     $(checkbox).val($(this).val());
                     $("#addNote").append(checkbox);
                 });
-                $(".newTag").each(function () {
+                $("#addModal").find(".newTag").each(function () {
                     if($(this).val()!==null) {
                         let tag = document.createElement("input");
                         tag.type = "hidden";
@@ -385,8 +349,10 @@
                     $("#editChecklist").css("display","none");
                     content.val($(note).find(".noteContent").text());
                     $("#editNote").css("display", "block")
+                    $("#editChecklist").find(".item_container").remove();
                 }
                 else{
+                    $("#editNote").find(".noteInput").val("");
                     $("#editNote").css("display","none");
                     $("#editChecklist").find(".item_container").remove();
                     let checklist = $(note).find(".item_container");
@@ -411,7 +377,7 @@
                         divCtnr.append(checkbox);
                         divCtnr.append(item_input);
                         divCtnr.append(remove);
-                        $(divCtnr).insertBefore(".add")
+                        $(divCtnr).insertBefore($("#editModal").find(".add"))
                     })
                     $("#editChecklist").css("display", "block")
                 }
@@ -424,7 +390,6 @@
             $("#savebutton").click(function () {
                 $("#editformtitle").val($("#edittitle").val())
                 $("#editformcontent").val($("#editcontent").val())
-                $("#editformimage").val($("#fileid").val());
                 $("#editform").find(".formitem").remove();
                 $("#editform").find(".formcheck").remove();
                 if($("#editcontent").val()==="") {
@@ -445,7 +410,7 @@
                         $("#editform").append(checkbox);
                     });
                 }
-                $(".newTag").each(function () {
+                $("#editModal").find(".newTag").each(function () {
                     let tag = document.createElement("input");
                     tag.type = "hidden";
                     tag.name = "tag[]";

@@ -658,7 +658,7 @@ textarea:focus{
     background: white;
 }*/
 
-#noteTag{
+.noteTag{
     color: grey;
     font-size: 10pt;
 
@@ -668,7 +668,7 @@ textarea:focus{
     border-radius: 10px;
 }
 
-#noteTag:hover{
+.noteTag:hover{
     box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
 }
 
