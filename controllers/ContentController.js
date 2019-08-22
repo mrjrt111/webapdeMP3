@@ -124,6 +124,21 @@ router.post("/home", function (req, res) {
     res.redirect("/");
 })
 
+router.post("user/home", function (req, res) {
+    res.redirect("/");
+})
+
+router.post("/notes", function (req, res) {
+    console.log("in notes")
+    Content.getUsersNotes(req.session.username).then((content)=>{
+        console.log("In notes router ", content);
+        res.render("home.hbs", {
+            notes: content
+
+        })
+    })
+})
+
 function isEmpty(obj) {
     for(var key in obj) {
         if(obj.hasOwnProperty(key))
