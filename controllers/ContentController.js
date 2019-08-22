@@ -28,10 +28,18 @@ router.post("/createnotes",upload.single("img"), (req, res)=>{
     let note = req.body.note_content;
     let username = req.session.username;
     let checklistStrings = req.body.listitem;
+    let  checkboxes = req.body.listcheckboxes;
     let tagString = req.body.tag;
     let image = null;
     if (req.file!= null)
          image= req.file.filename;
+
+    for(var i in req.body.listcheckboxes){
+        if(req.body.listcheckboxes[i]==="true")
+            checkboxes[i] = true;
+        else
+            checkboxes[i]=false;
+    }
 
     console.log("Body: ", req.body)
     var checklistJSON = [];
@@ -41,7 +49,7 @@ router.post("/createnotes",upload.single("img"), (req, res)=>{
 
         checklistJSON.push({
             "task" : item,
-            "status"  : false
+            "status"  : checkboxes[i]
         });
     }
     var tagJSON = [];
@@ -83,21 +91,33 @@ router.post("/editnote", urlencoder, (req, res)=>{
     let note = req.body.note_content;
     let username = req.session.username;
     let checklistStrings = req.body.listitem;
-    let tagString = req.body.newTag;
+    let tagString = req.body.tag;
+    let  checkboxes = req.body.listcheckboxes;
 
-    console.log(req.body);
+    let image = null;
+    if (req.file!= null)
+        image= req.file.filename;
+
+    for(var i in req.body.listcheckboxes){
+        if(req.body.listcheckboxes[i]==="true")
+            checkboxes[i] = true;
+        else
+            checkboxes[i]=false;
+    }
+
     var checklistJSON = [];
     for(var i in checklistStrings) {
 
         var item = checklistStrings[i];
 
+
         checklistJSON.push({
             "task" : item,
-            "status"  : false
+            "status"  : checkboxes[i]
         });
     }
     console.log(title, " ", note);
-    Content.editContent({_id: id},  {title: title, username: username, note: note,
+    Content.editContent({_id: id},  {title: title, username: username, note: note, image: image,
         checklist: checklistJSON, tags: tagString}).then((content)=>{
                  res.redirect("/");
     })
@@ -110,11 +130,11 @@ router.post("/deletenote",  urlencoder, (req, res)=>{
     res.redirect("/");
 })
 
-router.post("/searchTitle", urlencoder, (req, res)=>{
+router.post("/searchPhrase", urlencoder, (req, res)=>{
     let title = req.body.searchBar;
     let username = req.session.username;
     console.log("Title: ");
-    Content.loadContentByTitle(title, username).then((content)=>{
+    Content.searchItems(title, username).then((content)=>{
         console.log(content);
         res.render("home.hbs", {
             notes: content
@@ -158,7 +178,7 @@ router.post("/checklists", function (req, res) {
     })
 })*/
 
-router.get("/photo/:id", (req, res)=>{
+router.get("/:id", (req, res)=>{
     console.log("Retrieving Photo");
     let id = req.body.note_id;
     Content.getImageById(id).then((doc)=>{

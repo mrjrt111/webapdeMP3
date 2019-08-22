@@ -164,6 +164,20 @@ exports.getImageById = function (id){
         })
     })
 }
+
+exports.searchItems = function (word,  username) {
+    return new Promise(function(resolve, reject){
+        console.log("in promise : searchItems")
+        Content.find({
+            $or: [{title: { $regex : new RegExp(word, "i") }}, {tags: { $regex : new RegExp(word, "i") } }],//
+            username:  username
+        }).then((userContents)=>{
+            resolve(userContents)
+        },(err)=>{
+            reject(err)
+        })
+    })
+}
 /*exports.getUserChecklists  = function (username){
     return new Promise(function(resolve, reject){
         console.log("in promise : " + username)
