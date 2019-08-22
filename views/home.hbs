@@ -407,7 +407,12 @@
             }
 
             $("#deletebutton").click(function () {
-                $("#deleteform").submit();
+                var result = confirm("Want to delete?");
+                if (result) {
+                    $("#deleteform").submit();
+                } else {
+                    return false;
+                }
             })
 
 
