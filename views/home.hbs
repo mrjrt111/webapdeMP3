@@ -67,8 +67,8 @@
         <div id="notescontainer">
             {{#each notes}}
                 <div class="noteDiv" data-id="{{_id}}">
-                    {{#if images}}
-                        <img src="/photo/{{id}}">
+                    {{#if image}}
+                        <img src="/uploads/{{id}}">
                     {{/if}}
                     <p class="noteTitle">{{title}}</p>
                     {{#if note}}
