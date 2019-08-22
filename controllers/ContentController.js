@@ -52,7 +52,7 @@ router.post("/createnotes",upload.single("img"), (req, res)=>{
     console.log("Tag String: ", tagString);
 
     if (note&&title)
-        var noteContent = {title: title, username: username, note: note, tags: tagString};
+        var noteContent = {title: title, username: username, note: note, tags: tagString,  image: image};
     else if (title&&checklistJSON)
         var noteContent = {title: title, username: username, note: note, checklist: checklistJSON, tags: tagString};
 
@@ -156,6 +156,7 @@ router.post("/checklists", function (req, res) {
     })
 })*/
 
+
 function isEmpty(obj) {
     for(var key in obj) {
         if(obj.hasOwnProperty(key))
@@ -163,5 +164,6 @@ function isEmpty(obj) {
     }
     return true;
 }
+
 
 module.exports = router;

@@ -10,13 +10,13 @@
     <!--Side Navigation-->
     <div class="sidenav">
         <ul>
-            <form action="/home" method="post">
+            <form action="/home" method="get">
                 <input class="selection" type="submit" value="View All">
             </form>
-            <form action="/notes" method="post">
+            <form action="/notes" method="GET">
                 <input class="selection" type="submit" value="Notes">
             </form>
-            <form action="/checklists" method="post">
+            <form action="/checklists" method="GET">
                 <input class="selection" type="submit" value="Checklists">
             </form>
         </ul>
@@ -131,8 +131,8 @@
                 <button id="createbutton">SAVE</button>
                 <button class="addTag">+</button>
             </div>
-            <form action="/createnotes" method="post" id="addNote">
-                <input class='fileid' type='file' accept=".jpg" style="display: none" name="note_image">
+            <form action="/createnotes" method="post" id="addNote"enctype="multipart/form-data">
+                <input class='fileid' type='file' accept=".jpg" style="display: none" name="img">
                 <input type="hidden" id="formtitle" name="note_title">
                 <input type="hidden" id="formcontent" name ="note_content">
             </form>
