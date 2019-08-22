@@ -28,6 +28,7 @@ router.post("/createnotes",upload.single("img"), (req, res)=>{
     let note = req.body.note_content;
     let username = req.session.username;
     let checklistStrings = req.body.listitem;
+    let  checkboxes = req.body.listcheckboxes;
     let tagString = req.body.tag;
     let image = null;
     if (req.file!= null)
@@ -48,7 +49,7 @@ router.post("/createnotes",upload.single("img"), (req, res)=>{
 
         checklistJSON.push({
             "task" : item,
-            "status"  : false
+            "status"  : checkboxes[i]
         });
     }
     var tagJSON = [];
@@ -90,8 +91,8 @@ router.post("/editnote", urlencoder, (req, res)=>{
     let note = req.body.note_content;
     let username = req.session.username;
     let checklistStrings = req.body.listitem;
-    let tagString = req.body.newTag;
-    let checkboxes = req.body.listcheckboxes;
+    let tagString = req.body.tag;
+    let  checkboxes = req.body.listcheckboxes;
 
     let image = null;
     if (req.file!= null)
@@ -129,7 +130,7 @@ router.post("/deletenote",  urlencoder, (req, res)=>{
     res.redirect("/");
 })
 
-router.post("/searchTitle", urlencoder, (req, res)=>{
+router.post("/searchPhrase", urlencoder, (req, res)=>{
     let title = req.body.searchBar;
     let username = req.session.username;
     console.log("Title: ");
