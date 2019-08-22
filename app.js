@@ -19,7 +19,7 @@ const upload = multer({
 
 
 mongoose.Promise = global.Promise
-mongoose.connect("CONNECTION_URI", {//mongodb://localhost:27017/checknotes
+mongoose.connect(CONNECTION_URI, {//mongodb://localhost:27017/checknotes
     useNewUrlParser:true
 })
 mongoose.connection.once('open', ()=>{
