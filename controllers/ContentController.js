@@ -99,7 +99,6 @@ router.post("/editnote", urlencoder, (req, res)=>{
                  res.redirect("/");
     })
 
-
 })
 
 router.post("/deletenote",  urlencoder, (req, res)=>{

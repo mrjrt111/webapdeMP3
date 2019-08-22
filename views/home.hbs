@@ -42,7 +42,7 @@
         
         <form class="searchForm" method="POST" action = "/content/searchTitle">
             <input id="text" class="searchBar" type="text" placeholder="Search" name = "searchBar">
-            <input type="submit" value="Search" id="searchButton">
+            <span> <input type="submit" value="Search" id="searchButton"></span>
         </form>
         
         <!--<img class="logoutIcon" src="Checkbox Icon.svg">-->
@@ -179,10 +179,10 @@
         <div class="modal-content edit">
             <div class="modal-body note">
                 <img class="post_image" src="#" style="display:none"/>
-                <input class="post_title" type="text">
+                <input class="post_title" type="text" id="edittitle">
                 <div class="editcontent" id="editNote">
                     <label>
-                        <textarea class="noteInput" id="note_content"></textarea>
+                        <textarea class="noteInput" id="editcontent" ></textarea>
                     </label>
                     <button id="picbutton">UPLOAD IMAGE</button>
                     <input id='fileid' type='file' accept=".jpg" style="display: none">
@@ -203,8 +203,8 @@
             </form>
             <form action="/content/editnote" method="post" id="editform">
                 <input type="hidden" id="editnoteid"  name="note_id">
-                <input type="hidden" id="editformtitle" name="note_titleEdit">
-                <input type="hidden" id="editformcontent" name ="note_contentEdit">
+                <input type="hidden" id="editformtitle" name="note_title">
+                <input type="hidden" id="editformcontent" name ="note_content">
                 <input type="hidden" id="editformimage" name="note_image">
             </form>
         </div>
@@ -390,23 +390,25 @@
             })
 
             $("#savebutton").click(function () {
-                $("#editformtitle").val($(".post_title").val())
-                $("#editformcontent").val($(".noteInput").val())
+                $("#editformtitle").val($("#edittitle").val())
+                $("#editformcontent").val($("#editcontent").val())
                 $("#editformimage").val($("#fileid").val());
-                $(".list_task").each(function () {
-                    let task = document.createElement("input");
-                    task.type = "hidden";
-                    task.name = "listitem[]";
-                    $(task).val($(this).val());
-                    $("#editform").append(task);
-                });
-                $(".list_check").each(function () {
-                    let checkbox = document.createElement("input");
-                    checkbox.type = "hidden";
-                    checkbox.name = "listcheckboxes[]";
-                    $(checkbox).val($(this).val());
-                    $("#editform").append(checkbox);
-                });
+                if($("#editcontent").val()==="") {
+                    $(".list_task").each(function () {
+                        let task = document.createElement("input");
+                        task.type = "hidden";
+                        task.name = "listitem[]";
+                        $(task).val($(this).val());
+                        $("#editform").append(task);
+                    });
+                    $(".list_check").each(function () {
+                        let checkbox = document.createElement("input");
+                        checkbox.type = "hidden";
+                        checkbox.name = "listcheckboxes[]";
+                        $(checkbox).val($(this).val());
+                        $("#editform").append(checkbox);
+                    });
+                }
                 $(".newTag").each(function () {
                     let tag = document.createElement("input");
                     tag.type = "hidden";
