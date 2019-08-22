@@ -151,6 +151,19 @@ exports.getUsersChecklist  = function (username){
     })
 
 }
+
+exports.getImageById = function (id){
+    return new Promise(function(resolve, reject){
+        console.log("in promise : getImageById")
+        Content.findOne({
+            _id : id
+        }).then((userContents)=>{
+            resolve(userContents)
+        },(err)=>{
+            reject(err)
+        })
+    })
+}
 /*exports.getUserChecklists  = function (username){
     return new Promise(function(resolve, reject){
         console.log("in promise : " + username)

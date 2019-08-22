@@ -156,6 +156,16 @@ router.post("/checklists", function (req, res) {
     })
 })*/
 
+router.get("/photo/:id", (req, res)=>{
+    console.log("Retrieving Photo");
+    let id = req.body.note_id;
+    Content.getImageById(id).then((doc)=>{
+        fs.createReadStream(path.resolve(UPLOAD_PATH, doc.image)).pipe(res)
+    }, (err)=>{
+        console.log(err)
+        res.sendStatus(404)
+    })
+})
 
 function isEmpty(obj) {
     for(var key in obj) {
