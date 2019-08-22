@@ -135,6 +135,16 @@ router.post("/notes", function (req, res) {
     })
 })
 
+/*router.post("/checklists", function (req, res) {
+    console.log("in checklists")
+    Content.getUserChecklists(req.session.username).then((content)=>{
+        console.log("In checklists router ", content);
+        res.render("home.hbs", {
+            checklists: content
+        })
+    })
+})*/
+
 function isEmpty(obj) {
     for(var key in obj) {
         if(obj.hasOwnProperty(key))

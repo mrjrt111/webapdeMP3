@@ -16,6 +16,7 @@ var contentSchema = mongoose.Schema({
 })
 
 var Content = mongoose.model("contents", contentSchema);
+var CL_Content = mongoose.model("cl_contents", checklistSchema);
 
 exports.createContent = function (content){
     return new Promise(function(resolve, reject){
@@ -132,6 +133,22 @@ exports.getUsersNotes  = function (username){
 
 }
 
+/*exports.getUserChecklists  = function (username){
+    return new Promise(function(resolve, reject){
+        console.log("in promise : " + username)
+        Content.find({
+            title:  { $ne: "" }
+        }),CL_Content.find({
+            task: { $ne: "" }
+        }).then((userContents)=>{
+            //console.log("List of content : " + userContents)
+            resolve(userContents)
+        },(err)=>{
+            reject(err)
+        })
+    })
+
+}*/
 
 
 
