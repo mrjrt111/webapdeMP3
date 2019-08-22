@@ -72,7 +72,7 @@
                     {{/if}}
                     <p class="noteTitle">{{title}}</p>
                     {{#if note}}
-                        <p class="noteContent">{{{note}}}</p>
+                        <textarea class="noteContent" disabled>{{{note}}}</textarea>
                     {{/if}}
                     {{#if checklist}}
                         <div class="checklistcontainer">
@@ -365,12 +365,7 @@
                 })
                 if($(note).find(".noteContent").text()!=="") {
                     $("#editChecklist").css("display","none");
-
-                    let text = $(note).find(".noteContent").text();
-                    let text2 = text.split('<br>').join('\n');
-                    console.log(text);
-                    content.val($(note).find(".noteContent").text());
-                    //content.val(text2);
+                    content.val($(note).find(".noteContent").val());
                     $("#editNote").css("display", "block")
                     $("#editChecklist").find(".item_container").remove();
                 }
