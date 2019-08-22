@@ -58,6 +58,7 @@ exports.loadUserContent  = function (username){
             reject(err)
         })
     })
+
 }
 
 exports.findOneContent = function (id){
