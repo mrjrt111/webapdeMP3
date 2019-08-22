@@ -10,13 +10,13 @@
     <!--Side Navigation-->
     <div class="sidenav">
         <ul>
-            <form action="/content/home" method="POST">
+            <form action="/home" method="POST">
                 <input class="selection" type="submit" value="View All">
             </form>
-            <form action="/content/notes" method="POST">
+            <form action="/notes" method="POST">
                 <input class="selection" type="submit" value="Notes">
             </form>
-            <form action="/content/checklists" method="GET">
+            <form action="/checklists" method="GET">
                 <input class="selection" type="submit" value="Checklists">
             </form>
         </ul>
@@ -35,12 +35,12 @@
 
     <!--Header-->
     <div class="header sticky" id="HeaderDiv">
-        <form action="/user/logout" method="POST" id="logoutform">
+        <form action="/logout" method="POST" id="logoutform">
             <input type="submit" value="Sign out" id="logout">
         </form>
         <h2 class="name">CheckNotes</h2>
         
-        <form class="searchForm" method="POST" action = "/content/searchTitle">
+        <form class="searchForm" method="POST" action = "/searchTitle">
             <input id="text" class="searchBar" type="text" placeholder="Search" name = "searchBar">
             <span> <input type="submit" value="Search" id="searchButton"></span>
         </form>
@@ -166,7 +166,7 @@
                 <button id="createbutton">SAVE</button>
                 <button id="noteTag">+</button>
             </div>
-            <form action="/content/createnotes" method="post" id="addNote">
+            <form action="/createnotes" method="post" id="addNote">
                 <input type="hidden" id="formtitle" name="note_title">
                 <input type="hidden" id="formcontent" name ="note_content">
                 <input type="hidden" id="formimage" name="note_image">
@@ -198,10 +198,10 @@
 
             </div>
             <span class="deleteCheckList" id="deletebutton">DELETE</span>
-            <form action="/content/deletenote" method="post" id="deleteform">
+            <form action="/deletenote" method="post" id="deleteform">
                 <input type="hidden" id="deletenoteid" name="note_id">
             </form>
-            <form action="/content/editnote" method="post" id="editform">
+            <form action="/editnote" method="post" id="editform">
                 <input type="hidden" id="editnoteid"  name="note_id">
                 <input type="hidden" id="editformtitle" name="note_title">
                 <input type="hidden" id="editformcontent" name ="note_content">

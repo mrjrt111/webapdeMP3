@@ -7,8 +7,8 @@ const User = require("../models/User")
 const Content = require("../models/Content")
 
 
-router.use("/user", require("./UserController.js"))
-router.use("/content", require("./ContentController.js"))
+router.use("/", require("./UserController.js"))
+router.use("/", require("./ContentController.js"))
 
     router.get("/", function (req,  res) {
         var directory = path.join(__dirname,  '../public/login.html')
