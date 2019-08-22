@@ -202,12 +202,8 @@
                 }
             }
 
-            $('.list_check').change(function(){
-                cb = $(this);
-                cb.val(cb.prop('checked'));
-            });
 
-            $(".remove").click(function () {
+            $(document).on("click",".remove",function () {
                 $(this).parent().remove();
             })
 
