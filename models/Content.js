@@ -80,7 +80,7 @@ exports.loadContentByTitle = function (title, username){
             title : title,
             username: username
         }).then((userContents)=>{
-            console.log("List of contento : " + userContents)
+            console.log("List of contentoc1  : " + userContents)
             resolve(userContents)
         },(err)=>{
             reject(err)
