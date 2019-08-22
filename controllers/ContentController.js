@@ -33,6 +33,13 @@ router.post("/createnotes",upload.single("img"), (req, res)=>{
     if (req.file!= null)
          image= req.file.filename;
 
+    for(var i in req.body.listcheckboxes){
+        if(req.body.listcheckboxes[i]==="true")
+            checkboxes[i] = true;
+        else
+            checkboxes[i]=false;
+    }
+
     console.log("Body: ", req.body)
     var checklistJSON = [];
     for(var i in checklistStrings) {
@@ -84,11 +91,18 @@ router.post("/editnote", urlencoder, (req, res)=>{
     let username = req.session.username;
     let checklistStrings = req.body.listitem;
     let tagString = req.body.newTag;
-    let  checkboxes = req.body.listcheckboxes;
+    let checkboxes = req.body.listcheckboxes;
 
     let image = null;
     if (req.file!= null)
         image= req.file.filename;
+
+    for(var i in req.body.listcheckboxes){
+        if(req.body.listcheckboxes[i]==="true")
+            checkboxes[i] = true;
+        else
+            checkboxes[i]=false;
+    }
 
     var checklistJSON = [];
     for(var i in checklistStrings) {

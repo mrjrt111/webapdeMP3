@@ -549,6 +549,7 @@ textarea:disabled{
 .checklistcontainer{
     overflow: hidden;
     height: 80%;
+    width: 100%;
 }
 
 .noteDiv{
