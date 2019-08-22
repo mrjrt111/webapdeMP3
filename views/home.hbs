@@ -164,7 +164,7 @@
             </div>
             <div class="modal-footer">
                 <button id="createbutton">SAVE</button>
-                <button id="noteTag">+</button>
+                <button id="addTag">+</button>
             </div>
             <form action="/content/createnotes" method="post" id="addNote">
                 <input type="hidden" id="formtitle" name="note_title">
@@ -194,7 +194,7 @@
 
             <div class="modal-footer">
                 <button id="savebutton">SAVE</button>
-                <button id="noteTag">+</button>
+                <button id="addTag">+</button>
 
             </div>
             <span class="deleteCheckList" id="deletebutton">DELETE</span>
@@ -310,7 +310,7 @@
                 $("#addNote").submit();
             })
 
-            $("#noteTag").click(function () {
+            $("#addTag").click(function () {
                 let newTag = document.createElement("input");
                 newTag.type = "text";
                 $(newTag).val($(this).val());

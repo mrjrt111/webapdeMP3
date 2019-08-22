@@ -672,6 +672,20 @@ textarea:focus{
     box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
 }
 
+#addTag{
+    color: grey;
+    font-size: 10pt;
+
+    padding: 2px 4px 2px 4px;
+
+    border: 1px rgba(148, 148, 148) solid;
+    border-radius: 10px;
+}
+
+#addTag:hover{
+    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+}
+
 .newTag{
     width: 50px;
     border-radius: 10px;
