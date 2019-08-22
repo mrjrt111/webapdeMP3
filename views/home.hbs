@@ -197,12 +197,6 @@
 
             </div>
             <span class="deleteCheckList">DELETE</span>
-            <form action="/content/deletenote" method="post" id="deleteform">
-                <input type="hidden" id="editnoteid"  name="note_id">
-                <input type="hidden" id="editformtitle" name="note_title">
-                <input type="hidden" id="editformcontent" name ="note_content">
-                <input type="hidden" id="editformimage" name="note_image">
-            </form>
             <form action="/content/editnote" method="post" id="editform">
                 <input type="hidden" id="editnoteid"  name="note_id">
                 <input type="hidden" id="editformtitle" name="note_title">
@@ -212,7 +206,6 @@
         </div>
     </div>
     <script>
-        var imageFile = "";
         $(document).ready(()=> {
             // Get the modal
             var addModal = document.getElementById("addModal");
@@ -424,12 +417,9 @@
                 reader.onload = function (e) {
                     $(input).parent().parent().find('.post_image').css("display","block");
                     $(input).parent().parent().find('.post_image').attr('src', e.target.result);
-
-                    imageFile = $(e.target.result).attr('src');
                 }
 
                 reader.readAsDataURL(input.files[0]);
-                console.log($("#fileid").src);
             }
         }
 
