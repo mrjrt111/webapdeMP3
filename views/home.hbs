@@ -188,7 +188,7 @@
                     <input id='fileid' type='file' accept=".jpg" style="display: none">
                 </div>
                 <div class="editcontent" id="editChecklist">
-
+                    <button class="add">+</button>
                 </div>
             </div>
 
@@ -381,8 +381,40 @@
                 let title = $(editModal).find(".post_title");
                 let content = $(editModal).find(".noteInput");
                 title.val($(note).find(".noteTitle").text());
-                content.val($(note).find(".noteContent").text());
-                $("#editNote").css("display", "block")
+                if($(note).find(".noteContent").text()!=="") {
+                    $("#editChecklist").css("display","none");
+                    content.val($(note).find(".noteContent").text());
+                    $("#editNote").css("display", "block")
+                }
+                else{
+                    $("#editNote").css("display","none");
+                    $("#editChecklist").find(".item_container").remove();
+                    let checklist = $(note).find(".item_container");
+                    console.log(checklist)
+                    $(note).find(".item_container").each(function(){
+                        let item_input = document.createElement("input");
+                        item_input.type = "text";
+                        item_input.className = "list_task";
+                        $(item_input).val($(this).find(".task").val());
+
+                        let checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.className = "list_check";
+                        checkbox.checked = $(this).find(".list_check").checked;
+
+                        let remove = document.createElement("span");
+                        remove.innerHTML = "REMOVE";
+                        remove.className = "remove";
+
+                        let divCtnr = document.createElement("div");
+                        divCtnr.className = "item_container";
+                        divCtnr.append(checkbox);
+                        divCtnr.append(item_input);
+                        divCtnr.append(remove);
+                        $("#editChecklist").prepend(divCtnr)
+                    })
+                    $("#editChecklist").css("display", "block")
+                }
             }
 
             $("#deletebutton").click(function () {
