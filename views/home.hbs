@@ -17,6 +17,13 @@
                 <input class="selection" type="submit" value="Notes">
             </form>
             <form action="/checklists" method="GET">
+            <form action="/user/home" method="GET">
+                <input class="selection" type="submit" value="View All">
+            </form>
+            <form action="/user/notes" method="GET">
+                <input class="selection" type="submit" value="Notes">
+            </form>
+            <form action="/user/checklists" method="GET">
                 <input class="selection" type="submit" value="Checklists">
             </form>
         </ul>
@@ -164,7 +171,7 @@
             </div>
             <div class="modal-footer">
                 <button id="createbutton">SAVE</button>
-                <button id="noteTag">+</button>
+                <button id="addTag">+</button>
             </div>
             <form action="/createnotes" method="post" id="addNote">
                 <input type="hidden" id="formtitle" name="note_title">
@@ -194,7 +201,7 @@
 
             <div class="modal-footer">
                 <button id="savebutton">SAVE</button>
-                <button id="noteTag">+</button>
+                <button id="addTag">+</button>
 
             </div>
             <span class="deleteCheckList" id="deletebutton">DELETE</span>
@@ -310,7 +317,7 @@
                 $("#addNote").submit();
             })
 
-            $("#noteTag").click(function () {
+            $("#addTag").click(function () {
                 let newTag = document.createElement("input");
                 newTag.type = "text";
                 $(newTag).val($(this).val());
