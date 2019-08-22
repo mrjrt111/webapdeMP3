@@ -75,6 +75,35 @@ router.post("/login", urlencoder, (req, res)=>{
 
 })
 
+router.post("/validate", urlencoder, (req, res)=> {
+    console.log("POST /validate \t" + req.body.username + req.body.password)
+    console.log("IN");
+    let validated
+    if (req.body.validated == "true") {
+        validated = false
+    } else {
+        validated = true
+    }
+    console.log(validated)
+
+    User.findOneAndUpdate({
+        _id: req.body.id
+    }, {
+        $set: {
+            validated
+        }
+    }, {
+        new: true
+    }, (err, doc) => {
+        if (err) {
+            res.send(err)
+        } else {
+            console.log("modified \t" + doc)
+            res.send(doc)
+        }
+    })
+})
+
 router.post("/logout", urlencoder, (req, res)=>{
     req.session.username  ="";
     res.redirect("/");

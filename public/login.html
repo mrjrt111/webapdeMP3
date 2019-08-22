@@ -2,8 +2,10 @@
 <html lang="en">
 
 <head>
-  <title>Document</title>
-  <link rel="stylesheet" type="text/css" href="login.css">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <script src="jquery.min.js"> </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -17,10 +19,38 @@
             <input type="password" name="pass" placeholder="Password" id="passwordinput"/> <br />
             <input type="submit" value="LOGIN" id="loginbutton"/>
         </form>
+
+        <span class="validate" style="color:red"></span>
+
         <div id="siguptext">Don't have an account?
         <a href="signup.html" id="signup">Sign Up</a>
         </div>
     </div>
+
+    <script>
+        $('#usernameinput, #passwordinput').on('keyup', function () {
+            console.log("validate " + this)
+            $.ajax({
+                url:"validate",
+                method : "post",
+                data:{
+                    username: $("#usernameinput").val(),
+                    password : $("#passwordinput").val()
+                },
+                success: function(data){
+                    $(".validate").html("Validate");
+
+                    /*console.log("span[data-id='"+doc._id+"']")
+                    console.log( $("span[data-id="+doc._id+"]"))
+                    $("span[data-id="+doc._id+"]").attr("data-validated", doc.validated)
+                    var validated = doc.validated? "validated" : "not validated"
+                    $("span[data-id="+doc._id+"]").text(validated)*/
+
+                }
+            })
+        })
+
+    </script>
 </body>
 
 </html>
