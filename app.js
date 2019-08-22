@@ -4,6 +4,7 @@ const hbs = require("hbs")
 const session = require("express-session")
 const cookieparser = require("cookie-parser")
 const mongoose = require("mongoose")
+const CONNECTION_URI = process.env.MONGODB_URI|| '//mongodb://localhost:27017/checknotes';
 const multer = require("multer")
 const app = express()
 const fs = require('fs');
@@ -18,7 +19,7 @@ const upload = multer({
 
 
 mongoose.Promise = global.Promise
-mongoose.connect("mongodb://localhost:27017/checknotes", {
+mongoose.connect(CONNECTION_URI, {//mongodb://localhost:27017/checknotes
     useNewUrlParser:true
 })
 mongoose.connection.once('open', ()=>{

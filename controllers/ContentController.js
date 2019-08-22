@@ -22,13 +22,14 @@ const urlencoder = bodyparser.urlencoded({
 })
 router.use(urlencoder)
 
-router.post("/createnotes",upload.single("note_image"), (req, res)=>{
-   // console.log("REQ:", req);
+router.post("/createnotes",upload.single("img"), (req, res)=>{
+    console.log("REQ:", req.file);
     let title = req.body.note_title;
     let note = req.body.note_content;
     let username = req.session.username;
     let checklistStrings = req.body.listitem;
     let tagString = req.body.tag;
+    let image = req.file.filename;
 
     console.log("Body: ", req.body)
     var checklistJSON = [];
@@ -51,7 +52,7 @@ router.post("/createnotes",upload.single("note_image"), (req, res)=>{
     console.log("Tag String: ", tagString);
 
     if (note&&title)
-        var noteContent = {title: title, username: username, note: note, tags: tagString};
+        var noteContent = {title: title, username: username, note: note, tags: tagString,  image: image};
     else if (title&&checklistJSON)
         var noteContent = {title: title, username: username, note: note, checklist: checklistJSON, tags: tagString};
 
@@ -135,6 +136,16 @@ router.post("/notes", function (req, res) {
     })
 })
 
+
+router.post("/checklists", function (req, res) {
+    console.log("in checklist")
+    Content.getUsersChecklist(req.session.username).then((content)=>{
+        console.log("In notes router ", content);
+        res.render("home.hbs", {
+            notes: content
+        })
+    })
+})
 /*router.post("/checklists", function (req, res) {
     console.log("in checklists")
     Content.getUserChecklists(req.session.username).then((content)=>{
@@ -145,6 +156,17 @@ router.post("/notes", function (req, res) {
     })
 })*/
 
+router.get("/photo/:id", (req, res)=>{
+    console.log("Retrieving Photo");
+    let id = req.body.note_id;
+    Content.getImageById(id).then((doc)=>{
+        fs.createReadStream(path.resolve(UPLOAD_PATH, doc.image)).pipe(res)
+    }, (err)=>{
+        console.log(err)
+        res.sendStatus(404)
+    })
+})
+
 function isEmpty(obj) {
     for(var key in obj) {
         if(obj.hasOwnProperty(key))
@@ -152,5 +174,6 @@ function isEmpty(obj) {
     }
     return true;
 }
+
 
 module.exports = router;
