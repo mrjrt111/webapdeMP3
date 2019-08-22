@@ -75,7 +75,7 @@ router.post("/login", urlencoder, (req, res)=>{
 
 })
 
-router.get("/home", urlencoder, (req, res)=>{
+/*router.get("/home", urlencoder, (req, res)=>{
     var user =  {username : req.body.user, password : req.body.pass};
     console.log("HOME");
     res.redirect("/");
@@ -91,7 +91,7 @@ router.get("/checklists", urlencoder, (req, res)=>{
     var user =  {username : req.body.user, password : req.body.pass};
     console.log("CHECKLISTS");
     res.render("checklists.hbs");
-})
+})*/
 
 router.post("/logout", urlencoder, (req, res)=>{
     req.session.username  ="";
