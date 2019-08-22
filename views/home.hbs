@@ -80,6 +80,7 @@
                         <p class="noteContent">{{{note}}}</p>
                     {{/if}}
                     {{#if checklist}}
+                        <div class="checklistcontainer">
                         {{#each checklist}}
                             <div class="item_container">
                             {{#if status}}
@@ -89,6 +90,7 @@
                             {{/if}}
                             </div>
                         {{/each}}
+                        </div>
                     {{/if}}
                 </div>
             {{/each}}
@@ -199,6 +201,11 @@
                     savenote();
                 }
             }
+
+            $('.list_check').change(function(){
+                cb = $(this);
+                cb.val(cb.prop('checked'));
+            });
 
             /*$(".addtagButton").click(addTag);
 

@@ -541,6 +541,10 @@ textarea:focus{
     margin: 0 auto;
 }
 
+.checklistcontainer{
+    overflow: hidden;
+    height: 80%;
+}
 
 .noteDiv{
     position: relative;
@@ -548,6 +552,7 @@ textarea:focus{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+
 
     height: 350px;
     width: 240px;
@@ -680,75 +685,11 @@ textarea:focus{
     text-indent: -1.7em;
 }
 
-#checklistTag{
-    color: grey;
-    font-size: 10pt;
-
-    padding: 2px 4px 2px 4px;
-
-    border: 1px rgba(148, 148, 148) solid;
-    border-radius: 10px;
-}
-
-.tagContainerCL{
-    position: relative;
-    top:-20px;
-    left: 20px;
-}
-
-.tagCL{
-    color: rgb(82, 82, 82);
-    font-size: 10pt;
-    font-family: Roboto;
-
-    padding: 2px 4px 2px 4px;
-
-    border: 1px rgb(82, 82, 82) solid;
-    border-radius: 10px;
-}
-
-.tagButtonCL{
-    color: rgb(82, 82, 82);
-    font-size: 10pt;
-    font-family: Roboto;
-
-    padding: 2px 4px 2px 4px;
-
-    border: 1px rgb(82, 82, 82) solid;
-    border-radius: 10px;
-    background-color: #3d3d3d00;
-}
-
-.tagButtonCL:hover{
-    color: black;
-    border: 1px rgb(0, 0, 0) solid;
-}
-
-
-
-
-
-
 
 .checklistButtons{
     position:relative;
 
     width: 50px;
-}
-
-.editCheckList{
-    position: relative;
-    left: 17px;
-
-    background-color:rgba(240, 230, 140, 0);
-    border: 0px;
-    font-size:7pt;
-
-    text-align: right;
-}
-
-.editCheckList:hover{
-    color: rgb(255, 0, 64);
 }
 
 .deleteCheckList{
@@ -769,89 +710,11 @@ textarea:focus{
     cursor: pointer;
 }
 
-#overlay_editN{
-    position: fixed;
-    display: none;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 2;
-    cursor: pointer;
-    background-color: rgba(248, 252, 230, 0.315);
-}
 
-#background_editN{
-    position: fixed;
-    display: block;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(248, 252, 230, 0.315);
-    z-index: 2;
-    cursor: pointer;
-}
 
-#editpost{
-    z-index: 3;
-    position: relative;
-    /*width: 25%;*/
-    width: 500px;
-    height: 60%;
 
-    margin: auto;
-    top: 15%;
-    background-color: rgb(255, 245, 145);
 
-    border-radius: 15px;
-}
 
-#overlay_editCL{
-    position: fixed;
-    display: none;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 2;
-    cursor: pointer;
-    background-color: rgba(248, 252, 230, 0.315);
-}
-
-#background_editCL{
-    position: fixed;
-    display: block;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(248, 252, 230, 0.315);
-    z-index: 2;
-    cursor: pointer;
-}
-
-#editCL{
-    z-index: 3;
-    position: relative;
-    /*width: 25%;*/
-    width: 500px;
-    height: 60%;
-
-    margin: auto;
-    top: 15%;
-    background-color:rgb(255, 173, 230);
-
-    border-radius: 15px;
-}
 
 .check_item{
     position: relative;
@@ -1008,12 +871,15 @@ input[type="checkbox"]:checked:after {
     transition: 0.3s;
     width: 50%;
     border-bottom: solid white;
+    font-family: Roboto, SansSerif;
+    font-weight: 500;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
     background-color: #ddd;
     border-bottom: #ddd solid;
+
 }
 
 /* Create an active/current tablink class */
