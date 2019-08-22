@@ -124,9 +124,6 @@ router.post("/home", function (req, res) {
     res.redirect("/");
 })
 
-router.post("user/home", function (req, res) {
-    res.redirect("/");
-})
 
 router.post("/notes", function (req, res) {
     console.log("in notes")
@@ -134,7 +131,6 @@ router.post("/notes", function (req, res) {
         console.log("In notes router ", content);
         res.render("home.hbs", {
             notes: content
-
         })
     })
 })

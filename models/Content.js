@@ -118,14 +118,18 @@ exports.deleteContent = function (id){
 
 exports.getUsersNotes  = function (username){
     return new Promise(function(resolve, reject){
-        //console.log("in promise : " + tag + " "+ username)
-       Content.find({
-           title:  { $ne: "" },
-           note: { $ne: "" }
-       }).then((content)=>{
-            console.log(content);
-       })
+        console.log("in promise : " + username)
+        Content.find({
+            title:  { $ne: "" },
+            note: { $ne: "" }
+        }).then((userContents)=>{
+            //console.log("List of content : " + userContents)
+            resolve(userContents)
+        },(err)=>{
+            reject(err)
+        })
     })
+
 }
 
 
