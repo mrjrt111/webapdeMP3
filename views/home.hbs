@@ -13,13 +13,13 @@
     <!--Side Navigation-->
     <div class="sidenav">
         <ul>
-            <form action="/home" method="get">
+            <form action="/home" method="post">
                 <input class="selection" type="submit" value="View All">
             </form>
-            <form action="/notes" method="GET">
+            <form action="/notes" method="post">
                 <input class="selection" type="submit" value="Notes">
             </form>
-            <form action="/checklists" method="GET">
+            <form action="/checklists" method="post">
                 <input class="selection" type="submit" value="Checklists">
             </form>
         </ul>
@@ -77,7 +77,7 @@
                         {{/each}}
                     </div>
                     {{#if note}}
-                        <p class="noteContent">{{note}}</p>
+                        <p class="noteContent">{{{note}}}</p>
                     {{/if}}
                     {{#if checklist}}
                         {{#each checklist}}
@@ -358,7 +358,12 @@
                 })
                 if($(note).find(".noteContent").text()!=="") {
                     $("#editChecklist").css("display","none");
+
+                    let text = $(note).find(".noteContent").text();
+                    let text2 = text.split('<br>').join('\n');
+                    console.log(text);
                     content.val($(note).find(".noteContent").text());
+                    //content.val(text2);
                     $("#editNote").css("display", "block")
                     $("#editChecklist").find(".item_container").remove();
                 }
@@ -405,7 +410,11 @@
 
             function savenote() {
                 $("#editformtitle").val($("#edittitle").val())
+                let text = $("#editcontent").val();
+                let text2 = text.split('\n').join('<br>');
                 $("#editformcontent").val($("#editcontent").val())
+                console.log(text);
+                //$("#editformcontent").val(text2)
                 $("#editform").find(".formitem").remove();
                 $("#editform").find(".formcheck").remove();
                 if($("#editcontent").val()==="") {

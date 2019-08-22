@@ -29,7 +29,9 @@ router.post("/createnotes",upload.single("img"), (req, res)=>{
     let username = req.session.username;
     let checklistStrings = req.body.listitem;
     let tagString = req.body.tag;
-    let image = req.file.filename;
+    let image = null;
+    if (req.file!= null)
+         image= req.file.filename;
 
     console.log("Body: ", req.body)
     var checklistJSON = [];
