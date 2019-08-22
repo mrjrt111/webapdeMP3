@@ -178,7 +178,7 @@ router.post("/checklists", function (req, res) {
     })
 })*/
 
-router.get("/photo/:id", (req, res)=>{
+router.get("/:id", (req, res)=>{
     console.log("Retrieving Photo");
     let id = req.body.note_id;
     Content.getImageById(id).then((doc)=>{
