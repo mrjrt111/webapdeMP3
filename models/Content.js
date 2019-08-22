@@ -105,7 +105,7 @@ exports.loadContentByTag = function (tag, username){
 
 exports.deleteContent = function (id){
     return new Promise(function(resolve, reject){
-        console.log("in promise : " + tag + " "+ username)
+        //console.log("in promise : " + tag + " "+ username)
         Content.deleteOne({_id: id
         }).then((userContents)=>{
             console.log("Deleted: ",  userContents.n)

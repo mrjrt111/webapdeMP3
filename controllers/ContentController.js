@@ -105,6 +105,7 @@ router.post("/editnote", urlencoder, (req, res)=>{
 router.post("/deletenote",  urlencoder, (req, res)=>{
     let id = req.body.note_id;
     Content.deleteContent(id);
+    res.redirect("/");
 })
 
 router.post("/searchTitle", urlencoder, (req, res)=>{

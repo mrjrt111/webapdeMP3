@@ -197,7 +197,10 @@
                 <button id="noteTag">+</button>
 
             </div>
-            <span class="deleteCheckList">DELETE</span>
+            <span class="deleteCheckList" id="deletebutton">DELETE</span>
+            <form action="/content/deletenote" method="post" id="deleteform">
+                <input type="hidden" id="deletenoteid" name="note_id">
+            </form>
             <form action="/content/editnote" method="post" id="editform">
                 <input type="hidden" id="editnoteid"  name="note_id">
                 <input type="hidden" id="editformtitle" name="note_titleEdit">
@@ -372,6 +375,7 @@
             })
 
             function editNote(note) {
+                $("#deletenoteid").val($(note).attr("data-id"))
                 $("#editnoteid").val($(note).attr("data-id"));
                 $(editModal).css("display", "block");
                 let title = $(editModal).find(".post_title");
@@ -380,7 +384,11 @@
                 content.val($(note).find(".noteContent").text());
                 $("#editNote").css("display", "block")
             }
-            
+
+            $("#deletebutton").click(function () {
+                $("#deleteform").submit();
+            })
+
             $("#savebutton").click(function () {
                 $("#editformtitle").val($(".post_title").val())
                 $("#editformcontent").val($(".noteInput").val())
@@ -408,6 +416,8 @@
                 })
                 $("#editform").submit();
             })
+
+
         })
         
 
