@@ -84,20 +84,25 @@ router.post("/editnote", urlencoder, (req, res)=>{
     let username = req.session.username;
     let checklistStrings = req.body.listitem;
     let tagString = req.body.newTag;
+    let  checkboxes = req.body.listcheckboxes;
 
-    console.log(req.body);
+    let image = null;
+    if (req.file!= null)
+        image= req.file.filename;
+
     var checklistJSON = [];
     for(var i in checklistStrings) {
 
         var item = checklistStrings[i];
 
+
         checklistJSON.push({
             "task" : item,
-            "status"  : false
+            "status"  : checkboxes[i]
         });
     }
     console.log(title, " ", note);
-    Content.editContent({_id: id},  {title: title, username: username, note: note,
+    Content.editContent({_id: id},  {title: title, username: username, note: note, image: image,
         checklist: checklistJSON, tags: tagString}).then((content)=>{
                  res.redirect("/");
     })
