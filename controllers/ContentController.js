@@ -22,13 +22,14 @@ const urlencoder = bodyparser.urlencoded({
 })
 router.use(urlencoder)
 
-router.post("/createnotes",upload.single("note_image"), (req, res)=>{
-   // console.log("REQ:", req);
+router.post("/createnotes",upload.single("img"), (req, res)=>{
+    console.log("REQ:", req.file);
     let title = req.body.note_title;
     let note = req.body.note_content;
     let username = req.session.username;
     let checklistStrings = req.body.listitem;
     let tagString = req.body.tag;
+    let image = req.file.filename;
 
     console.log("Body: ", req.body)
     var checklistJSON = [];
@@ -135,6 +136,16 @@ router.post("/notes", function (req, res) {
     })
 })
 
+
+router.post("/checklists", function (req, res) {
+    console.log("in checklist")
+    Content.getUsersChecklist(req.session.username).then((content)=>{
+        console.log("In notes router ", content);
+        res.render("home.hbs", {
+            notes: content
+        })
+    })
+})
 /*router.post("/checklists", function (req, res) {
     console.log("in checklists")
     Content.getUserChecklists(req.session.username).then((content)=>{

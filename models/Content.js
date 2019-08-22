@@ -16,7 +16,6 @@ var contentSchema = mongoose.Schema({
 })
 
 var Content = mongoose.model("contents", contentSchema);
-var CL_Content = mongoose.model("cl_contents", checklistSchema);
 
 exports.createContent = function (content){
     return new Promise(function(resolve, reject){
@@ -79,7 +78,7 @@ exports.loadContentByTitle = function (title, username){
     return new Promise(function(resolve, reject){
         console.log("in promise Title : " + title + " "+ username)
         Content.find({
-            title : title,
+            title : { $regex : new RegExp(title, "i") }, // { $regex : new RegExp(title, "i") }
             username: username
         }).then((userContents)=>{
             console.log("List of contentoc1  : " + userContents)
@@ -122,6 +121,7 @@ exports.getUsersNotes  = function (username){
     return new Promise(function(resolve, reject){
         console.log("in promise : " + username)
         Content.find({
+            username: username,
             title:  { $ne: "" },
             note: { $ne: "" }
         }).then((userContents)=>{
@@ -134,6 +134,23 @@ exports.getUsersNotes  = function (username){
 
 }
 
+
+exports.getUsersChecklist  = function (username){
+    return new Promise(function(resolve, reject){
+        console.log("in promise : " + username)
+        Content.find({
+            username: username,
+            title:  { $ne: "" },
+            checklist:{$exists:true}, $where:'this.checklist.length>0'
+        }).then((userContents)=>{
+            //console.log("List of content : " + userContents)
+            resolve(userContents)
+        },(err)=>{
+            reject(err)
+        })
+    })
+
+}
 /*exports.getUserChecklists  = function (username){
     return new Promise(function(resolve, reject){
         console.log("in promise : " + username)
