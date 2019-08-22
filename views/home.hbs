@@ -369,8 +369,8 @@
                     let text = $(note).find(".noteContent").text();
                     let text2 = text.split('<br>').join('\n');
                     console.log(text);
-                    content.val($(note).find(".noteContent").text());
-                    //content.val(text2);
+                    //content.val($(note).find(".noteContent").text());
+                    content.val(text2);
                     $("#editNote").css("display", "block")
                     $("#editChecklist").find(".item_container").remove();
                 }
