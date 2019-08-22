@@ -165,11 +165,12 @@ exports.getImageById = function (id){
     })
 }
 
-exports.searchItems = function (word) {
+exports.searchItems = function (word,  username) {
     return new Promise(function(resolve, reject){
         console.log("in promise : searchItems")
         Content.find({
-            $or: [{title: { $regex : new RegExp(word, "i") }}, {tags: { $in: { $regex : new RegExp(word, "i") } }}]
+            $or: [{title: { $regex : new RegExp(word, "i") }}, {tags: { $regex : new RegExp(word, "i") } }],//
+            username:  username
         }).then((userContents)=>{
             resolve(userContents)
         },(err)=>{

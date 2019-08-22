@@ -134,7 +134,7 @@ router.post("/searchPhrase", urlencoder, (req, res)=>{
     let title = req.body.searchBar;
     let username = req.session.username;
     console.log("Title: ");
-    Content.loadContentByTitle(title, username).then((content)=>{
+    Content.searchItems(title, username).then((content)=>{
         console.log(content);
         res.render("home.hbs", {
             notes: content
