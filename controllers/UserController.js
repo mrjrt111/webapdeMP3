@@ -43,6 +43,7 @@ router.post("/signup", urlencoder, (req, res)=>{
                 })
             }
             else{
+                ///THIS IS WEAR YOU CAN DO IF THERES A DUPLICATE
                 console.log("This is a duplicate username")
                 res.redirect("/signup.html");
             }
@@ -52,6 +53,7 @@ router.post("/signup", urlencoder, (req, res)=>{
 
     }
     else {
+        ///THIS IS WEAR YOU CAN DO IF THE PASSWORD DONT MATCH
         console.log("Non matching passwords")
         res.redirect("/signup.html");
     }
@@ -67,6 +69,12 @@ router.post("/login", urlencoder, (req, res)=>{
            req.session.username = user.username;
            console.log(user.username, " has been found");
            res.redirect("/");
+       }
+       else{
+           ///THIS IS WEAR YOU CAN DO IF USER NOT FOUND
+           console.log(user.username," is not found")
+           res.redirect("/login.html")
+
        }
    }), (error)=>{
        console.log(error)
@@ -86,7 +94,7 @@ router.post("/validate", urlencoder, (req, res)=> {
     }
     console.log(validated)
 
-    User.findOneAndUpdate({
+    User.editCUser({
         _id: req.body.id
     }, {
         $set: {
