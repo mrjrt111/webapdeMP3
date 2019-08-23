@@ -86,7 +86,7 @@ router.post("/validate", urlencoder, (req, res)=> {
     }
     console.log(validated)
 
-    User.findOneAndUpdate({
+    User.editCUser({
         _id: req.body.id
     }, {
         $set: {
