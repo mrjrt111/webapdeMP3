@@ -23,7 +23,7 @@ const urlencoder = bodyparser.urlencoded({
 })
 router.use(urlencoder)
 
-router.post("/createnotes",upload.single("img"), (req, res)=>{
+router.post("/createnotes",upload.single("img"), (req, res, next)=>{
     console.log("REQ:", req.file);
     let title = req.body.note_title;
     let note = req.body.note_content;
@@ -62,15 +62,27 @@ router.post("/createnotes",upload.single("img"), (req, res)=>{
     }
     console.log("Tag String: ", tagString);
 
-    if (note&&title)
+    if (note&&title){
         var noteContent = {title: title, username: username, note: note, tags: tagString,  image: image};
-    else if (title&&checklistJSON)
-        var noteContent = {title: title, username: username, note: note, checklist: checklistJSON, tags: tagString};
-
-
         Content.createContent(noteContent).then(()=>{
-                res.redirect("/");
+            res.redirect("/");
         });
+    }
+
+    else if (title&&checklistJSON){
+        var noteContent = {title: title, username: username, note: note, checklist: checklistJSON, tags: tagString};
+        Content.createContent(noteContent).then(()=>{
+            res.redirect("/");
+        });
+
+    }
+    else{
+        res.redirect("/");
+    }
+
+
+
+
 
 
 })
