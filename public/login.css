@@ -2,6 +2,7 @@ body{
     display: flex;
     flex-direction: column;
     vertical-align: center;
+    overflow: hidden;
 }
 
 #container{
