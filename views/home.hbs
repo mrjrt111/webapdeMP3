@@ -4,7 +4,7 @@
 <head>
     <script src="jquery.min.js"> </script>
     <link rel="stylesheet" type="text/css" href="/home.css">
-    <link rel="icon" href="CheckNotes%20Icon.png" type="image" sizes="16x16">
+    <link rel="shortcut icon" href="CheckNotes%20Icon.ico" type="image" sizes="16x16">
     <title>
         CheckNotes
     </title>
@@ -68,8 +68,8 @@
         <div id="notescontainer">
             {{#each notes}}
                 <div class="noteDiv" data-id="{{_id}}">
-                    {{#if images}}
-                        <img src="/{{id}}">
+                    {{#if image}}
+                        <img src="/uploads/{{id}}">
                     {{/if}}
                     <p class="noteTitle">{{title}}</p>
                     {{#if note}}
