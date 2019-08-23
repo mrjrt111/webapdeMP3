@@ -4,6 +4,8 @@
 <head>
     <title>CheckNotes - SignUp</title>
     <link rel="stylesheet" type="text/css" href="signup.css">
+    <link rel="shortcut icon" href="CheckNotes%20Icon.ico" type="image" sizes="16x16">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -17,11 +19,32 @@
             <input type="password" name="pass" placeholder="Password" id="passwordinput"/> <br />
             <input type="password" name="confirm_pw" placeholder="Confirm Password" id="confirmpassword"/> <br />
             <input type="submit" value="SUBMIT" id="signup"/>
+            <span id="message"></span>
         </form>
         <form id="backloginform">
             <a href="login.html" id="backlogin">Back to Login</a>
         </form>
     </div>
+
+    <script>
+        $('#passwordinput, #confirmpassword').on('keyup', function () {
+            /*if ($('#passwordinput').val() == $('#confirmpassword').val()) {
+                   $('#message').html('Matching').css('color', 'green');
+               } else
+                   $('#message').html('Not Matching').css('color', 'red');*/
+            if(($('#passwordinput').val() === '') || ($('#confirmpassword').val() === '')){
+                $('#passwordinput').css('border', '0');
+                $('#confirmpassword').css('border', '0');
+            } else if ($('#passwordinput').val() == $('#confirmpassword').val()) {
+                $('#passwordinput').css('border', '1px solid #2d6b2a');
+                $('#confirmpassword').css('border', '1px solid #2d6b2a');
+            } else{
+                $('#passwordinput').css('border', '1px solid #ff0026');
+                $('#confirmpassword').css('border', '1px solid #ff0026');
+            }
+        });
+
+    </script>
 </body>
 
 </html>
