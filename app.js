@@ -8,9 +8,9 @@ const CONNECTION_URI = process.env.MONGODB_URI|| '//mongodb://localhost:27017/ch
 const multer = require("multer")
 const app = express()
 const fs = require('fs');
-
+const  UPLOAD_PATH = 'uploads/';
 const upload = multer({
-    dest: 'uploads/',
+    dest: UPLOAD_PATH,
     limits: {
         fileSize : 10000000,
         files : 1
