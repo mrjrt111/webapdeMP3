@@ -172,11 +172,11 @@
             <form action="/deletenote" method="post" id="deleteform">
                 <input type="hidden" id="deletenoteid" name="note_id">
             </form>
-            <form action="/editnote" method="post" id="editform">
+            <form action="/editnote" method="post" id="editform" enctype="multipart/form-data">
                 <input type="hidden" id="editnoteid"  name="note_id">
                 <input type="hidden" id="editformtitle" name="note_title">
                 <input type="hidden" id="editformcontent" name ="note_content">
-                <input class='fileid' type='file' accept=".jpg" style="display: none" name="note_image">
+                <input class='fileid' type='file' accept=".jpg" style="display: none" name="img">
             </form>
         </div>
     </div>

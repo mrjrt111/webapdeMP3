@@ -98,7 +98,7 @@ router.get("/:id", urlencoder, (req, res)=>{
 
 });
 
-router.post("/editnote", urlencoder, (req, res)=>{
+router.post("/editnote", upload.single("img"), (req, res)=>{
     let id = req.body.note_id;
     let title = req.body.note_title;
     let note = req.body.note_content;
@@ -106,7 +106,7 @@ router.post("/editnote", urlencoder, (req, res)=>{
     let checklistStrings = req.body.listitem;
     let tagString = req.body.tag;
     let  checkboxes = req.body.listcheckboxes;
-
+    console.log("REQ: ", req.file)
     let image = null;
     if (req.file!= null)
         image= req.file.filename;
@@ -129,17 +129,23 @@ router.post("/editnote", urlencoder, (req, res)=>{
             "status"  : checkboxes[i]
         });
     }
-    console.log(title, " ", note);
-    if (image!=null)
-         Content.editContent({_id: id},  {title: title, username: username, note: note, image: image,
-        checklist: checklistJSON, tags: tagString}).then((content)=>{
-                 res.redirect("/");
-    })
-    else
+    console.log(image, "this is image ");
+
+    if (image!=null){
+        console.log("Image is not null")
+        Content.editContent({_id: id},  {title: title, username: username, note: note, image: image,
+            checklist: checklistJSON, tags: tagString}).then((content)=>{
+            res.redirect("/");
+        })
+    }
+
+    else{
+        console.log("Image is null")
         Content.editContent({_id: id},  {title: title, username: username, note: note,
             checklist: checklistJSON, tags: tagString}).then((content)=>{
             res.redirect("/");
         })
+    }
     res.redirect("/");
 })
 
