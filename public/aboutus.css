@@ -10,17 +10,25 @@ body{
     flex-direction: column;
     height: 100%;
     width: 100%;
-
 }
 
 #divHeader{
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    top: 0%;
-
-    height: 40%;
+    margin: 0 auto;
+    height: 45%;
     width: 100%;
 
-    background-color: #f1ffb1;
+    /*background-color: #f1ffb1;*/
+}
+
+#login{
+    font-family: Roboto,sans-serif;
+    font-size: 20pt;
+    font-weight: 200;
+    color: #d6a800;
+    text-decoration: none;
 }
 
 #name{
@@ -31,18 +39,71 @@ body{
     text-align: center;
     margin: 0 auto;
     position: absolute;
-    top: 30%;
+    top: 65%;
+    left:45%;
 }
 
 #checknotesIcon{
     position: absolute;
-    /*top:20%;
-    left: 50%;*/
+    margin: 0 auto;
+    top: 10%;
+    left: 46%;
 
-    height: 200px;
-    width:200px;
+    height: 150px;
+    width:150px;
 }
 
-#thirdpartylist{
+#textDiv{
+    position: absolute;
+    top: 40%;
+    font-family: Roboto, sans-serif;
+    font-size: 18pt;
+    font-weight: 300;
 
+    padding: 0px 30px 0px 30px;
+    text-align: justify;
+    width: 95%;
+
+    border-radius: 25px;
+}
+
+#text{
+    font-size:23pt;
+}
+
+
+#thirdpartydiv{
+    display: flex;
+    flex-direction: column;
+    font-family: Roboto, sans-serif;
+    margin: 0 auto;
+    position: absolute;
+    top: 85%;
+    width: 100%;
+    height: 15%;
+
+    padding: 0px 30px 0px 30px;
+}
+
+#thirdpartylist1Header{
+    font-size: 12pt;
+}
+
+#thirdpartylist1{
+    position:absolute;
+    top:3%;
+    font-size: 10pt;
+}
+
+#thirdpartylist2Header{
+    position:absolute;
+    top:43%;
+    font-size: 12pt;
+}
+
+#thirdpartylist2{
+    position:absolute;
+    top:46%;
+
+    font-size: 10pt;
 }
