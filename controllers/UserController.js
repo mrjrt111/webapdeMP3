@@ -69,6 +69,8 @@ router.post("/login", urlencoder, (req, res)=>{
            req.session.username = user.username;
            console.log(user.username, " has been found");
            res.redirect("/");
+       } else{
+           res.redirect("/login.html");
        }
        else{
            ///THIS IS WEAR YOU CAN DO IF USER NOT FOUND
@@ -79,11 +81,9 @@ router.post("/login", urlencoder, (req, res)=>{
    }), (error)=>{
        console.log(error)
     }
-
-
 })
 
-router.post("/validate", urlencoder, (req, res)=> {
+/*router.post("/validate", urlencoder, (req, res)=> {
     console.log("POST /validate \t" + req.body.username + req.body.password)
     console.log("IN");
     let validated
@@ -110,7 +110,7 @@ router.post("/validate", urlencoder, (req, res)=> {
             res.send(doc)
         }
     })
-})
+})*/
 
 router.post("/logout", urlencoder, (req, res)=>{
     req.session.username  ="";

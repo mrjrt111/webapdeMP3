@@ -1,5 +1,6 @@
 body{
     display: flex;
+    flex-direction: column;
 }
 
 #container{
@@ -14,7 +15,7 @@ body{
     background-color: #efefef;
     border-radius: 5px;
     padding: 50px;
-    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+    box-shadow: 0 3px 6px rgba(50, 50, 50, 0.25);
 }
 
 #loginform{
@@ -82,12 +83,12 @@ a{
 }
 #loginbutton:hover{
     background-color: #fac400;
-    box-shadow: 0 3px 6px  rgb(50, 50, 50, 0.25);
+    box-shadow: 0 3px 6px  rgba(50, 50, 50, 0.25);
 
 }
 #loginbutton:focus{
     background-color: #ffca00;
-    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+    box-shadow: 0 3px 6px rgba(50, 50, 50, 0.25);
     border: rgba(61, 61, 61, 0.6) solid;
 }
 
@@ -98,7 +99,7 @@ input:focus{
     outline:none;
 }
 #name{
-    color: rgb(0,0,0,.87);
+    color: rgba(0,0,0,.87);
     font-family: Roboto,sans-serif;
     font-size: 24pt;
     font-weight: 200;
@@ -106,3 +107,22 @@ input:focus{
     margin: 0 auto;
 }
 
+#aboutustext{
+    margin: 0 auto;
+    position: absolute;
+    top: 95%;
+    left: 47%;
+}
+
+#aboutus{
+    margin: 0 auto;
+    position: relative;
+    font-family:Roboto, sans-serif;
+    font-size:10pt;
+    text-align: center;
+    color: black;
+}
+
+#aboutus:hover{
+    color: #d6a800;
+}

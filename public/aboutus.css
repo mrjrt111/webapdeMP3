@@ -1,0 +1,48 @@
+body{
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+#container{
+    background-color: #e9ecee;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+
+}
+
+#divHeader{
+    position: absolute;
+    top: 0%;
+
+    height: 40%;
+    width: 100%;
+
+    background-color: #f1ffb1;
+}
+
+#name{
+    color: rgba(0,0,0,.87);
+    font-family: Roboto,sans-serif;
+    font-size: 24pt;
+    font-weight: 200;
+    text-align: center;
+    margin: 0 auto;
+    position: absolute;
+    top: 30%;
+}
+
+#checknotesIcon{
+    position: absolute;
+    /*top:20%;
+    left: 50%;*/
+
+    height: 200px;
+    width:200px;
+}
+
+#thirdpartylist{
+
+}
