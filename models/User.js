@@ -62,3 +62,15 @@ exports.getByUsername = function(username){
         })
     })
 }
+
+exports.editCUser = function(oldContent, newContent){
+    return new Promise(function(resolve, reject){
+        console.log("Edit Content ",oldContent, " to ", newContent);
+
+        User.findOneAndUpdate(oldContent,  newContent).then(()=>{
+
+        })
+
+
+    })
+}
