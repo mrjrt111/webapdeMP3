@@ -350,6 +350,8 @@
             })
 
             function editNote(note) {
+                $("#editModal").find(".post_image").attr($(note).find("img").attr("src"));
+                $("#editModal").find(".fileid").val($(note).find("img").attr("src"))
                 $("#deletenoteid").val($(note).attr("data-id"))
                 $("#editnoteid").val($(note).attr("data-id"));
                 $(editModal).css("display", "block");
