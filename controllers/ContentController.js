@@ -4,9 +4,10 @@ const bodyparser = require("body-parser")
 const auth = require("../middlewares/auth")
 const fs = require('fs')
 const multer = require("multer")
+const path = require("path")
 const User = require("../models/User")
 const Content = require("../models/Content")
-
+const  UPLOAD_PATH = 'uploads/';
 
 //const UPLOAD_PATH = path.resolve(__dirname+ "../uploads")
 const upload = multer({
@@ -117,10 +118,16 @@ router.post("/editnote", urlencoder, (req, res)=>{
         });
     }
     console.log(title, " ", note);
-    Content.editContent({_id: id},  {title: title, username: username, note: note, image: image,
+    if (image!=null)
+         Content.editContent({_id: id},  {title: title, username: username, note: note, image: image,
         checklist: checklistJSON, tags: tagString}).then((content)=>{
                  res.redirect("/");
     })
+    else
+        Content.editContent({_id: id},  {title: title, username: username, note: note,
+            checklist: checklistJSON, tags: tagString}).then((content)=>{
+            res.redirect("/");
+        })
     res.redirect("/");
 })
 
@@ -178,9 +185,10 @@ router.post("/checklists", function (req, res) {
     })
 })*/
 
-router.get("/:id", (req, res)=>{
+router.get("/uploads/:id", (req, res)=>{
     console.log("Retrieving Photo");
-    let id = req.body.note_id;
+    id = req.params.id;
+    console.log(req.params.id, "  This is the id");
     Content.getImageById(id).then((doc)=>{
         fs.createReadStream(path.resolve(UPLOAD_PATH, doc.image)).pipe(res)
     }, (err)=>{
