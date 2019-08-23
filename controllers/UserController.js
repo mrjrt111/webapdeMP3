@@ -69,8 +69,6 @@ router.post("/login", urlencoder, (req, res)=>{
            req.session.username = user.username;
            console.log(user.username, " has been found");
            res.redirect("/");
-       } else{
-           res.redirect("/login.html");
        }
        else{
            ///THIS IS WEAR YOU CAN DO IF USER NOT FOUND
