@@ -59,6 +59,10 @@ button:focus{
     width: 100%;
 }
 
+#searchSpan{
+    width:75%;
+}
+
 .searchForm{
     position: relative;
     top:10%;
@@ -74,7 +78,7 @@ button:focus{
 
     height: 100%;
     /*width: 100%*/
-    width:80%;
+    width:100%;
 
     border: 0px;
     border-radius: 10px;
@@ -83,11 +87,15 @@ button:focus{
 }
 
 #searchButton{
-    color: rgb(129,129,129,0.87);
+    position: relative;
+    bottom: 81%;
+    left: 90%;
+    color: rgba(129, 129, 129, 0.94);
     text-decoration: none;
     font-family: Roboto,sans-serif;
-    background-color: #ffffff;
-    border: rgb(129,129,129,0.87) solid;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0);
+    border: rgba(129, 129, 129, 0.94) solid;
     border-radius: 5px;
     height: 30px;
     transition-property: all;
@@ -96,9 +104,9 @@ button:focus{
 }
 
 #searchButton:hover{
-    color: rgb(129,129,129,1.0);
-    border: rgb(129,129,129,1.0) solid;
-    box-shadow: 0 1px 3px rgb(50, 50, 50, 0.25);
+    color: rgba(129,129,129,1.0);
+    border: rgba(129,129,129,1.0) solid;
+    box-shadow: 0 1px 3px rgba(50, 50, 50, 0.34);
 }
 
 .name{
@@ -109,6 +117,13 @@ button:focus{
     user-select: none;
 }
 
+#headerbuttons{
+    position: relative;
+    top: 30%;
+    left: 90%;
+
+}
+
 .logoutIcon{
     position: relative;
     float: right;
@@ -116,16 +131,17 @@ button:focus{
 
 #logoutform{
     position: relative;
-    top: 30%;
+    /*bottom: 45%;*/
+    top:30%;
     left:90%;
 }
 
 #logout{
-    color: rgb(129,129,129,0.6);
+    color: rgba(129,129,129,0.6);
     text-decoration: none;
     font-family: Roboto,sans-serif;
     background-color: #ffffff;
-    border: rgb(129,129,129,0.6) solid;
+    border: rgba(129,129,129,0.6) solid;
     border-radius: 5px;
     height: 30px;
     transition-property: all;
@@ -134,9 +150,31 @@ button:focus{
 }
 
 #logout:hover{
-    color: rgb(129,129,129,0.87);
-    border: rgb(129,129,129,0.87) solid;
-    box-shadow: 0 1px 3px rgb(50, 50, 50, 0.25);
+    color: rgba(129,129,129,0.87);
+    border: rgba(129,129,129,0.87) solid;
+    box-shadow: 0 1px 3px rgba(50, 50, 50, 0.25);
+}
+
+#aboutus{
+    position: relative;
+    top: 0%;
+    right:100%;
+    color: rgba(129,129,129,0.6);
+    text-decoration: none;
+    font-family: Roboto,sans-serif;
+    background-color: #ffffff;
+    border: rgba(129,129,129,0.6) solid;
+    border-radius: 5px;
+    height: 30px;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function:ease;
+}
+
+#aboutus:hover{
+    color: rgba(129,129,129,0.87);
+    border: rgba(129,129,129,0.87) solid;
+    box-shadow: 0 1px 3px rgba(50, 50, 50, 0.25);
 }
 
 .sidenav{
@@ -152,7 +190,7 @@ button:focus{
     background-color: white;
     overflow-x: hidden;
     padding-top: 20px;
-    box-shadow: 3px 0 6px rgb(150,150,150,0.25);
+    box-shadow: 3px 0 6px rgba(150,150,150,0.25);
 }
 
 .selection  {
@@ -264,7 +302,7 @@ ul{
     top: 25%;
     margin-right: 5px;
     background: transparent;
-    border: rgb(255,202,0, .60) solid;
+    border: rgba(255,202,0, .60) solid;
     border-radius: 5px;
     font-family: Roboto, sans-serif;
     font-size: 10pt;
@@ -281,7 +319,7 @@ ul{
 }
 
 .createpostButton:hover{
-    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+    box-shadow: 0 3px 6px rgba(50, 50, 50, 0.25);
     background-color: rgb(255,202,0) ;
     border: rgb(255,202,0) solid;
     color:white;
@@ -302,7 +340,7 @@ textarea:focus{
     outline:none;
 }
 textarea:disabled{
-    color: rgb(0,0,0,0.87);
+    color: rgba(0,0,0,0.87);
 }
 
 .post_title_container{
@@ -361,7 +399,7 @@ textarea:disabled{
 
     padding: 2px 4px 2px 4px;
 
-    border: 1px rgba(148, 148, 148) solid;
+    border: 1px rgb(148, 148, 148) solid;
     border-radius: 10px;
 }
 
@@ -404,7 +442,7 @@ textarea:disabled{
 }
 
 #createbutton:hover{
-    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+    box-shadow: 0 3px 6px rgba(50, 50, 50, 0.25);
     background-color: rgb(189, 189, 189);
 }
 
@@ -424,7 +462,7 @@ textarea:disabled{
 }
 
 #savebutton:hover{
-    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+    box-shadow: 0 3px 6px rgba(50, 50, 50, 0.25);
     background-color: rgb(189, 189, 189);
 }
 
@@ -456,7 +494,7 @@ textarea:disabled{
     border-radius: 5px;
     font-family: Roboto, sans-serif;
     font-size: 8pt;
-    color: rgb(0, 0, 0, 0.6);
+    color: rgba(0, 0, 0, 0.6);
     font-weight:500;
     height: 6%;
     transition-property: all;
@@ -466,7 +504,7 @@ textarea:disabled{
 }
 
 .remove:hover{
-    color: rgb(0, 0, 0, 0.87);
+    color: rgba(0, 0, 0, 0.87);
 }
 
 .add{
@@ -477,18 +515,18 @@ textarea:disabled{
     border-radius: 5px;
     font-family: Roboto, sans-serif;
     font-size: 8pt;
-    color: rgb(0, 0, 0,0.6);
+    color: rgba(0, 0, 0,0.6);
     font-weight:500;
     padding: 5px;
     transition-property: all;
     transition-duration: 0.5s;
     transition-timing-function:ease;
-    border: 1px rgb(0, 0, 0,0.6) solid;
+    border: 1px rgba(0, 0, 0,0.6) solid;
 }
 
 .add:hover{
-    color: rgb(0, 0, 0,0.87);
-    order: 1px rgb(0, 0, 0,0.87) solid;
+    color: rgba(0, 0, 0,0.87);
+    border: 1px rgba(0, 0, 0,0.87) solid;
 }
 
 .filebutton{
@@ -530,14 +568,14 @@ textarea:disabled{
     align-content: center;
 
     font-size: 120pt;
-    color: rgb(0, 0, 0, 0.6);
-    border: rgb(0, 0, 0, 0.3) solid;
+    color: rgba(0, 0, 0, 0.6);
+    border: rgba(0, 0, 0, 0.3) solid;
 }
 
 #createPost:hover{
-    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
-    color: rgb(0, 0, 0, 0.87);
-    border: rgb(0, 0, 0, 0.6) solid;
+    box-shadow: 0 3px 6px rgba(50, 50, 50, 0.25);
+    color: rgba(0, 0, 0, 0.87);
+    border: rgba(0, 0, 0, 0.6) solid;
     cursor: pointer;
 }
 
@@ -577,7 +615,7 @@ textarea:disabled{
 
 .noteDiv:hover{
     background-color: rgb(245, 218, 63);
-    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+    box-shadow: 0 3px 6px rgba(50, 50, 50, 0.25);
     cursor: pointer;
 }
 
@@ -616,7 +654,7 @@ textarea:disabled{
 
     padding: 2px 4px 2px 4px;
 
-    border: 1px rgba(148, 148, 148) solid;
+    border: 1px rgb(148, 148, 148) solid;
     border-radius: 10px;
 }
 
@@ -631,7 +669,7 @@ textarea:disabled{
 
     padding: 2px 4px 2px 4px;
 
-    border: 1px rgba(148, 148, 148) solid;
+    border: 1px rgb(148, 148, 148) solid;
     border-radius: 10px;
     transition-property: all;
     transition-duration: 0.5s;
@@ -639,13 +677,13 @@ textarea:disabled{
 }
 
 .addTag:hover{
-    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+    box-shadow: 0 3px 6px rgba(50, 50, 50, 0.25);
 }
 
 .newTag{
     width: 50px;
     border-radius: 10px;
-    border: 1px rgba(148, 148, 148) solid;
+    border: 1px rgb(148, 148, 148) solid;
     padding: 2px 4px 2px 4px;
 }
 
@@ -670,7 +708,7 @@ textarea:disabled{
 
 .checklistDiv:hover{
     background-color: rgb(245, 167, 220);
-    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+    box-shadow: 0 3px 6px rgba(50, 50, 50, 0.25);
 }
 
 
@@ -716,7 +754,7 @@ textarea:disabled{
     font-size:7pt;
     width: 10px;
     font-family: Roboto,SansSerif;
-    color: rgb(0,0,0,0.87);
+    color: rgba(0,0,0,0.87);
     text-align: right;
 }
 
@@ -724,12 +762,6 @@ textarea:disabled{
     color: rgb(255, 0, 64);
     cursor: pointer;
 }
-
-
-
-
-
-
 
 .check_item{
     position: relative;
@@ -900,7 +932,7 @@ input[type="checkbox"]:checked:after {
 /* Style the tab */
 .tab {
     overflow: hidden;
-    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+    box-shadow: 0 3px 6px rgba(50, 50, 50, 0.25);
     width: 100%;
 }
 
@@ -953,7 +985,7 @@ input[type="checkbox"]:checked:after {
 }
 
 .picbutton:hover{
-    box-shadow: 0 3px 6px rgb(50, 50, 50, 0.25);
+    box-shadow: 0 3px 6px rgba(50, 50, 50, 0.25);
     background-color: rgb(189, 189, 189);
 }
 
