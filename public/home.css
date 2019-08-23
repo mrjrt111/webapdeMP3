@@ -647,6 +647,7 @@ textarea:disabled{
     border-radius: 10px;
     border: 1px rgba(148, 148, 148) solid;
     padding: 2px 4px 2px 4px;
+    font-family: Roboto,SansSerif;
 }
 
 .checklistDiv{
