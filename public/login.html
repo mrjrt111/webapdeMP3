@@ -15,10 +15,15 @@
         <p id="Instruction">
             Sign in to continue to Checknotes
         </p>
-        <form action="/login" method="POST" id="loginform">
+        <form action="/checkcredentials" method="POST" id="loginform">
             <input type="text" name="user" placeholder="Username" id="usernameinput"/> <br />
             <input type="password" name="pass" placeholder="Password" id="passwordinput"/> <br />
             <input type="submit" value="LOGIN" id="loginbutton"/>
+        </form>
+
+        <form action="/login" method="POST" id="hiddenform">
+            <input type="hidden" name="user" placeholder="Username" id="usernameform"/>
+            <input type="hidden" name="pass" placeholder="Password" id="passwordform"/>
         </form>
 
         <div id="siguptext">Don't have an account?
@@ -36,19 +41,24 @@
 
 
 
-
-    <!--<script>
-        $('#usernameinput, #passwordinput').on('keyup', function () {
-            console.log("validate " + this)
+    <script>
+        $('#loginform').submit( function (e) {
+           e.preventDefault();
             $.ajax({
-                url:"validate",
+                url:"checkcredentials",
                 method : "post",
                 data:{
-                    username: $("#usernameinput").val(),
-                    password : $("#passwordinput").val()
+                    user: $("#usernameinput").val(),
+                    pass : $("#passwordinput").val()
                 },
                 success: function(data){
-                    $(".validate").html("Validate");
+                    if(data.found===0)
+                        $(".validate").html("Incorrect username or password")
+                    else{
+                        $("#usernameform").val($("#usernameinput").val())
+                        $("#passwordform").val($("#passwordinput").val());
+                        $("#hiddenform").submit()
+                    }
 
                     /*console.log("span[data-id='"+doc._id+"']")
                     console.log( $("span[data-id="+doc._id+"]"))
@@ -60,7 +70,7 @@
             })
         })
 
-    </script>-->
+    </script>-
 </body>
 
 </html>

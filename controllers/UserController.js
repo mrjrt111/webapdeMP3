@@ -59,6 +59,28 @@ router.post("/signup", urlencoder, (req, res)=>{
     }
 })
 
+router.post("/checkcredentials", urlencoder,(req, res)=>{
+    var user =  {username : req.body.user, password : req.body.pass};
+
+    User.loginUser(user).then((foundUser)=>{
+        if (foundUser){
+            res.send({
+                found:1
+            })
+        }
+        else{
+            ///THIS IS WEAR YOU CAN DO IF USER NOT FOUND
+            console.log(user.username," is not found");
+            res.send({
+                found:0
+            })
+        }
+    }), (error)=>{
+        console.log(error)
+    }
+})
+
+
 router.post("/login", urlencoder, (req, res)=>{
     console.log("LOG-IN");
 
@@ -72,9 +94,11 @@ router.post("/login", urlencoder, (req, res)=>{
        }
        else{
            ///THIS IS WEAR YOU CAN DO IF USER NOT FOUND
-           console.log(user.username," is not found")
-           res.redirect("/login.html")
-
+           console.log(user.username," is not found");
+           res.send({
+               found:0
+           })
+            //res.redirect("/")
        }
    }), (error)=>{
        console.log(error)
