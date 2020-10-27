@@ -5,3 +5,6 @@ How to run:
 2. Navigate to the project directory on cmd
 3. Type 'npm install' to install dependencies
 4. Type 'node app.js' to run server
+
+
+App.js is the main file to run
